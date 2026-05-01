@@ -1,8 +1,9 @@
 # rainbow-seed
+Combine items to discover new seed types and other items. Use the various seasons to your advantage to find the ultimate RAINBOWSEED and let the magic of spring shine!
 
+Authors: Numa_Guy, Zalinius, Darzington
+Submission for the spring cozy games jam
 A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
-
-This project was generated with a template including simple application launchers and an `ApplicationAdapter` extension that draws libGDX logo.
 
 ## Platforms
 
