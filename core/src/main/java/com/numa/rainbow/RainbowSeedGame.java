@@ -1,45 +1,48 @@
 package com.numa.rainbow;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.numa.rainbow.items.ItemInteractions;
-import com.numa.rainbow.items.ItemType; 
+import com.numa.rainbow.items.ItemType;
+import com.numa.rainbow.ui.Farm;
+import com.numa.rainbow.ui.UI;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class RainbowSeedGame extends ApplicationAdapter {
-    private SpriteBatch batch;
-    private Texture image;
+	
+	private Stage stage;
     ItemInteractions interactions;
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        image = new Texture("libgdx.png");
-        interactions=new ItemInteractions();
+        initializeUI();
        
+        interactions = new ItemInteractions();
         combineItems(ItemType.DIRT, ItemType.WATER);
         combineItems(ItemType.DIRT, ItemType.DIRT);
         combineItems(ItemType.WATER, ItemType.DIRT);
-
-
-
     }
 
-    @Override
+	@Override
     public void render() {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
-        batch.begin();
-        batch.draw(image, 140, 210);
-        batch.end();
+          
+        stage.act();
+        stage.getViewport().apply();
+        stage.draw();
     }
 
-    @Override
-    public void dispose() {
-        batch.dispose();
-        image.dispose();
-    }
+	private void initializeUI() {
+    	UI.initialize();
+
+		this.stage = new Stage(new FitViewport(1280, 720));
+		Gdx.input.setInputProcessor(stage);
+		new Farm(stage);
+	}
+
     
     public void combineItems(ItemType type1, ItemType type2) {
     	if (interactions.hasCombinations(type1, type2)) {
