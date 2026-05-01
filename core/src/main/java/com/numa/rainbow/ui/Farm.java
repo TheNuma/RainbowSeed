@@ -1,26 +1,37 @@
 package com.numa.rainbow.ui;
 
+import java.util.HashSet;
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.numa.rainbow.items.Item;
 import com.numa.rainbow.items.ItemType;
 
 public class Farm {
-	
+
 	private final Stage stage;
 
 	public Farm(Stage stage) {
 		this.stage = stage;
-		
-		stage.addActor(UI.makeTextButton("Test Button", () -> System.out.println("CLICKED")));
-		
-		DraggableItem seeds = new DraggableItem();
-		seeds.setPosition(500, 500);
-		stage.addActor(seeds);
-		
-		
 
+		//		stage.addActor(UI.makeTextButton("Test Button", () -> System.out.println("CLICKED")));
+		DraggableItem seeds = UI.makeDraggableItem(ItemType.SEED);
+		seeds.setPosition(740, 320);
+		stage.addActor(seeds);
+
+		DraggableItem wateringCan = UI.makeDraggableItem(ItemType.WATER);
+		wateringCan.setPosition(500, 500);
+		stage.addActor(wateringCan);
+
+		DraggableItem dirt = UI.makeDraggableItem(ItemType.DIRT);
+		dirt.setPosition(999, 600);
+		stage.addActor(dirt);
+		
+		setUpItemPair(wateringCan, dirt);
+	}
+	
+	private void setUpItemPair(DraggableItem item1, DraggableItem item2) {
+		item1.addDropTarget(item2);
+		item2.addDropTarget(item1);
 	}
 
 
-	
 }
