@@ -1,6 +1,8 @@
 package com.numa.rainbow.ui;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.numa.rainbow.items.Item;
+import com.numa.rainbow.items.ItemType;
 
 public class Farm {
 	
@@ -14,6 +16,9 @@ public class Farm {
 		DraggableItem seeds = new DraggableItem();
 		seeds.setPosition(500, 500);
 		stage.addActor(seeds);
+		
+		
+
 	}
 
 
