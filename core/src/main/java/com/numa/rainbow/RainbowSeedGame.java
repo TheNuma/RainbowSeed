@@ -50,17 +50,29 @@ public class RainbowSeedGame extends ApplicationAdapter {
 	}
 
     
-    public void combineItems(Item type1, Item type2) {
-    	if (interactions.hasCombinations(type1.getType(), type2.getType())) {
-    		ItemType type3 = interactions.getCombination(type1.getType(), type2.getType());
-    		System.out.println(type1+" and "+type2+ " combined to make "+type3);
+    public void combineItems(Item item1, Item item2) {
+       	if (interactions.hasCombinations(item1.getType(), item2.getType())) {
+    		//create new object
+    		ItemType type3 = interactions.getCombination(item1.getType(), item2.getType());    		
+    		System.out.println(item1.getType()+" and "+item2.getType()+ " combined to make "+type3);
     		Item spawnItem =new Item(type3);
     		stage.addActor(spawnItem);
-    		spawnItem.setPosition((type1.getX()+type2.getX())/2f, (type1.getY()+type2.getY())/2f);
-    		
+    		spawnItem.setPosition((item1.getX()+item2.getX())/2f, (item1.getY()+item2.getY())/2f);
+    		//remove 'parent' objects if necessary
+    		checkAndRemoveSingleUse(item1);
+    		checkAndRemoveSingleUse(item2);
     	}
     	else {
-    		System.out.println("No combinations found between "+type1+ " and "+type2);
+    		System.out.println("No combinations found between "+item1+ " and "+item2);
     	}
     }
+    
+    public void checkAndRemoveSingleUse(Item t) {
+    	if (t.getType().isSingleUse())
+    	{
+    		System.out.println("All combinations with "+t.getType().toString()+" has been found");
+    		t.remove();
+    	}
+    }
+    
 }

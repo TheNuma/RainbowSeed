@@ -13,12 +13,9 @@ public class Item extends Actor{
 		this.setPosition(new Random().nextInt(500),new Random().nextInt(500));
 		this.debug();
 	}
-
+	
 	public ItemType getType() {
 		return type;
 	}
-
-	public void setType(ItemType type) {
-		this.type = type;
-	}
+	
 }
