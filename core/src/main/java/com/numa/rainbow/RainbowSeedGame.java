@@ -5,17 +5,25 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.numa.rainbow.items.ItemInteractions;
+import com.numa.rainbow.items.ItemType;
 import com.numa.rainbow.ui.Farm;
 import com.numa.rainbow.ui.UI;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class RainbowSeedGame extends ApplicationAdapter {
-    
+	
 	private Stage stage;
+    ItemInteractions interactions;
 
     @Override
     public void create() {
         initializeUI();
+       
+        interactions = new ItemInteractions();
+        combineItems(ItemType.DIRT, ItemType.WATER);
+        combineItems(ItemType.DIRT, ItemType.DIRT);
+        combineItems(ItemType.WATER, ItemType.DIRT);
     }
 
 	@Override
@@ -35,4 +43,14 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		new Farm(stage);
 	}
 
+    
+    public void combineItems(ItemType type1, ItemType type2) {
+    	if (interactions.hasCombinations(type1, type2)) {
+    		ItemType type3 = interactions.getCombination(type1, type2);
+    		System.out.println(type1+" and "+type2+ " combined to make "+type3);
+    	}
+    	else {
+    		System.out.println("No combinations found between "+type1+ " and "+type2);
+    	}
+    }
 }
