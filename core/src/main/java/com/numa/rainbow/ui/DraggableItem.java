@@ -25,18 +25,19 @@ public class DraggableItem extends Table {
 
 	public DraggableItem(String fileName, Label label) {
 		this.name = fileName;
-		setTransform(true);
 		setTouchable(Touchable.enabled);
 		
 		add(label).growX();
 		label.setWrap(true);
 		label.setAlignment(Align.center);
+		label.setTouchable(Touchable.disabled);
 		row();
 		
 		Texture tex = new Texture(Gdx.files.internal("items/" + fileName + ".png"));
 		tex.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		image = new Image(tex);
 		image.setScaling(Scaling.fit);
+		image.setTouchable(Touchable.disabled);
 		add(image);
 		setSize(75, 100);
 		
@@ -45,13 +46,15 @@ public class DraggableItem extends Table {
 		dragAndDrop.setDragActorPosition(getWidth()/2f, -getHeight()/2f);
 		dragAndDrop.addSource(new Source(this) {
 
+			private Payload payload;
+
 			@Override
 			public Payload dragStart(InputEvent event, float x, float y, int pointer) {
-				Payload payload = new Payload();
+				payload = new Payload();
 				payload.setObject(fileName);
 				
 				payload.setDragActor(getActor());
-				
+
 				Label validLabel = UI.makeLabel("Valid combo!");
 				validLabel.setColor(0, 1, 0, 1);
 				payload.setValidDragActor(validLabel);
@@ -60,8 +63,21 @@ public class DraggableItem extends Table {
 				invalidLabel.setColor(1, 0, 0, 1);
 				payload.setInvalidDragActor(invalidLabel);
 				
+				DraggableItem.this.setTouchable(Touchable.disabled);
 				
 				return payload;
+			}
+			
+			@Override
+			public void drag(InputEvent event, float x, float y, int pointer) {
+				payload.setValidDragActor(new PossibleComboHint());
+				super.drag(event, x, y, pointer);
+			}
+			
+			@Override
+			public void dragStop(InputEvent event, float x, float y, int pointer, Payload payload, Target target) {
+				super.dragStop(event, x, y, pointer, payload, target);
+				DraggableItem.this.setTouchable(Touchable.enabled);
 			}
 		
 		});
