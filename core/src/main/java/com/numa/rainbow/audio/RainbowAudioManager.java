@@ -36,8 +36,8 @@ public class RainbowAudioManager {
 
 		// Goofy code block for testing vertical remixing
 		timer -= delta;
-		if (timer <= 0) {
-			timer = new Random().nextFloat(8, 12);
+		if (timer <= 0f) {
+			timer = new Random().nextFloat() * 4f + 8f;
 			if (currentSong == winterSong) {
 				playSong(springSong);
 			} else if (currentSong == springSong) {
