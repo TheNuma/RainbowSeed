@@ -26,7 +26,7 @@ public class Combiner {
     }
     
     public static void checkAndRemoveSingleUse(DraggableItem t) {
-    	if (t.getType().isSingleUse()&&!t.hasRemainingCombinations())
+    	if (!t.hasRemainingCombinations())
     	{
     		System.out.println("All combinations with "+t.getType().toString()+" has been found");
     		t.remove();

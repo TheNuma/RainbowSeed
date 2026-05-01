@@ -33,8 +33,6 @@ public class DraggableItem extends Table {
 
 	
 	public DraggableItem(String fileName, Label label,ItemType type,Set<ItemType> combos) {
-
-
 		this.type=type;
 		this.remainingCombinations=combos;
 		this.name = fileName;
@@ -69,8 +67,7 @@ public class DraggableItem extends Table {
 		image.setColor(color);
 	}
 
-	private void setupDragAndDrop() {
-		
+	private void setupDragAndDrop() {	
 		dragAndDrop.setTapSquareSize(0);
 		dragAndDrop.setDragActorPosition(getWidth()/2f, -getHeight()/2f);
 		dragAndDrop.addSource(new Source(this) {
@@ -83,15 +80,7 @@ public class DraggableItem extends Table {
 				payload.setObject(DraggableItem.this);
 
 				payload.setDragActor(getActor());
-
-				Label validLabel = UI.makeLabel("Valid combo!");
-				validLabel.setColor(0, 1, 0, 1);
-				payload.setValidDragActor(validLabel);
-
-				Label invalidLabel = UI.makeLabel("Some payload!");
-				invalidLabel.setColor(1, 0, 0, 1);
-				payload.setInvalidDragActor(invalidLabel);
-
+				
 				DraggableItem.this.setTouchable(Touchable.disabled);
 
 				return payload;
