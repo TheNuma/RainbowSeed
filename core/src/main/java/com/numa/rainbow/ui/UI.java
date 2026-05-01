@@ -14,6 +14,10 @@ public class UI {
 	public static void initialize() {
 		skin = new Skin(Gdx.files.internal("flat-earth/skin/flat-earth-ui.json"));
 	}
+	
+	public static DraggableItem makeDraggableItem(String fileName, String itemName) {
+		return new DraggableItem(fileName, makeLabel(itemName));
+	}
 	public static Label makeLabel (String text) {
 		return new Label(text, skin);
 	}
