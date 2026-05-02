@@ -25,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemType;
+import com.numa.rainbow.season.Season;
 
 public class UI {
 	
@@ -60,20 +61,41 @@ public class UI {
 		return new NinePatchDrawable(new NinePatch(drawable, 15, 15, 20, 20));
 	}
 	
-	static Button getSpringButton(Runnable onClick) {
-		ImageButtonStyle style = new ImageButtonStyle(skin.get("default", ButtonStyle.class));
-		TextureRegionDrawable icon = new TextureRegionDrawable(new Texture(Gdx.files.internal("sprout.png")));
-		float size = 0.6f * RainbowSeedGame.UI_WIDTH_FRACTION * RainbowSeedGame.WORLD_HEIGHT;
-		icon.setMinSize(size, size);
-		style.imageUp = icon;
-		style.imageDown = icon.tint(Color.LIGHT_GRAY);
-		ImageButton button = new ImageButton(style);
+	static Button getSeasonButton(Season season, Runnable onClick) {
+		ImageButton button = new ImageButton(getSeasonButtonStyle(season));
 		button.addListener(new ClickListener() {
 			public void clicked (InputEvent event, float x, float y) {
 				onClick.run();
 			}
 		});
 		return button;
+	}
+	
+	private static ImageButtonStyle getSeasonButtonStyle(Season season) {
+		ImageButtonStyle style = new ImageButtonStyle(skin.get("default", ButtonStyle.class));
+		
+		String iconFileName = "";
+		switch (season) {
+		case AUTUMN:
+			iconFileName = "oak-leaf";
+			break;
+		case SPRING:
+			iconFileName = "sprout";
+			break;
+		case SUMMER:
+			iconFileName = "sun";
+			break;
+		case WINTER:
+			iconFileName = "snowflake-2";
+			break;
+		};
+
+		TextureRegionDrawable icon = new TextureRegionDrawable(new Texture(Gdx.files.internal(iconFileName + ".png")));
+		float size = 0.6f * RainbowSeedGame.UI_WIDTH_FRACTION * RainbowSeedGame.WORLD_HEIGHT;
+		icon.setMinSize(size, size);
+		style.imageUp = icon;
+		style.imageDown = icon.tint(Color.LIGHT_GRAY);
+		return style;
 	}
 
 }
