@@ -63,13 +63,13 @@ public class BackgroundStage extends Stage implements Seasonal {
 
 	private Group prepareAutumnBackground() {
 		Group autumn = new Group();
-		autumn.addActor(makeColoredBackground(Color.ORANGE.mul(new Color(Color.GRAY))));
+		autumn.addActor(makeColoredBackground(new Color(Color.ORANGE).mul(new Color(Color.GRAY))));
 		return autumn;
 	}
 	
 	private Group prepareWinterBackground() {
 		Group winter = new Group();
-		winter.addActor(makeColoredBackground(Color.SKY));
+		winter.addActor(makeColoredBackground(new Color(Color.SKY)));
 		return winter;
 	}
 
