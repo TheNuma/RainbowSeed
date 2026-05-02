@@ -18,19 +18,31 @@ public class Farm {
 		allItems = new HashMap<>();
 		interactions =new ItemInteractions();
 		UI.setItemInteractions(interactions);
-		Combiner.setItemInteractions(interactions);
+		Combiner.setItemInteractions(interactions,this);
 		
 		makeItem(ItemType.SEED,740,320);
 		makeItem(ItemType.WATER, 500, 500);
 		makeItem(ItemType.DIRT,999,505);
+		makeUnavailableItem(ItemType.GRASS);
+
 		
 		setUpItemPair(allItems.get(ItemType.WATER), allItems.get(ItemType.DIRT));
 	}
+	
+	public DraggableItem getItemFromType(ItemType itemType) {
+		return allItems.get(itemType);
+	}
+	
 	private void makeItem(ItemType itemType,float x, float y) {
 		DraggableItem item = UI.makeDraggableItem(itemType);
 		allItems.put(itemType, item);
 		item.setPosition(x,y);
 		stage.addActor(item);
+	}
+	private void makeUnavailableItem(ItemType itemType) {
+		makeItem(itemType, -100, -100);
+		allItems.get(itemType).setVisible(false);		
+		
 	}
 	private void setupAllItems() {
 		
