@@ -11,13 +11,19 @@ import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemInteractions;
 import com.numa.rainbow.items.ItemType;
 import static com.numa.rainbow.items.ItemType.*;
+import com.numa.rainbow.season.SeasonShifter;
 
 public class Farm {
+	
 	private final Map<ItemType,DraggableItem> allItems;
 	private final ItemInteractions interactions;
 	private final Stage stage;
+	private final SeasonShifter seasonShifter;
+	
 	public Farm(Stage stage) {
 		this.stage=stage;
+		this.seasonShifter = new SeasonShifter();
+		
 		allItems = new HashMap<>();
 		interactions =new ItemInteractions();
 		Combiner.setItemInteractions(interactions,this::getItemFromType);
@@ -98,5 +104,8 @@ public class Farm {
 		item2.addDropTarget(item1);
 	}
 
+	public SeasonShifter getSeasonShifter() {
+		return seasonShifter;
+	}
 
 }
