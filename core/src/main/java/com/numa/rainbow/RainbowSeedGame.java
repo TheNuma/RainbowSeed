@@ -16,8 +16,8 @@ import com.numa.rainbow.ui.UIStage;
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class RainbowSeedGame extends ApplicationAdapter {
 
-	public static final int WORLD_WIDTH = 1280;
-	public static final int WORLD_HEIGHT = 720;
+	public static final int WORLD_WIDTH = 1920;
+	public static final int WORLD_HEIGHT = 1080;
 
 	public static final float UI_WIDTH_FRACTION = 0.075f;
 

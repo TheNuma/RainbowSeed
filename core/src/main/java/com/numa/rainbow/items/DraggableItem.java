@@ -78,6 +78,7 @@ public class DraggableItem extends Image {
 			public void dragStop(InputEvent event, float x, float y, int pointer, Payload payload, Target target) {
 				super.dragStop(event, x, y, pointer, payload, target);
 				DraggableItem.this.setTouchable(Touchable.enabled);
+				DraggableItem.this.toFront();
 			}
 
 		});

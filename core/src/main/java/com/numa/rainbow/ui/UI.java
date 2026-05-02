@@ -35,7 +35,7 @@ public class UI {
 	public static void initialize() {
 		skin = new Skin(Gdx.files.internal("flat-earth/skin/flat-earth-ui.json"));
 
-		LabelStyle style = new LabelStyle(skin.get("default", LabelStyle.class));
+		LabelStyle style = new LabelStyle(skin.get("button", LabelStyle.class));
 		style.background = getBasicBackgroundTexture(Color.GOLDENROD);
 		skin.add(LABEL_WITH_BACKGROUND, style);
 		
