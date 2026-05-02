@@ -1,6 +1,5 @@
 package com.numa.rainbow.ui;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -15,7 +14,6 @@ public class UIStage extends Stage {
 
 		Table sidebar = new Table();
 		sidebar.setBackground(UI.getUISidebarTexture());
-		sidebar.setColor(Color.TEAL);
 		sidebar.defaults().spaceTop(RainbowSeedGame.WORLD_HEIGHT * 0.1f).spaceBottom(RainbowSeedGame.WORLD_HEIGHT * 0.1f);
 
 		sidebar.add(UI.getSeasonButton(Season.SPRING, () -> seasonShifter.setSeason(Season.SPRING)));

@@ -15,9 +15,14 @@ public class Combiner {
     		spawnItem.setVisible(true);
     		item1.removeCombo(type3);
     		item2.removeCombo(type3);
+    		
     		//remove 'parent' objects if necessary
-    		checkAndRemoveFullyUsedItems(item1);
-    		checkAndRemoveFullyUsedItems(item2);
+    		float uiDelay = 0.5f;
+    		boolean firstRemoved = checkAndRemoveFullyUsedItems(item1, uiDelay);
+    		if (firstRemoved) {
+    			uiDelay = 3f;
+    		}
+    		checkAndRemoveFullyUsedItems(item2, uiDelay);
     	}
     	else {
     		System.out.println("No combinations found between "+item1+ " and "+item2);
@@ -27,11 +32,13 @@ public class Combiner {
 		Combiner.interactions=interactions;
 		 Combiner.typeToDraggable=typeToDraggable;
 	}
-    public static void checkAndRemoveFullyUsedItems(DraggableItem t) {
+    public static boolean checkAndRemoveFullyUsedItems(DraggableItem t, float uiDelay) {
     	if (!t.hasRemainingCombinations())
     	{
     		System.out.println("All combinations with "+t.getType().toString()+" has been found");
-    		t.remove();
+    		t.removeItem(uiDelay);
+    		return true;
     	}
+    	return false;
     }
 }

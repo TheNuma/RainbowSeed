@@ -29,10 +29,16 @@ import com.numa.rainbow.season.Season;
 
 public class UI {
 	
+	private static final String LABEL_WITH_BACKGROUND = "labelWithBackground";
 	private static Skin skin;
 	
 	public static void initialize() {
 		skin = new Skin(Gdx.files.internal("flat-earth/skin/flat-earth-ui.json"));
+
+		LabelStyle style = new LabelStyle(skin.get("default", LabelStyle.class));
+		style.background = getBasicBackgroundTexture(Color.GOLDENROD);
+		skin.add(LABEL_WITH_BACKGROUND, style);
+		
 		TooltipManager.getInstance().instant();
 	}
 
@@ -42,8 +48,12 @@ public class UI {
 		item.addListener(new Tooltip<Label>(label));
 		return item;
 	}
-	public static Label makeLabel (String text) {
+
+	public static Label makeLabel(String text) {
 		return new Label(text, skin);
+	}
+	public static Label makeLabelWithBackground(String text) {
+		return new Label(text, skin.get(LABEL_WITH_BACKGROUND, LabelStyle.class));
 	}
 	
 	public static TextButton makeTextButton(String text, Runnable onClick) {
@@ -57,8 +67,12 @@ public class UI {
 	}
 
 	static Drawable getUISidebarTexture() {
+		return getBasicBackgroundTexture(Color.TEAL);
+	}
+	static Drawable getBasicBackgroundTexture(Color color) {
 		TextureRegion drawable = skin.getAtlas().findRegion("button");
-		return new NinePatchDrawable(new NinePatch(drawable, 15, 15, 20, 20));
+		NinePatchDrawable ninepatch = new NinePatchDrawable(new NinePatch(drawable, 15, 15, 20, 20));
+		return ninepatch.tint(color);
 	}
 	
 	static Button getSeasonButton(Season season, Runnable onClick) {

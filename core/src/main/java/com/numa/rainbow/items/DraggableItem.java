@@ -5,9 +5,12 @@ import java.util.Set;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
@@ -16,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.ui.PossibleComboHint;
+import com.numa.rainbow.ui.UI;
 
 public class DraggableItem extends Image {
 
@@ -25,10 +29,10 @@ public class DraggableItem extends Image {
 
 	private ItemType type;
 
-	public DraggableItem(String fileName, ItemType type,Set<ItemType> combos) {
+	public DraggableItem(String fileName, ItemType type, Set<ItemType> combos) {
 		this.type=type;
 		this.remainingCombinations=combos;
-		this.name = fileName;
+		this.name = type.getItemName();
 
 		Texture tex = new Texture(Gdx.files.internal("items/" + fileName + ".png"));
 		tex.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -103,8 +107,26 @@ public class DraggableItem extends Image {
 	public ItemType getType() {
 		return type;
 	}
+	
 	public boolean hasRemainingCombinations() {
 		return !remainingCombinations.isEmpty();
+	}
+	
+	public void removeItem(float delay) {
+		Label allCombosFoundLabel = UI.makeLabelWithBackground("All combinations with "+ toString().toUpperCase() + " found!");
+		allCombosFoundLabel.setX(RainbowSeedGame.WORLD_WIDTH * 0.01f);
+		allCombosFoundLabel.setVisible(false);
+		allCombosFoundLabel.addAction(Actions.sequence(
+				Actions.delay(delay),
+				Actions.visible(true),
+				Actions.parallel(
+						Actions.moveBy(0, RainbowSeedGame.WORLD_HEIGHT * 0.15f, 5f, Interpolation.circleOut),
+						Actions.delay(3f, Actions.fadeOut(0.3f))
+						),
+				Actions.removeActor()
+				));
+		getStage().addActor(allCombosFoundLabel);
+		remove();
 	}
 
 }
