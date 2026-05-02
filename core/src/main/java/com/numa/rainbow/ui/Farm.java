@@ -1,8 +1,8 @@
 package com.numa.rainbow.ui;
 
-import java.util.HashSet;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemType;
 
 public class Farm {
@@ -16,7 +16,7 @@ public class Farm {
 		stage.addActor(wateringCan);
 
 		DraggableItem dirt = UI.makeDraggableItem(ItemType.DIRT);
-		dirt.setPosition(999, 600);
+		dirt.setPosition(999, 505);
 		stage.addActor(dirt);
 		
 		setUpItemPair(wateringCan, dirt);

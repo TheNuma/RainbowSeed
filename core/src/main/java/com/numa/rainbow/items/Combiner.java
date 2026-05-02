@@ -1,5 +1,4 @@
 package com.numa.rainbow.items;
-import com.numa.rainbow.ui.DraggableItem;
 import com.numa.rainbow.ui.UI;
 
 public class Combiner {
