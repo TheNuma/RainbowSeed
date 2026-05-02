@@ -24,44 +24,50 @@ public class Farm {
 		
 		makeItem(SPRINGSEED,740,320);
 		makeItem(WATER, 500, 500);
-		makeItem(DIRT,999,505);
+		makeItem(DIRT,999,505);		
+		makeItem(WEED,233,111);
 		makeUnavailableItem(GRASS);	
-		makeUnavailableItem(SUMMERSEED);		
-//		makeUnavailableItem(WEED);
+		makeUnavailableItem(SUMMERSEED);
 		makeUnavailableItem(ROCK);
 		makeUnavailableItem(SUN);	
 		makeUnavailableItem(SEAWATER);
 		makeUnavailableItem(STRAWBERRY);
 		makeUnavailableItem(FALLSEED);
 		makeUnavailableItem(BAMBOO);
-//		makeUnavailableItem(BUSH);
+		makeUnavailableItem(BUSH);
 		makeUnavailableItem(WHEAT);
 		makeUnavailableItem(SCARECROW);
 		makeUnavailableItem(TREE);
 		makeUnavailableItem(AXE);
 		makeUnavailableItem(STICK);
-//		makeUnavailableItem(TULIP);
+		makeUnavailableItem(TULIP);
 		makeUnavailableItem(BERRYBUSH);
 		makeUnavailableItem(VINE);
 		makeUnavailableItem(BRAMBLES);
 		makeUnavailableItem(PUMPKIN);
 		makeUnavailableItem(SNOWDROP);
+		makeUnavailableItem(SNOW);
+		makeUnavailableItem(WINTERSEED);
 		makeUnavailableItem(DANDELION);
 		makeUnavailableItem(REED);
 		makeUnavailableItem(FLAX);
 		makeUnavailableItem(HOPS);	
 		makeUnavailableItem(SEAWEED);
 		makeUnavailableItem(CACTUS);
-//		makeUnavailableItem(PLUMTREE);
+		makeUnavailableItem(PLUMTREE);
 		makeUnavailableItem(ROSE);
 		makeUnavailableItem(ORANGE_TREE);
 		makeUnavailableItem(DAFFODIL);
 		makeUnavailableItem(GREENBEANS);
 		makeUnavailableItem(BLUEBERRY);
-//		makeUnavailableItem(INDIGO);
+		makeUnavailableItem(INDIGO);
 		makeUnavailableItem(VIOLET);
-//		makeUnavailableItem(RAINBOWSEED);		
-		
+		makeUnavailableItem(RAINBOWSEED);		
+		for(int i=0;i<ItemType.values().length;i++) {
+			if(!allItems.containsKey(ItemType.values()[i])) {
+				System.out.println(ItemType.values()[i]);
+			}
+		}
 		setupAllItems();
 	}
 	

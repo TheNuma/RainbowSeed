@@ -78,7 +78,7 @@ public class DraggableItem extends Image {
 
 		});
 	}
-	public void addDropTarget(DraggableItem target) {
+	public void addDropTarget(DraggableItem target) { 
 		dragAndDrop.addTarget(new Target(target) {
 			public boolean drag (Source source, Payload payload, float x, float y, int pointer) {
 				return true;

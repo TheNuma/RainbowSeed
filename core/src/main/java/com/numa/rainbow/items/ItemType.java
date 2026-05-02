@@ -3,23 +3,25 @@ package com.numa.rainbow.items;
 public enum ItemType {
 	SUMMERSEED("sesame","Seeds"),
 	DIRT("dirt","Dirt"),
-//	WEED(,"Weeds"),
+	WEED("broken-pottery","Weeds"),//FIX
 	GRASS("grass","Grass"),
 	WATER("watering-can","Water"),
 	ROCK("rock","Rock"),
 	SUN("sun","Sun"),	
+	SNOW("snow","Snow"),
 	SEAWATER("wave-crest","Sea Water"),
 	STRAWBERRY("strawberry","Strawberry"),
 	FALLSEED("seasonal-seed","Seeds"),
-	SPRINGSEED("ground-sprout","Seeds"),
+	SPRINGSEED("bulb","Seeds"),
+	WINTERSEED("ground-sprout","Seeds"),
 	BAMBOO("bamboo","Bamboo"),
-//	BUSH(,"Bush"),
+	BUSH("broken-pottery","Bush"),//FIX
 	WHEAT("wheat","Wheat"),
 	SCARECROW("scarecrow","Scarecrow"),
-	TREE("tree","Tree"),
+	TREE("oak","Tree"),
 	AXE("axe","Axe"),
 	STICK("stick","Stick"),
-//	TULIP(,"Tulip"),
+	TULIP("broken-pottery","Tulip"),//FIX
 	BERRYBUSH("berry-bush","Berry Bush"),
 	VINE("vines","Vines"),
 	BRAMBLES("brambles","Brambles"),
@@ -31,15 +33,15 @@ public enum ItemType {
 	HOPS("hops","Hops"),	
 	SEAWEED("seaweed","Seaweed"),
 	CACTUS("cactus","Cactus"),
-//	PLUMTREE(,"Plum Tree"),
+	PLUMTREE("broken-pottery","Plum Tree"),//FIX
 	ROSE("rose","Red Rose"),
 	ORANGE_TREE("fruit-tree","Orange Tree"),
-	DAFFODIL("daffodil","Yellow Daffodil"),
+	DAFFODIL("dafffodil","Yellow Daffodil"),
 	GREENBEANS("beans","Green Beans"),
 	BLUEBERRY("blueberry","Blue Berries"),
-//	INDIGO(,"Indigo Flower"),
-	VIOLET("violets","Violets");
-//	RAINBOWSEED(,"RAINBOW SEED");
+	INDIGO("broken-pottery","Indigo Flower"),//FIX
+	VIOLET("violets","Violets"),
+	RAINBOWSEED("broken-pottery","RAINBOW SEED");//FIX
 
 	private String fileName, itemName;
 
