@@ -1,53 +1,60 @@
 package com.numa.rainbow.items;
 
+import java.util.Set;
+
+import com.numa.rainbow.season.Season;
+
 public enum ItemType {
-	SUMMERSEED("sesame","Seeds"),
-	DIRT("dirt","Dirt"),
-	WEED("broken-pottery","Weeds"),//FIX
-	GRASS("grass","Grass"),
-	WATER("watering-can","Water"),
-	ROCK("rock","Rock"),
-	SUN("sun","Sun"),	
-	SNOW("snow","Snow"),
-	SEAWATER("wave-crest","Sea Water"),
-	STRAWBERRY("strawberry","Strawberry"),
-	FALLSEED("seasonal-seed","Seeds"),
-	SPRINGSEED("bulb","Seeds"),
-	WINTERSEED("ground-sprout","Seeds"),
-	BAMBOO("bamboo","Bamboo"),
-	BUSH("broken-pottery","Bush"),//FIX
-	WHEAT("wheat","Wheat"),
-	SCARECROW("scarecrow","Scarecrow"),
-	TREE("oak","Tree"),
-	AXE("axe","Axe"),
-	STICK("stick","Stick"),
-	TULIP("broken-pottery","Tulip"),//FIX
-	BERRYBUSH("berry-bush","Berry Bush"),
-	VINE("vines","Vines"),
-	BRAMBLES("brambles","Brambles"),
-	PUMPKIN("pumpkin","Pumpkins"),
-	SNOWDROP("snowdrop","Snowdrop"),
-	DANDELION("dandelion","Dandelion"),
-	REED("reed","Reed"),
-	FLAX("flax","Flax"),
-	HOPS("hops","Hops"),	
-	SEAWEED("seaweed","Seaweed"),
-	CACTUS("cactus","Cactus"),
-	PLUMTREE("broken-pottery","Plum Tree"),//FIX
-	ROSE("rose","Red Rose"),
-	ORANGE_TREE("fruit-tree","Orange Tree"),
-	DAFFODIL("dafffodil","Yellow Daffodil"),
-	GREENBEANS("beans","Green Beans"),
-	BLUEBERRY("blueberry","Blue Berries"),
-	INDIGO("broken-pottery","Indigo Flower"),//FIX
-	VIOLET("violets","Violets"),
-	RAINBOWSEED("broken-pottery","RAINBOW SEED");//FIX
+	SUMMERSEED("sesame","Seeds",Season.summerOnly),
+	DIRT("dirt","Dirt",Season.allSeasons),
+	WEED("broken-pottery","Weeds",Season.notWinter),//FIX
+	GRASS("grass","Grass",Season.allSeasons),
+	WATER("watering-can","Water",Season.allSeasons),
+	ROCK("rock","Rock",Season.allSeasons),
+	SUN("sun","Sun",Season.summerOnly),	
+	SNOW("snow","Snow",Season.allSeasons),
+	SEAWATER("wave-crest","Sea Water",Season.allSeasons),
+	STRAWBERRY("strawberry","Strawberry",Season.allSeasons),
+	FALLSEED("seasonal-seed","Seeds",Season.autumnOnly),
+	SPRINGSEED("bulb","Seeds",Season.springOnly),
+	WINTERSEED("ground-sprout","Seeds",Season.winterOnly),
+	BAMBOO("bamboo","Bamboo",Season.allSeasons),
+	BUSH("broken-pottery","Bush",Season.allSeasons),//FIX
+	WHEAT("wheat","Wheat",Season.allSeasons),
+	SCARECROW("scarecrow","Scarecrow",Season.autumnOnly),
+	TREE("oak","Tree",Season.allSeasons),
+	AXE("axe","Axe",Season.allSeasons),
+	STICK("stick","Stick",Season.allSeasons),
+	TULIP("broken-pottery","Tulip",Season.allSeasons),//FIX
+	BERRYBUSH("berry-bush","Berry Bush",Season.allSeasons),
+	VINE("vines","Vines",Season.allSeasons),
+	BRAMBLES("brambles","Brambles",Season.allSeasons),
+	PUMPKIN("pumpkin","Pumpkins",Season.allSeasons),
+	SNOWDROP("snowdrop","Snowdrop",Season.allSeasons),
+	DANDELION("dandelion","Dandelion",Season.allSeasons),
+	REED("reed","Reed",Season.allSeasons),
+	FLAX("flax","Flax",Season.allSeasons),
+	HOPS("hops","Hops",Season.allSeasons),	
+	SEAWEED("seaweed","Seaweed",Season.allSeasons),
+	CACTUS("cactus","Cactus",Season.allSeasons),
+	PLUMTREE("broken-pottery","Plum Tree",Season.allSeasons),//FIX
+	ROSE("rose","Red Rose",Season.allSeasons),
+	ORANGE_TREE("fruit-tree","Orange Tree",Season.allSeasons),
+	DAFFODIL("dafffodil","Yellow Daffodil",Season.allSeasons),
+	GREENBEANS("beans","Green Beans",Season.allSeasons),
+	BLUEBERRY("blueberry","Blue Berries",Season.allSeasons),
+	INDIGO("broken-pottery","Indigo Flower",Season.allSeasons),//FIX
+	VIOLET("violets","Violets",Season.allSeasons),
+	RAINBOWSEED("broken-pottery","RAINBOW SEED",Season.allSeasons);//FIX
 
 	private String fileName, itemName;
+	private Set<Season>season;
+	
 
-	ItemType(String fileName, String itemName) {
+	ItemType(String fileName, String itemName, Set<Season>season) {
 		this.fileName=fileName;
 		this.itemName=itemName;
+		this.season=season;
 	}
 	public String getFileName() {
 		return fileName;
@@ -57,4 +64,7 @@ public enum ItemType {
 		return itemName;
 	}
 
+	public Set<Season> getValidSeasons() {
+		return season;
+	}
 }

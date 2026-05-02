@@ -18,10 +18,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.numa.rainbow.RainbowSeedGame;
+import com.numa.rainbow.season.Season;
+import com.numa.rainbow.season.Seasonal;
 import com.numa.rainbow.ui.PossibleComboHint;
 import com.numa.rainbow.ui.UI;
 
-public class DraggableItem extends Image {
+public class DraggableItem extends Image implements Seasonal{
 
 	private final DragAndDrop dragAndDrop;
 	private String name;
@@ -128,6 +130,26 @@ public class DraggableItem extends Image {
 				));
 		getStage().addActor(allCombosFoundLabel);
 		remove();
+	}
+
+	@Override
+	public void spring() {
+		this.setVisible(type.getValidSeasons().contains(Season.SPRING));
+	}
+
+	@Override
+	public void summer() {
+		this.setVisible(type.getValidSeasons().contains(Season.SUMMER));
+	}
+
+	@Override
+	public void autumn() {
+		this.setVisible(type.getValidSeasons().contains(Season.AUTUMN));
+	}
+
+	@Override
+	public void winter() {
+		this.setVisible(type.getValidSeasons().contains(Season.WINTER));
 	}
 
 }
