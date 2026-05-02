@@ -88,7 +88,6 @@ public class DraggableItem extends Image {
 			}
 
 			public void drop (Source source, Payload payload, float x, float y, int pointer) {
-				System.out.println(payload.getObject() + " landed on " + target.toString() + " at: "+ x + ", " + y);
 				DraggableItem draggedItem= (DraggableItem)payload.getObject();
 				Combiner.combineItems(draggedItem, target);;
 			}
