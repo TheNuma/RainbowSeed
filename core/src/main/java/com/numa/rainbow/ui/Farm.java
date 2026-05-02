@@ -18,7 +18,7 @@ public class Farm {
 		allItems = new HashMap<>();
 		interactions =new ItemInteractions();
 		UI.setItemInteractions(interactions);
-		Combiner.setItemInteractions(interactions,this);
+		Combiner.setItemInteractions(interactions,this::getItemFromType);
 		
 		makeItem(ItemType.SEED,740,320);
 		makeItem(ItemType.WATER, 500, 500);
@@ -29,7 +29,7 @@ public class Farm {
 		setUpItemPair(allItems.get(ItemType.WATER), allItems.get(ItemType.DIRT));
 	}
 	
-	public DraggableItem getItemFromType(ItemType itemType) {
+	private DraggableItem getItemFromType(ItemType itemType) {
 		return allItems.get(itemType);
 	}
 	
