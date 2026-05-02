@@ -10,6 +10,7 @@ import com.numa.rainbow.items.Combiner;
 import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemInteractions;
 import com.numa.rainbow.items.ItemType;
+import static com.numa.rainbow.items.ItemType.*;
 import com.numa.rainbow.season.SeasonShifter;
 
 public class Farm {
@@ -27,12 +28,52 @@ public class Farm {
 		interactions =new ItemInteractions();
 		Combiner.setItemInteractions(interactions,this::getItemFromType);
 		
-		makeItem(ItemType.SEED,740,320);
-		makeItem(ItemType.WATER, 500, 500);
-		makeItem(ItemType.DIRT,999,505);
-		makeUnavailableItem(ItemType.GRASS);
-
-		
+		makeItem(SPRINGSEED,740,320);
+		makeItem(WATER, 500, 500);
+		makeItem(DIRT,999,505);		
+		makeItem(WEED,233,111);
+		makeUnavailableItem(GRASS);	
+		makeUnavailableItem(SUMMERSEED);
+		makeUnavailableItem(ROCK);
+		makeUnavailableItem(SUN);	
+		makeUnavailableItem(SEAWATER);
+		makeUnavailableItem(STRAWBERRY);
+		makeUnavailableItem(FALLSEED);
+		makeUnavailableItem(BAMBOO);
+		makeUnavailableItem(BUSH);
+		makeUnavailableItem(WHEAT);
+		makeUnavailableItem(SCARECROW);
+		makeUnavailableItem(TREE);
+		makeUnavailableItem(AXE);
+		makeUnavailableItem(STICK);
+		makeUnavailableItem(TULIP);
+		makeUnavailableItem(BERRYBUSH);
+		makeUnavailableItem(VINE);
+		makeUnavailableItem(BRAMBLES);
+		makeUnavailableItem(PUMPKIN);
+		makeUnavailableItem(SNOWDROP);
+		makeUnavailableItem(SNOW);
+		makeUnavailableItem(WINTERSEED);
+		makeUnavailableItem(DANDELION);
+		makeUnavailableItem(REED);
+		makeUnavailableItem(FLAX);
+		makeUnavailableItem(HOPS);	
+		makeUnavailableItem(SEAWEED);
+		makeUnavailableItem(CACTUS);
+		makeUnavailableItem(PLUMTREE);
+		makeUnavailableItem(ROSE);
+		makeUnavailableItem(ORANGE_TREE);
+		makeUnavailableItem(DAFFODIL);
+		makeUnavailableItem(GREENBEANS);
+		makeUnavailableItem(BLUEBERRY);
+		makeUnavailableItem(INDIGO);
+		makeUnavailableItem(VIOLET);
+		makeUnavailableItem(RAINBOWSEED);		
+		for(int i=0;i<ItemType.values().length;i++) {
+			if(!allItems.containsKey(ItemType.values()[i])) {
+				System.out.println(ItemType.values()[i]);
+			}
+		}
 		setupAllItems();
 	}
 	

@@ -14,10 +14,36 @@ private final Map<CombinationKey, ItemType> combinations;
 	public ItemInteractions() {
 		this.combinations=new HashMap<CombinationKey, ItemType>();
 		addCombination(DIRT, WATER, GRASS);
-//		addCombination(DIRT, SEED, DANDELION);
-//		addCombination(SEED, WATER, REED );
-//		addCombination(REED, WATER,SEAWEED );
-//		addCombination(SUN, GRASS, WHEAT);
+		addCombination(WATER,ROCK,SEAWATER);
+		addCombination(DIRT,GRASS,BUSH);
+		addCombination(BAMBOO,BUSH,TREE);
+		addCombination(GRASS,SUN,WHEAT);
+		addCombination(TREE,AXE,STICK);
+		addCombination(BUSH,STRAWBERRY,BERRYBUSH);
+		addCombination(WEED,TREE,VINE);
+		addCombination(WEED,CACTUS,BRAMBLES);
+		addCombination(SCARECROW,AXE,PUMPKIN);
+		addCombination(GRASS,SNOW,SNOWDROP);
+		addCombination(WEED,SUN,DANDELION);
+		addCombination(WHEAT,WATER,REED);
+		addCombination(TULIP,VINE,HOPS);
+		addCombination(SEAWATER,WEED,SEAWEED);
+		addCombination(BRAMBLES,SUN,CACTUS);
+		addCombination(TREE,BERRYBUSH,PLUMTREE);
+		addCombination(BRAMBLES,TULIP,ROSE);
+		addCombination(PUMPKIN,TREE,ORANGE_TREE);
+		addCombination(SNOWDROP,DANDELION,DAFFODIL);
+		addCombination(REED,ROCK,GREENBEANS);
+		addCombination(FLAX,BERRYBUSH,BLUEBERRY);
+		addCombination(HOPS,SEAWEED,INDIGO);
+		
+		//change these maybe?
+		addCombination(FALLSEED,DIRT,TULIP);
+		addCombination(SPRINGSEED,DIRT,BAMBOO);
+		addCombination(WINTERSEED,DIRT,FLAX);
+		addCombination(SUMMERSEED,DIRT,STRAWBERRY);
+		
+		//RAINBOWSEED
 	}
 	private void addCombination(ItemType type1 , ItemType type2, ItemType type3 ) {
 		CombinationKey key=new CombinationKey(type1, type2);
