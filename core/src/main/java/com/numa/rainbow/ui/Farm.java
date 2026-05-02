@@ -11,6 +11,8 @@ import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemInteractions;
 import com.numa.rainbow.items.ItemType;
 import static com.numa.rainbow.items.ItemType.*;
+
+import com.numa.rainbow.season.Season;
 import com.numa.rainbow.season.SeasonShifter;
 
 public class Farm {
@@ -34,6 +36,7 @@ public class Farm {
 		makeItem(WEED,233,111);
 		makeUnavailableItem(GRASS);	
 		makeUnavailableItem(SUMMERSEED);
+		allItems.get(SUMMERSEED).setPosition(600, 55);
 		makeUnavailableItem(ROCK);
 		makeUnavailableItem(SUN);	
 		makeUnavailableItem(SEAWATER);
@@ -71,9 +74,10 @@ public class Farm {
 		makeUnavailableItem(RAINBOWSEED);		
 		for(int i=0;i<ItemType.values().length;i++) {
 			if(!allItems.containsKey(ItemType.values()[i])) {
-				System.out.println(ItemType.values()[i]);
+				System.out.println(ItemType.values()[i]);	
 			}
 		}
+		
 		setupAllItems();
 	}
 	
@@ -86,6 +90,7 @@ public class Farm {
 		allItems.put(itemType, item);
 		item.setPosition(x,y);
 		stage.addActor(item);
+		seasonShifter.registerSeasonalThing(item);
 	}
 	private void makeUnavailableItem(ItemType itemType) {
 		makeItem(itemType, -100, -100);
@@ -102,7 +107,7 @@ public class Farm {
 	private void setUpItemPair(DraggableItem item1, DraggableItem item2) {
 		item1.addDropTarget(item2);
 		item2.addDropTarget(item1);
-	}
+	} 
 
 	public SeasonShifter getSeasonShifter() {
 		return seasonShifter;
