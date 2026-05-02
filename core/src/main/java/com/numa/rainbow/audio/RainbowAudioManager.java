@@ -1,51 +1,38 @@
 package com.numa.rainbow.audio;
 
-import java.util.Random;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.MathUtils;
+import com.numa.rainbow.season.Seasonal;
 
-public class RainbowAudioManager {
+public class RainbowAudioManager implements Seasonal {
 
-	public static Music winterSong;
-	public static Music springSong;
+	private Music springSong;
+	private Music summerSong;
+	private Music autumnSong;
+	private Music winterSong;
 
-	private static Music currentSong;
-	private static Music outgoingSong;
+	private Music currentSong;
+	private Music outgoingSong;
 
-	private static final float VOLUME_CHANGE_SPEED = 5f;
+	private static final float VOLUME_CHANGE_SPEED = 0.5f;
 
-	private static float timer;
+	public void initializeMusic() {
+		springSong = loadInSong("01 Spring");
+		summerSong = loadInSong("02 Summer");
+		autumnSong = loadInSong("03 Autumn");
+		winterSong = loadInSong("04 Winter");
 
-	public static void initializeMusic() {
-		winterSong = Gdx.audio.newMusic(Gdx.files.internal("music/01 Winter.wav"));
-		winterSong.setLooping(true);
-		winterSong.setVolume(0);
-		springSong = Gdx.audio.newMusic(Gdx.files.internal("music/02 Spring.wav"));
-		springSong.setLooping(true);
-		springSong.setVolume(0);
-
-		winterSong.play();
 		springSong.play();
+		summerSong.play();
+		autumnSong.play();
+		winterSong.play();
 
+		playSong(springSong);
 	}
 
-	public static void update() {
+	public void update() {
 		float delta = Gdx.graphics.getDeltaTime();
-
-		// Goofy code block for testing vertical remixing
-		timer -= delta;
-		if (timer <= 0f) {
-			timer = new Random().nextFloat() * 4f + 8f;
-			if (currentSong == winterSong) {
-				playSong(springSong);
-			} else if (currentSong == springSong) {
-				playSong(winterSong);
-			}
-
-		}
-		// End
 
 		if (outgoingSong != null) {
 			float currentVolume = outgoingSong.getVolume();
@@ -63,14 +50,43 @@ public class RainbowAudioManager {
 
 	}
 
-	public static void playSong(Music newSong) {
+	@Override
+	public void spring() {
+		playSong(springSong);
+	}
+
+	@Override
+	public void summer() {
+		playSong(summerSong);
+	}
+
+	@Override
+	public void autumn() {
+		playSong(autumnSong);
+	}
+
+	@Override
+	public void winter() {
+		playSong(winterSong);
+	}
+
+	public void playSong(Music newSong) {
 		if (currentSong != newSong) {
 			if (outgoingSong != null) {
 				outgoingSong.setVolume(0);
+				newSong.setPosition(currentSong.getPosition());
 			}
 			outgoingSong = currentSong;
 			currentSong = newSong;
 		}
+	}
+
+	private Music loadInSong(String name) {
+		Music song = Gdx.audio.newMusic(Gdx.files.internal("music/" + name + ".wav"));
+		song.setLooping(true);
+		song.setVolume(0);
+		song.play();
+		return song;
 	}
 
 }
