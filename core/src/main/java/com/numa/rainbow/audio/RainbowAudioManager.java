@@ -2,6 +2,7 @@ package com.numa.rainbow.audio;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.MathUtils;
 import com.numa.rainbow.season.Seasonal;
 
@@ -15,7 +16,7 @@ public class RainbowAudioManager implements Seasonal {
 	private Music currentSong;
 	private Music outgoingSong;
 
-	private static final float VOLUME_CHANGE_SPEED = 0.5f;
+	private static final float VOLUME_CHANGE_SPEED = 0.75f;
 
 	public void initializeMusic() {
 		springSong = loadInSong("01 Spring");
@@ -53,21 +54,25 @@ public class RainbowAudioManager implements Seasonal {
 	@Override
 	public void spring() {
 		playSong(springSong);
+		springSound.play();
 	}
 
 	@Override
 	public void summer() {
 		playSong(summerSong);
+		summerSong.play();
 	}
 
 	@Override
 	public void autumn() {
 		playSong(autumnSong);
+		autumnSound.play();
 	}
 
 	@Override
 	public void winter() {
 		playSong(winterSong);
+		winterSound.play();
 	}
 
 	public void playSong(Music newSong) {
@@ -87,6 +92,18 @@ public class RainbowAudioManager implements Seasonal {
 		song.setVolume(0);
 		song.play();
 		return song;
+	}
+
+	public static Sound springSound;
+	public static Sound summerSound;
+	public static Sound autumnSound;
+	public static Sound winterSound;
+
+	public void initializeSounds() {
+		springSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "springSound.wav"));
+		summerSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "summerSound.wav"));
+		autumnSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "autumnSound.wav"));
+		winterSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "winterSound.wav"));
 	}
 
 }

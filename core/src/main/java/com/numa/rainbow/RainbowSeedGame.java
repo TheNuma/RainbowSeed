@@ -26,6 +26,7 @@ public class RainbowSeedGame extends ApplicationAdapter {
 	@Override
 	public void create() {
 		audio = new RainbowAudioManager();
+		audio.initializeSounds();
 		audio.initializeMusic();
 		initializeUI();
 	}
