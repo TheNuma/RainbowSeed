@@ -7,7 +7,7 @@ import com.numa.rainbow.season.Season;
 public enum ItemType {
 	SUMMERSEED("sesame","Seeds",Season.summerOnly),
 	DIRT("dirt","Dirt",Season.allSeasons),
-	WEED("broken-pottery","Weeds",Season.notWinter),//FIX
+	WEED("evil-bud","Weeds",Season.notWinter),
 	GRASS("grass","Grass",Season.allSeasons),
 	WATER("watering-can","Water",Season.allSeasons),
 	ROCK("rock","Rock",Season.allSeasons),
@@ -19,13 +19,13 @@ public enum ItemType {
 	SPRINGSEED("bulb","Seeds",Season.springOnly),
 	WINTERSEED("ground-sprout","Seeds",Season.winterOnly),
 	BAMBOO("bamboo","Bamboo",Season.allSeasons),
-	BUSH("broken-pottery","Bush",Season.allSeasons),//FIX
+	BUSH("bush","Bush",Season.allSeasons),
 	WHEAT("wheat","Wheat",Season.allSeasons),
 	SCARECROW("scarecrow","Scarecrow",Season.autumnOnly),
 	TREE("oak","Tree",Season.allSeasons),
 	AXE("axe","Axe",Season.allSeasons),
 	STICK("stick","Stick",Season.allSeasons),
-	TULIP("broken-pottery","Tulip",Season.allSeasons),//FIX
+	TULIP("tulip","Tulip",Season.allSeasons),
 	BERRYBUSH("berry-bush","Berry Bush",Season.allSeasons),
 	VINE("vines","Vines",Season.allSeasons),
 	BRAMBLES("brambles","Brambles",Season.allSeasons),
@@ -37,15 +37,15 @@ public enum ItemType {
 	HOPS("hops","Hops",Season.allSeasons),	
 	SEAWEED("seaweed","Seaweed",Season.allSeasons),
 	CACTUS("cactus","Cactus",Season.allSeasons),
-	PLUMTREE("broken-pottery","Plum Tree",Season.allSeasons),//FIX
+	PLUMTREE("fruit-tree","Plum Tree",Season.allSeasons),
 	ROSE("rose","Red Rose",Season.allSeasons),
-	ORANGE_TREE("fruit-tree","Orange Tree",Season.allSeasons),
-	DAFFODIL("dafffodil","Yellow Daffodil",Season.allSeasons),
+	ORANGE_TREE("orange-tree","Orange Tree",Season.allSeasons),
+	DAFFODIL("daffodil","Yellow Daffodil",Season.allSeasons),
 	GREENBEANS("beans","Green Beans",Season.allSeasons),
 	BLUEBERRY("blueberry","Blue Berries",Season.allSeasons),
-	INDIGO("broken-pottery","Indigo Flower",Season.allSeasons),//FIX
+	INDIGO("indigo","Indigo Flower",Season.allSeasons),
 	VIOLET("violets","Violets",Season.allSeasons),
-	RAINBOWSEED("broken-pottery","RAINBOW SEED",Season.allSeasons);//FIX
+	RAINBOWSEED("rainbow-seed","RAINBOW SEED",Season.allSeasons);
 
 	private String fileName, itemName;
 	private Set<Season>season;

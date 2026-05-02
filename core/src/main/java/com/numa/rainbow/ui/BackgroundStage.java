@@ -1,5 +1,7 @@
 package com.numa.rainbow.ui;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -76,6 +78,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 		spring.addActor(makeColoredBackground(backColor));
 
 		Color decorColor = (new Color(Color.LIME)).mul(new Color(0.75f, 0.8f, 0.75f, 1));
+		List<Color> pastels = List.of(Color.VIOLET, new Color(0.8f, 0.627451f, 0.8784314f,1f), Color.SKY, Color.LIME, decorColor, decorColor, decorColor);
 		for (int i = 0; i < 10; i++) {
 			spring.addActor(makeDecorImage("curled-leaf", decorColor, 0.1f, true));
 			spring.addActor(makeDecorImage("butterfly", decorColor, 0.15f));
@@ -89,9 +92,9 @@ public class BackgroundStage extends Stage implements Seasonal {
 			spring.addActor(makeDecorImage("new-shoot", decorColor, 0.1f));
 		}
 		for (int i = 0; i < 20; i++) {
-			spring.addActor(makeDecorImage("dot1", decorColor, 0.6f));
-			spring.addActor(makeDecorImage("dot2", decorColor, 0.6f));
-			spring.addActor(makeDecorImage("dot3", decorColor, 0.6f));
+			spring.addActor(makeDecorImage("dot1", pastels.get(MathUtils.random(pastels.size()-1)), 0.6f));
+			spring.addActor(makeDecorImage("dot2", pastels.get(MathUtils.random(pastels.size()-1)), 0.6f));
+			spring.addActor(makeDecorImage("dot3", pastels.get(MathUtils.random(pastels.size()-1)), 0.6f));
 		}
 		for (int i = 0; i < 20; i++) {
 			spring.addActor(makeDecorImage("wave1", decorColor, 0.3f));
