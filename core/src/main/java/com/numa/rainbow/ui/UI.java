@@ -1,5 +1,7 @@
 package com.numa.rainbow.ui;
 
+import java.util.Set;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,25 +24,19 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.items.DraggableItem;
-import com.numa.rainbow.items.ItemInteractions;
 import com.numa.rainbow.items.ItemType;
 
 public class UI {
 	
 	private static Skin skin;
-	private static ItemInteractions interactions;
 	
 	public static void initialize() {
 		skin = new Skin(Gdx.files.internal("flat-earth/skin/flat-earth-ui.json"));
-		
-
 		TooltipManager.getInstance().instant();
 	}
-	public static void setItemInteractions(ItemInteractions interactions) {
-		UI.interactions=interactions;
-	}
-	public static DraggableItem makeDraggableItem(ItemType type) {
-		DraggableItem item = new DraggableItem(type.getFileName(), type,interactions.getCombinationsFor(type));
+
+	public static DraggableItem makeDraggableItem(ItemType type, Set<ItemType> combos) {
+		DraggableItem item = new DraggableItem(type.getFileName(), type,combos);
 		Label label = new Label(type.getItemName(), skin.get("title", LabelStyle.class));
 		item.addListener(new Tooltip<Label>(label));
 		return item;

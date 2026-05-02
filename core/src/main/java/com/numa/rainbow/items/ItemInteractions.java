@@ -9,7 +9,7 @@ import static com.numa.rainbow.items.ItemType.*;
 
 public class ItemInteractions {
 	
-
+ 
 private final Map<CombinationKey, ItemType> combinations;
 	public ItemInteractions() {
 		this.combinations=new HashMap<CombinationKey, ItemType>();
@@ -45,6 +45,9 @@ private final Map<CombinationKey, ItemType> combinations;
 		return product;	
 	}
 	
+	public Set<CombinationKey> getAllCombinations(){
+		return combinations.keySet();
+	}
 	
 
 

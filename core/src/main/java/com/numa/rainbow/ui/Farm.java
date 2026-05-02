@@ -2,8 +2,10 @@ package com.numa.rainbow.ui;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.numa.rainbow.items.CombinationKey;
 import com.numa.rainbow.items.Combiner;
 import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemInteractions;
@@ -17,7 +19,6 @@ public class Farm {
 		this.stage=stage;
 		allItems = new HashMap<>();
 		interactions =new ItemInteractions();
-		UI.setItemInteractions(interactions);
 		Combiner.setItemInteractions(interactions,this::getItemFromType);
 		
 		makeItem(ItemType.SEED,740,320);
@@ -26,7 +27,7 @@ public class Farm {
 		makeUnavailableItem(ItemType.GRASS);
 
 		
-		setUpItemPair(allItems.get(ItemType.WATER), allItems.get(ItemType.DIRT));
+		setupAllItems();
 	}
 	
 	private DraggableItem getItemFromType(ItemType itemType) {
@@ -34,7 +35,7 @@ public class Farm {
 	}
 	
 	private void makeItem(ItemType itemType,float x, float y) {
-		DraggableItem item = UI.makeDraggableItem(itemType);
+		DraggableItem item = UI.makeDraggableItem(itemType,interactions.getCombinationsFor(itemType));
 		allItems.put(itemType, item);
 		item.setPosition(x,y);
 		stage.addActor(item);
@@ -45,7 +46,10 @@ public class Farm {
 		
 	}
 	private void setupAllItems() {
-		
+		Set<CombinationKey> combinations=interactions.getAllCombinations();
+		for (CombinationKey combo:combinations) {		
+			setUpItemPair(getItemFromType(combo.getType1()) , getItemFromType(combo.getType2()));
+		}
 	}
 	
 	private void setUpItemPair(DraggableItem item1, DraggableItem item2) {

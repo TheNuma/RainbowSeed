@@ -1,9 +1,6 @@
 package com.numa.rainbow.items;
 import java.util.function.Function;
 
-import com.numa.rainbow.ui.Farm;
-import com.numa.rainbow.ui.UI;
-
 public class Combiner {
 	private static ItemInteractions interactions;
 	private static Function<ItemType,DraggableItem> typeToDraggable;
@@ -19,8 +16,8 @@ public class Combiner {
     		item1.removeCombo(type3);
     		item2.removeCombo(type3);
     		//remove 'parent' objects if necessary
-    		checkAndRemoveSingleUse(item1);
-    		checkAndRemoveSingleUse(item2);
+    		checkAndRemoveFullyUsedItems(item1);
+    		checkAndRemoveFullyUsedItems(item2);
     	}
     	else {
     		System.out.println("No combinations found between "+item1+ " and "+item2);
@@ -30,7 +27,7 @@ public class Combiner {
 		Combiner.interactions=interactions;
 		 Combiner.typeToDraggable=typeToDraggable;
 	}
-    public static void checkAndRemoveSingleUse(DraggableItem t) {
+    public static void checkAndRemoveFullyUsedItems(DraggableItem t) {
     	if (!t.hasRemainingCombinations())
     	{
     		System.out.println("All combinations with "+t.getType().toString()+" has been found");
