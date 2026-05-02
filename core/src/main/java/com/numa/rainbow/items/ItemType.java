@@ -4,7 +4,8 @@ public enum ItemType {
 	SEED("sesame","Seed"),
 	DIRT("dirt","Dirt"),
 	GRASS("grass","Grass"),
-	WATER("watering-can","Water");
+	WATER("watering-can","Water"),
+	SEAWATER("wave-crest","Sea Water");
 //	SUN(false),
 //	SEAWEED(true),
 //	DANDELION(true),
