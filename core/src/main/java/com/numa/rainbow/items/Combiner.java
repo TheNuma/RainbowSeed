@@ -2,7 +2,7 @@ package com.numa.rainbow.items;
 import com.numa.rainbow.ui.UI;
 
 public class Combiner {
-	private static ItemInteractions interactions=new ItemInteractions();
+	private static ItemInteractions interactions;
 	
 	public static void combineItems(DraggableItem item1, DraggableItem item2) {
 		
@@ -23,7 +23,9 @@ public class Combiner {
     		System.out.println("No combinations found between "+item1+ " and "+item2);
     	}
     }
-    
+	public static void setItemInteractions(ItemInteractions interactions) {
+		Combiner.interactions=interactions;
+	}
     public static void checkAndRemoveSingleUse(DraggableItem t) {
     	if (!t.hasRemainingCombinations())
     	{

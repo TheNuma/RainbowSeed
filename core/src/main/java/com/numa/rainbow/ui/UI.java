@@ -32,11 +32,13 @@ public class UI {
 	
 	public static void initialize() {
 		skin = new Skin(Gdx.files.internal("flat-earth/skin/flat-earth-ui.json"));
-		interactions = new ItemInteractions();
+		
 
 		TooltipManager.getInstance().instant();
 	}
-	
+	public static void setItemInteractions(ItemInteractions interactions) {
+		UI.interactions=interactions;
+	}
 	public static DraggableItem makeDraggableItem(ItemType type) {
 		DraggableItem item = new DraggableItem(type.getFileName(), type,interactions.getCombinationsFor(type));
 		Label label = new Label(type.getItemName(), skin.get("title", LabelStyle.class));

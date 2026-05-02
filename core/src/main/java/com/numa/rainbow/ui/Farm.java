@@ -1,12 +1,18 @@
 package com.numa.rainbow.ui;
 
-
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.numa.rainbow.items.Combiner;
 import com.numa.rainbow.items.DraggableItem;
+import com.numa.rainbow.items.ItemInteractions;
 import com.numa.rainbow.items.ItemType;
 
 public class Farm {
+	private final ItemInteractions interactions;
 	public Farm(Stage stage) {
+		interactions =new ItemInteractions();
+		UI.setItemInteractions(interactions);
+		Combiner.setItemInteractions(interactions);
+		
 		DraggableItem seeds = UI.makeDraggableItem(ItemType.SEED);
 		seeds.setPosition(740, 320);
 		stage.addActor(seeds);
