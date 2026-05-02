@@ -15,27 +15,29 @@ public class SeasonShifter {
 	
 	public void registerSeasonalThing(Seasonal seasonal) {
 		seasonChangeObservers.add(seasonal);
+		notifySeasonalObserver(seasonal);
 	}
 
 	public void setSeason(Season newSeason) {
 		currentSeason = newSeason;
-		
-		seasonChangeObservers.forEach(observer -> {
-			switch (currentSeason) {
-			case AUTUMN:
-				observer.autumn();
-				break;
-			case SPRING:
-				observer.spring();
-				break;
-			case SUMMER:
-				observer.summer();
-				break;
-			case WINTER:
-				observer.winter();
-				break;
-			};
-		});
+		seasonChangeObservers.forEach(this::notifySeasonalObserver);
+	}
+	
+	private void notifySeasonalObserver(Seasonal observer) {
+		switch (currentSeason) {
+		case AUTUMN:
+			observer.autumn();
+			break;
+		case SPRING:
+			observer.spring();
+			break;
+		case SUMMER:
+			observer.summer();
+			break;
+		case WINTER:
+			observer.winter();
+			break;
+		};
 	}
 
 }

@@ -31,8 +31,6 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		initializeUI();
 		RainbowAudioManager.initializeMusic();
 		RainbowAudioManager.playSong(RainbowAudioManager.springSong);
-
-		new Farm(stage); // this starts the game
 	}
 
 	@Override
@@ -69,7 +67,11 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		backgroundStage = new BackgroundStage(new FitViewport(WORLD_WIDTH, WORLD_HEIGHT));
 
 		stage = new Stage(new FitViewport((1f-UI_WIDTH_FRACTION) * WORLD_WIDTH, WORLD_HEIGHT));
-		uiStage = new UIStage(new FitViewport(WORLD_WIDTH, WORLD_HEIGHT));
+
+		Farm farm = new Farm(stage);
+		uiStage = new UIStage(new FitViewport(WORLD_WIDTH, WORLD_HEIGHT), farm.getSeasonShifter());
+		
+		farm.getSeasonShifter().registerSeasonalThing(backgroundStage);
 		
 		Gdx.input.setInputProcessor(new InputMultiplexer(stage, uiStage));
 	}
