@@ -1,8 +1,8 @@
 package com.numa.rainbow.ui;
 
-import java.util.HashSet;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemType;
 
 public class Farm {

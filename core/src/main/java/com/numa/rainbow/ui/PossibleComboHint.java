@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -13,14 +14,13 @@ import com.badlogic.gdx.utils.Align;
 
 public class PossibleComboHint extends Group {
 
-
-	public PossibleComboHint() {
+	public PossibleComboHint(Actor parent) {
 		Texture sparkleTexture = new Texture(Gdx.files.internal("sparkle.png"));
 
 		Image sparkle = new Image(sparkleTexture);
 		sparkle.setTouchable(Touchable.disabled);
 		sparkle.setOrigin(Align.center);
-		sparkle.setPosition(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY(), Align.center);
+		sparkle.setPosition(parent.getX() + parent.getWidth()/2f, parent.getY() + parent.getHeight()/2f, Align.center);
 		float finalScale = MathUtils.random(0.5f, 1.0f);
 		sparkle.setScale(0);
 		sparkle.setColor(new Color(Color.WHITE).lerp(new Color(Color.ORANGE), MathUtils.random(1f)));

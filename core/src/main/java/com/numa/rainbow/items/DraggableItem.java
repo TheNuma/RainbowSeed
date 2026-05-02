@@ -1,13 +1,11 @@
-package com.numa.rainbow.ui;
+package com.numa.rainbow.items;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -19,8 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
-import com.numa.rainbow.items.Combiner;
-import com.numa.rainbow.items.ItemType;
+import com.numa.rainbow.ui.PossibleComboHint;
 
 public class DraggableItem extends Table {
 
@@ -88,7 +85,7 @@ public class DraggableItem extends Table {
 
 			@Override
 			public void drag(InputEvent event, float x, float y, int pointer) {
-				payload.setValidDragActor(new PossibleComboHint());
+				payload.setValidDragActor(new PossibleComboHint(DraggableItem.this));
 				super.drag(event, x, y, pointer);
 			}
 
@@ -103,12 +100,10 @@ public class DraggableItem extends Table {
 	public void addDropTarget(DraggableItem target) {
 		dragAndDrop.addTarget(new Target(target) {
 			public boolean drag (Source source, Payload payload, float x, float y, int pointer) {
-				getActor().setColor(Color.GREEN);
 				return true;
 			}
 
 			public void reset (Source source, Payload payload) {
-				getActor().setColor(Color.WHITE);
 			}
 
 			public void drop (Source source, Payload payload, float x, float y, int pointer) {
