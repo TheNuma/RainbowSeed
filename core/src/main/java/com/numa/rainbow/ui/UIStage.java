@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.numa.rainbow.RainbowSeedGame;
+import com.numa.rainbow.season.Season;
 
 public class UIStage extends Stage {
 
@@ -15,8 +16,15 @@ public class UIStage extends Stage {
 		sidebar.setBackground(UI.getUISidebarTexture());
 		sidebar.setColor(Color.BROWN);
 		sidebar.setColor(sidebar.getColor().r, sidebar.getColor().g, sidebar.getColor().b, 0.75f);
-		
-		sidebar.add(UI.getSpringButton(() -> System.out.println("CHONGING TO SPRING")));
+
+		sidebar.add(UI.getSeasonButton(Season.SPRING, () -> System.out.println("CHONGING TO SPRING")));
+		sidebar.row();
+		sidebar.add(UI.getSeasonButton(Season.SUMMER, () -> System.out.println("CHONGING TO SUMMER")));
+		sidebar.row();
+		sidebar.add(UI.getSeasonButton(Season.AUTUMN, () -> System.out.println("CHONGING TO AUTUMN")));
+		sidebar.row();
+		sidebar.add(UI.getSeasonButton(Season.WINTER, () -> System.out.println("CHONGING TO WINTER")));
+		sidebar.row();
 		
 
 		Table sidebarPaddingTable = new Table();
