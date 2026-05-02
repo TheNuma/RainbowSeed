@@ -78,8 +78,9 @@ public class BackgroundStage extends Stage implements Seasonal {
 		Color decorColor = (new Color(Color.LIME)).mul(new Color(0.75f, 0.8f, 0.75f, 1));
 		for (int i = 0; i < 10; i++) {
 			spring.addActor(makeDecorImage("curled-leaf", decorColor, 0.1f, true));
-			spring.addActor(makeDecorImage("butterfly", decorColor, 0.1f));
-			spring.addActor(makeDecorImage("butterfly-flower", decorColor, 0.1f));
+			spring.addActor(makeDecorImage("butterfly", decorColor, 0.15f));
+			spring.addActor(makeDecorImage("butterfly-flower", decorColor, 0.15f));
+			spring.addActor(makeDecorImage("caterpillar", decorColor, 0.15f));
 		}
 		for (int i = 0; i < 7; i++) {
 			spring.addActor(makeDecorImage("sprout", decorColor, 0.1f));
@@ -114,6 +115,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 			summer.addActor(makeDecorImage("grass", decorColor, 0.1f));
 			summer.addActor(makeDecorImage("cigale", decorColor, 0.12f, true));
 			summer.addActor(makeDecorImage("cricket", decorColor, 0.14f));
+			summer.addActor(makeDecorImage("dragonfly", decorColor, 0.13f));
 		}
 		for (int i = 0; i < 11; i++) {
 			summer.addActor(makeDecorImage("papyrus", decorColor, 0.2f));
