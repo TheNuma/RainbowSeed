@@ -43,7 +43,7 @@ public enum ItemType {
 	INDIGO("indigo","Indigo Flower"),
 	VIOLET("violets","Violets"),
 	
-	RAINBOWSEED("broken-pottery","RAINBOW SEED");//FIX
+	RAINBOWSEED("rainbow-seed","RAINBOW SEED");
 
 	private String fileName, itemName;
 
