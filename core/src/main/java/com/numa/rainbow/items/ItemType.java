@@ -34,13 +34,15 @@ public enum ItemType {
 	SEAWEED("seaweed","Seaweed"),
 	CACTUS("cactus","Cactus"),
 	PLUMTREE("fruit-tree","Plum Tree"),
+	
 	ROSE("rose","Red Rose"),
 	ORANGE_TREE("orange-tree","Orange Tree"),
-	DAFFODIL("dafffodil","Yellow Daffodil"),
+	DAFFODIL("daffodil","Yellow Daffodil"),
 	GREENBEANS("beans","Green Beans"),
 	BLUEBERRY("blueberry","Blue Berries"),
 	INDIGO("indigo","Indigo Flower"),
 	VIOLET("violets","Violets"),
+	
 	RAINBOWSEED("broken-pottery","RAINBOW SEED");//FIX
 
 	private String fileName, itemName;
