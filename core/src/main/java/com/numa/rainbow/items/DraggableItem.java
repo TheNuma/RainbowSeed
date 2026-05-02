@@ -3,65 +3,46 @@ package com.numa.rainbow.items;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
+import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.ui.PossibleComboHint;
 
-public class DraggableItem extends Table {
+public class DraggableItem extends Image {
 
 	private final DragAndDrop dragAndDrop;
-	private Image image;
 	private String name;
 	private Set<ItemType> remainingCombinations;
 
 	private ItemType type;
 
-	
-	public DraggableItem(String fileName, Label label,ItemType type,Set<ItemType> combos) {
+	public DraggableItem(String fileName, ItemType type,Set<ItemType> combos) {
 		this.type=type;
 		this.remainingCombinations=combos;
 		this.name = fileName;
-		setTouchable(Touchable.enabled);
-
-		add(label).growX();
-		label.setWrap(true);
-		label.setAlignment(Align.center);
-		label.setTouchable(Touchable.disabled);
-		row();
 
 		Texture tex = new Texture(Gdx.files.internal("items/" + fileName + ".png"));
 		tex.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		image = new Image(tex);
-		image.setScaling(Scaling.fit);
-		image.setTouchable(Touchable.disabled);
-		add(image);
-		setSize(75, 100);
+		setDrawable(new TextureRegionDrawable(tex));
+		setScaling(Scaling.fit);
+		float size = 0.07f * RainbowSeedGame.WORLD_HEIGHT;
+		setSize(size, size);
 		
 		dragAndDrop = new DragAndDrop();
 		setupDragAndDrop();
-		
 	}
 	
 	public void removeCombo(ItemType type) {
 		remainingCombinations.remove(type);
-	}
-
-	@Override
-	public void setColor(Color color) {
-		super.setColor(color);
-		image.setColor(color);
 	}
 
 	private void setupDragAndDrop() {	

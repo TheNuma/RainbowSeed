@@ -16,7 +16,7 @@ public class Farm {
 		stage.addActor(wateringCan);
 
 		DraggableItem dirt = UI.makeDraggableItem(ItemType.DIRT);
-		dirt.setPosition(999, 600);
+		dirt.setPosition(999, 505);
 		stage.addActor(dirt);
 		
 		setUpItemPair(wateringCan, dirt);
