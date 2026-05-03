@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TooltipManager;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.numa.rainbow.audio.RainbowAudioManager;
+import com.numa.rainbow.cutscenes.Intro;
 import com.numa.rainbow.ui.BackgroundStage;
 import com.numa.rainbow.ui.Farm;
 import com.numa.rainbow.ui.UI;
@@ -31,6 +32,7 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		audio = new RainbowAudioManager();
 		audio.initializeMusic();
 		initializeUI();
+		uiStage.addActor(new Intro());
 	}
 
 	@Override

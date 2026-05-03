@@ -42,6 +42,7 @@ public class UI {
 		skin = new Skin(Gdx.files.internal("flat-earth/skin/flat-earth-ui.json"));
 
 		LabelStyle style = new LabelStyle(skin.get("button", LabelStyle.class));
+		style.font.getData().markupEnabled = true;
 		style.background = getBasicBackgroundTexture(Color.GOLDENROD);
 		skin.add(LABEL_WITH_BACKGROUND, style);
 		
@@ -51,7 +52,8 @@ public class UI {
 		NinePatchDrawable speechBubbleBackground = new NinePatchDrawable(new NinePatch(speechBubbleTexture, (int) (0.45f * width), (int) (0.45f * width), (int) (0.3f * height), (int) (0.5f * height)));
 		speechBubbleBackground.setPadding((int) (0.1f * height), (int) (0.1f * width), (int) (0.425f * height), (int) (0.1f * width));
 		speechBubbleBackground.setMinSize(width, height);
-		LabelStyle speechbubbleStyle = new LabelStyle(skin.get("default", LabelStyle.class));
+		LabelStyle speechbubbleStyle = new LabelStyle(skin.get("title", LabelStyle.class));
+		speechbubbleStyle.font.getData().markupEnabled = true;
 		speechbubbleStyle.background = speechBubbleBackground;
 		skin.add(SPEECH_BUBBLE_LABEL, speechbubbleStyle);
 		
@@ -74,13 +76,17 @@ public class UI {
 	public static Label makeLabel(String text) {
 		return new Label(text, skin);
 	}
-	
+
 	public static Label makeLabelWithBackground(String text) {
-		return new Label(text, skin.get(LABEL_WITH_BACKGROUND, LabelStyle.class));
+		return new Label(color(DARK_BLUE, text), skin.get(LABEL_WITH_BACKGROUND, LabelStyle.class));
+	}
+	
+	public static Label makeSpeechBubbleLabel(String text) {
+		return new Label(text, skin.get(SPEECH_BUBBLE_LABEL, LabelStyle.class));
 	}
 	
 	public static TextButton makeTextButton(String text, Runnable onClick) {
-		TextButton button = new TextButton(text, skin);
+		TextButton button = new TextButton(color(DARK_BLUE, text), skin);
 		button.addListener(new ClickListener() {
 			public void clicked (InputEvent event, float x, float y) {
 				onClick.run();
@@ -133,6 +139,10 @@ public class UI {
 		style.imageUp = icon;
 		style.imageDown = icon.tint(Color.LIGHT_GRAY);
 		return style;
+	}
+	
+	public static String color(Color color, String text) {
+		return "[#" + color + "]" + text;
 	}
 
 }
