@@ -1,11 +1,49 @@
 package com.numa.rainbow.items;
 
+import static com.numa.rainbow.items.ItemType.AXE;
+import static com.numa.rainbow.items.ItemType.BAMBOO;
+import static com.numa.rainbow.items.ItemType.BERRYBUSH;
+import static com.numa.rainbow.items.ItemType.BLUEBERRY;
+import static com.numa.rainbow.items.ItemType.BRAMBLES;
+import static com.numa.rainbow.items.ItemType.BUSH;
+import static com.numa.rainbow.items.ItemType.CACTUS;
+import static com.numa.rainbow.items.ItemType.DAFFODIL;
+import static com.numa.rainbow.items.ItemType.DANDELION;
+import static com.numa.rainbow.items.ItemType.DIRT;
+import static com.numa.rainbow.items.ItemType.FALLSEED;
+import static com.numa.rainbow.items.ItemType.FLAX;
+import static com.numa.rainbow.items.ItemType.GRASS;
+import static com.numa.rainbow.items.ItemType.GREENBEANS;
+import static com.numa.rainbow.items.ItemType.HOPS;
+import static com.numa.rainbow.items.ItemType.INDIGO;
+import static com.numa.rainbow.items.ItemType.ORANGE_TREE;
+import static com.numa.rainbow.items.ItemType.PLUMTREE;
+import static com.numa.rainbow.items.ItemType.PUMPKIN;
+import static com.numa.rainbow.items.ItemType.REED;
+import static com.numa.rainbow.items.ItemType.ROCK;
+import static com.numa.rainbow.items.ItemType.ROSE;
+import static com.numa.rainbow.items.ItemType.SCARECROW;
+import static com.numa.rainbow.items.ItemType.SEAWATER;
+import static com.numa.rainbow.items.ItemType.SEAWEED;
+import static com.numa.rainbow.items.ItemType.SNOW;
+import static com.numa.rainbow.items.ItemType.SNOWDROP;
+import static com.numa.rainbow.items.ItemType.SPRINGSEED;
+import static com.numa.rainbow.items.ItemType.STICK;
+import static com.numa.rainbow.items.ItemType.STRAWBERRY;
+import static com.numa.rainbow.items.ItemType.SUMMERSEED;
+import static com.numa.rainbow.items.ItemType.SUN;
+import static com.numa.rainbow.items.ItemType.TREE;
+import static com.numa.rainbow.items.ItemType.TULIP;
+import static com.numa.rainbow.items.ItemType.VINE;
+import static com.numa.rainbow.items.ItemType.WATER;
+import static com.numa.rainbow.items.ItemType.WEED;
+import static com.numa.rainbow.items.ItemType.WHEAT;
+import static com.numa.rainbow.items.ItemType.WINTERSEED;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import static com.numa.rainbow.items.ItemType.*;
 
 public class ItemInteractions {
 	
@@ -48,6 +86,11 @@ private final Map<CombinationKey, ItemType> combinations;
 	private void addCombination(ItemType type1 , ItemType type2, ItemType type3 ) {
 		CombinationKey key=new CombinationKey(type1, type2);
 		combinations.put(key, type3);
+	}
+	
+	public void markCombinationComplete(ItemType type1 , ItemType type2) {
+		CombinationKey key=new CombinationKey(type1, type2);
+		combinations.remove(key);
 	}
 	
 	public ItemType getCombination(ItemType type1, ItemType type2) {

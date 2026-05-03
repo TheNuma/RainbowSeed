@@ -1,5 +1,7 @@
 package com.numa.rainbow.items;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
@@ -26,6 +28,8 @@ import com.numa.rainbow.ui.UI;
 public class DraggableItem extends Image implements Seasonal {
 
 	private final DragAndDrop dragAndDrop;
+	private Map<ItemType, Target> dragAndDropTargets;
+	
 	private String name;
 	private Set<ItemType> remainingCombinations;
 
@@ -44,6 +48,7 @@ public class DraggableItem extends Image implements Seasonal {
 		setSize(size, size);
 		
 		dragAndDrop = new DragAndDrop();
+		dragAndDropTargets = new EnumMap<>(ItemType.class);
 		setupDragAndDrop();
 	}
 	
@@ -84,10 +89,12 @@ public class DraggableItem extends Image implements Seasonal {
 
 		});
 	}
-	public void addDropTarget(DraggableItem target) { 
-		dragAndDrop.addTarget(new Target(target) {
+
+	
+	public void addDropTarget(DraggableItem itemToDropOn) { 
+		Target target = new Target(itemToDropOn) {
 			public boolean drag (Source source, Payload payload, float x, float y, int pointer) {
-				payload.setValidDragActor(new PossibleComboHint(target));
+				payload.setValidDragActor(new PossibleComboHint(itemToDropOn));
 				return true;
 			}
 
@@ -96,10 +103,17 @@ public class DraggableItem extends Image implements Seasonal {
 
 			public void drop (Source source, Payload payload, float x, float y, int pointer) {
 				DraggableItem draggedItem= (DraggableItem)payload.getObject();
-				Combiner.combineItems(draggedItem, target);;
+				Combiner.combineItems(draggedItem, itemToDropOn);;
 			}
-		});
-
+		};
+		dragAndDrop.addTarget(target);
+		dragAndDropTargets.put(itemToDropOn.getType(), target);
+	}
+	
+	public void removeDropTarget(ItemType itemType) {
+		Target target = dragAndDropTargets.remove(itemType);
+		System.out.println(type + " removing contact with " + itemType);
+		dragAndDrop.removeTarget(target);
 	}
 
 	@Override
