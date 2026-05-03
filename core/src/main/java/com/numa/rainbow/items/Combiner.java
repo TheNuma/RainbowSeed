@@ -2,13 +2,13 @@ package com.numa.rainbow.items;
 import java.util.*;
 import java.util.function.Function;
 
-import com.numa.rainbow.ui.UIStage;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.numa.rainbow.audio.RainbowAudioManager;
+import com.numa.rainbow.ui.UIStage;
 
 public class Combiner {
 	private static ItemInteractions interactions;
@@ -33,19 +33,14 @@ public class Combiner {
     		item2.removeCombo(type3);
     		
     		if(type3==ItemType.VINE) {
-    			uiStage.getSidebar().setVisible(true);
-    			uiStage.getSpringButton().setVisible(true);
-    			uiStage.getSummerButton().setVisible(true);
-    			//unlock summer
+    			uiStage.unlockSummerCutscene();
     		}
     		else if(type3==ItemType.PLUMTREE) {
-    			uiStage.getWinterButton().setVisible(true);
-    			//unlock Winter
+    			uiStage.unlockWinterCutscene();
     		}
     		else if((type3==ItemType.DAFFODIL||type3==ItemType.GREENBEANS||type3==ItemType.BLUEBERRY)&&!isAutumnUnlocked) {
     			isAutumnUnlocked=true;
-    			uiStage.getAutumnButton().setVisible(true);
-    			//unlock fall
+    			uiStage.unlockAutumnCutscene();
     		}
     		
 			remainingItems.add(spawnItem);

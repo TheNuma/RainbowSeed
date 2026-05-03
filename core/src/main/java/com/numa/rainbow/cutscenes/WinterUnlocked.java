@@ -16,7 +16,7 @@ public class WinterUnlocked extends Cutscene {
 	public WinterUnlocked(Runnable endCutscene) {
 		super(endCutscene);
 	}
-
+	
 	@Override
 	protected void startCutscene() {
 		String text1 = UI.color(UI.DARK_BLUE, "Summer is lovely, but the");
@@ -50,7 +50,8 @@ public class WinterUnlocked extends Cutscene {
 
 		Runnable start = makeFinalButtonRunnable("Let it snow!", () -> {
 			spell.addAction(Actions.fadeOut(0.5f));
-			spell2.addAction(Actions.fadeOut(0.5f));});
+			spell2.addAction(Actions.fadeOut(0.5f));
+			});
 		makeSpeechBubble(text, start);
 		addAction(Actions.delay(4f, Actions.run(start)));
 	}

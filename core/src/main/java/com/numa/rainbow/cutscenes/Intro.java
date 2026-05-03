@@ -9,7 +9,7 @@ public class Intro extends Cutscene {
 	public Intro(Runnable endCutscene) {
 		super(endCutscene);
 	}
-	
+
 	@Override
 	protected void startCutscene() {
 		darkScreen.clearActions();

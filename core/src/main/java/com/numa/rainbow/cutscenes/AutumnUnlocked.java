@@ -16,7 +16,7 @@ public class AutumnUnlocked extends Cutscene {
 	public AutumnUnlocked(Runnable endCutscene) {
 		super(endCutscene);
 	}
-
+	
 	@Override
 	protected void startCutscene() {
 		String text1 = UI.color(UI.DARK_BLUE, "Ah, I see you've found your first\ncolorful plant. You're nearing the\nend of your journey.");
