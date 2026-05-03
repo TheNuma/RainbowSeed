@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.numa.rainbow.RainbowSeedGame;
@@ -19,13 +20,13 @@ import com.numa.rainbow.season.Seasonal;
 
 public class SummoningCircle extends Group implements Seasonal {
 
-	private Runnable completeTheRitual;
-	private float circleRadius;
+	private final Runnable completeTheRitual;
+	private final float circleRadius;
 
-	private List<DraggableItem> receivedItems;
-	private Image circle;
-	private Image circleHint;
-	private Runnable moveColorfulPlantsOutOfTheWay;
+	private final List<DraggableItem> receivedItems;
+	private final Image circle;
+	private final Image circleHint;
+	private final Runnable moveColorfulPlantsOutOfTheWay;
 
 	public SummoningCircle(Runnable completeTheRitual, Runnable moveColorfulPlantsOutOfTheWay) {
 		this.completeTheRitual = completeTheRitual;
@@ -35,15 +36,15 @@ public class SummoningCircle extends Group implements Seasonal {
 		circle = new Image(tex);
 		circle.setPosition(RainbowSeedGame.WORLD_WIDTH / 2f, RainbowSeedGame.WORLD_HEIGHT / 2f, Align.center);
 		addActor(circle);
-		
+
 		circleHint = new Image(tex);
 		circleHint.setSize(circleHint.getWidth() * 1.03f, circleHint.getHeight() * 1.03f);
 		circleHint.setColor(1, 1, 1, 0f);
 		circleHint.setPosition(RainbowSeedGame.WORLD_WIDTH / 2f, RainbowSeedGame.WORLD_HEIGHT / 2f, Align.center);
 		addActor(circleHint);
-		
+
 		receivedItems = new ArrayList<>();
-		circleRadius = tex.getHeight()/2f;
+		circleRadius = tex.getHeight() / 2f;
 	}
 
 	@Override
@@ -87,31 +88,38 @@ public class SummoningCircle extends Group implements Seasonal {
 		float x = circleRadius * MathUtils.cosDeg(angle);
 		float y = circleRadius * MathUtils.sinDeg(angle);
 
-		draggedItem.setPosition(RainbowSeedGame.WORLD_WIDTH / 2f + x, RainbowSeedGame.WORLD_HEIGHT / 2f + y, Align.center);
+		MoveToAction moveItemToPosition = new MoveToAction();
+		moveItemToPosition.setPosition(RainbowSeedGame.WORLD_WIDTH / 2f + x, RainbowSeedGame.WORLD_HEIGHT / 2f + y, Align.center);
+		moveItemToPosition.setInterpolation(Interpolation.exp5);
+		moveItemToPosition.setDuration(0.5f);
+		draggedItem.addAction(moveItemToPosition);
+
 		if (receivedItems.size() == 7) {
 			addAction(Actions.delay(0.75f, Actions.run(completeTheRitual)));
-			receivedItems.forEach(item -> item.addAction(
-					Actions.parallel(
-							Actions.moveTo(
-									RainbowSeedGame.WORLD_WIDTH / 2f - draggedItem.getWidth()/2f, 
-									RainbowSeedGame.WORLD_HEIGHT / 2f - draggedItem.getHeight()/2f,
-									0.75f,
-									Interpolation.circleIn)
-							,
-							Actions.delay(0.6f, Actions.fadeOut(0.15f))
+			receivedItems.forEach(
+					item -> item.addAction(
+							Actions.parallel(
+									Actions.moveTo(
+											RainbowSeedGame.WORLD_WIDTH / 2f - draggedItem.getWidth() / 2f,
+											RainbowSeedGame.WORLD_HEIGHT / 2f - draggedItem.getHeight() / 2f,
+											0.75f,
+											Interpolation.circleIn
+									),
+									Actions.delay(0.6f, Actions.fadeOut(0.15f))
 							)
-					));
+					)
+			);
 		}
 	}
-	
+
 	public void hintDroppable() {
 		if (circle.isVisible() && circleHint.getColor().a < 0.1f && !circleHint.hasActions()) {
 			circleHint.clearActions();
 			circleHint.setColor(1, 1, 1, 0f);
-			circleHint.addAction(Actions.color(new Color(1,1,1,0.2f), 0.1f));
+			circleHint.addAction(Actions.color(new Color(1, 1, 1, 0.2f), 0.1f));
 		}
 	}
-	
+
 	public void unhintDroppable() {
 		if (circle.isVisible()) {
 			circleHint.clearActions();
