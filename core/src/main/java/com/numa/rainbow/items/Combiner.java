@@ -42,6 +42,8 @@ public class Combiner {
     				type3==ItemType.ORANGE_TREE||type3==ItemType.INDIGO||type3==ItemType.VIOLET)&&!isAutumnUnlocked) {
     			isAutumnUnlocked=true;
     			uiStage.unlockAutumnCutscene();
+    		} else if (interactions.getAllCombinations().isEmpty()) {
+    			uiStage.beginTheEnd();
     		}
     		
 			remainingItems.add(spawnItem);

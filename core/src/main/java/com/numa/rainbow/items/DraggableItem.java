@@ -24,6 +24,7 @@ import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.season.Season;
 import com.numa.rainbow.season.Seasonal;
 import com.numa.rainbow.ui.PossibleComboHint;
+import com.numa.rainbow.ui.SummoningCircle;
 import com.numa.rainbow.ui.UI;
 
 public class DraggableItem extends Image implements Seasonal {
@@ -77,7 +78,12 @@ public class DraggableItem extends Image implements Seasonal {
 			@Override
 			public void dragStop(InputEvent event, float x, float y, int pointer, Payload payload, Target target) {
 				super.dragStop(event, x, y, pointer, payload, target);
-				DraggableItem.this.setTouchable(Touchable.enabled);
+				if (isVisible()) {
+					DraggableItem.this.setTouchable(Touchable.enabled);
+				} else {
+					// Was dropped in the summoning circle, don't go touchable again
+					DraggableItem.this.setVisible(true);
+				}
 				DraggableItem.this.toFront();
 			}
 
@@ -103,6 +109,24 @@ public class DraggableItem extends Image implements Seasonal {
 		};
 		dragAndDrop.addTarget(target);
 		dragAndDropTargets.put(itemToDropOn.getType(), target);
+	}
+
+	public void addSummoningCircleDropTarget(SummoningCircle circle) { 
+		dragAndDrop.addTarget(new Target(circle) {
+			public boolean drag (Source source, Payload payload, float x, float y, int pointer) {
+				circle.hintDroppable();
+				return true;
+			}
+
+			public void reset (Source source, Payload payload) {
+				circle.unhintDroppable();
+			}
+
+			public void drop (Source source, Payload payload, float x, float y, int pointer) {
+				DraggableItem draggedItem= (DraggableItem)payload.getObject();
+				circle.acceptItem(draggedItem);
+			}
+		});
 	}
 
 	public void removeDropTarget(ItemType itemType) {
@@ -189,7 +213,7 @@ public class DraggableItem extends Image implements Seasonal {
 
 	@Override
 	public void rainbow() {
-		// TODO Auto-generated method stub
+		// not a real location lol
 	}
 
 }

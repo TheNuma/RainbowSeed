@@ -32,6 +32,7 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		initializeUI();
 		
 		uiStage.introCutscene();
+//		uiStage.beginTheEnd();
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		stage = new Stage(new FitViewport((1f - UI_WIDTH_FRACTION) * WORLD_WIDTH, WORLD_HEIGHT));
 
 		Farm farm = new Farm(stage);
-		uiStage = new UIStage(new FitViewport(WORLD_WIDTH, WORLD_HEIGHT), farm.getSeasonShifter(), stage);
+		uiStage = new UIStage(new FitViewport(WORLD_WIDTH, WORLD_HEIGHT), farm.getSeasonShifter(), stage, () -> farm.getAllColorfulItems(), audio);
 		Combiner.setUIelements(uiStage);
 
 		farm.getSeasonShifter().registerSeasonalThing(backgroundStage);

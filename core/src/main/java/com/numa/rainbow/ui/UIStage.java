@@ -1,5 +1,8 @@
 package com.numa.rainbow.ui;
 
+import java.util.List;
+import java.util.function.Supplier;
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -7,7 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.numa.rainbow.RainbowSeedGame;
+import com.numa.rainbow.audio.RainbowAudioManager;
 import com.numa.rainbow.cutscenes.*;
+import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.season.Season;
 import com.numa.rainbow.season.SeasonShifter;
 
@@ -20,10 +25,16 @@ public class UIStage extends Stage {
 	private Table sidebar;
 
 	private Stage gameStage;
+	private SeasonShifter seasonShifter;
+	private Supplier<List<DraggableItem>> colorfulItems;
+	private RainbowAudioManager audio;
 
-	public UIStage(Viewport viewport, SeasonShifter seasonShifter, Stage gameStage) {
+	public UIStage(Viewport viewport, SeasonShifter seasonShifter, Stage gameStage, Supplier<List<DraggableItem>> colorfulItems, RainbowAudioManager audio) {
 		super(viewport);
+		this.seasonShifter = seasonShifter;
 		this.gameStage = gameStage;
+		this.colorfulItems = colorfulItems;
+		this.audio = audio;
 
 		sidebar = new Table();
 		sidebar.setBackground(UI.getUISidebarTexture());
@@ -92,6 +103,54 @@ public class UIStage extends Stage {
 				autumnButton.setVisible(true);
 			}));
 		})));
+	}
+
+	public void beginTheEnd() {
+		sidebar.setVisible(true);
+		addAction(Actions.delay(1f, Actions.run(() -> {
+			gameStage.getRoot().setTouchable(Touchable.disabled);
+			addActor(new BeginTheEnd(() -> {
+				gameStage.getRoot().setTouchable(Touchable.enabled);
+				showSummoningCircle();
+			}, seasonShifter.getCurrentSeason()));
+		})));
+	}
+
+	private void showSummoningCircle() {
+		Runnable moveColorfulPlantsOutOfTheWay = () -> {
+			List<DraggableItem> allFinalGuys = colorfulItems.get();
+			float moveDuration = 0.75f;
+			if (allFinalGuys.get(0).isTouchable()) {
+				allFinalGuys.get(0).addAction(Actions.moveTo(350, 100, moveDuration));
+			}
+			if (allFinalGuys.get(1).isTouchable()) {
+				allFinalGuys.get(1).addAction(Actions.moveTo(100, 500, moveDuration));
+			}
+			if (allFinalGuys.get(2).isTouchable()) {
+				allFinalGuys.get(2).addAction(Actions.moveTo(250, 900, moveDuration));
+			}
+			if (allFinalGuys.get(3).isTouchable()) {
+				allFinalGuys.get(3).addAction(Actions.moveTo(1450, 890, moveDuration));
+			}
+			if (allFinalGuys.get(4).isTouchable()) {
+				allFinalGuys.get(4).addAction(Actions.moveTo(1700, 600, moveDuration));
+			}
+			if (allFinalGuys.get(5).isTouchable()) {
+				allFinalGuys.get(5).addAction(Actions.moveTo(1640, 410, moveDuration));
+			}
+			if (allFinalGuys.get(6).isTouchable()) {
+				allFinalGuys.get(6).addAction(Actions.moveTo(1500, 170, moveDuration));	
+			}
+		};
+
+		SummoningCircle circle = new SummoningCircle(() -> {
+			addActor(new RainbowSeed());
+			audio.rainbow();
+		}, moveColorfulPlantsOutOfTheWay);
+		gameStage.addActor(circle);
+		circle.toBack();
+		seasonShifter.registerSeasonalThing(circle);
+		colorfulItems.get().forEach(item -> item.addSummoningCircleDropTarget(circle));
 	}
 
 }
