@@ -11,8 +11,7 @@ public class Combiner {
        	if (interactions.hasCombinations(item1.getType(), item2.getType())) {
     		//create new object
     		ItemType type3 = interactions.getCombination(item1.getType(), item2.getType());
-    		removeCombinationTargetsFromDraggableItems(item1, item2);
-    		interactions.markCombinationComplete(item1.getType(), item2.getType());
+    		removeCombination(item1, item2);
     		System.out.println(item1.getType()+" and "+item2.getType()+ " combined to make "+type3);
     		
     		DraggableItem spawnItem = typeToDraggable.apply(type3);
@@ -36,9 +35,10 @@ public class Combiner {
     	}
     }
 	
-	private static void removeCombinationTargetsFromDraggableItems(DraggableItem item1, DraggableItem item2) {
+	private static void removeCombination(DraggableItem item1, DraggableItem item2) {
 		item1.removeDropTarget(item2.getType());
 		item2.removeDropTarget(item1.getType());
+		interactions.markCombinationComplete(item1.getType(), item2.getType());
 	}
 	
 	public static void setItemInteractions(ItemInteractions interactions, Function<ItemType,DraggableItem> typeToDraggable) {

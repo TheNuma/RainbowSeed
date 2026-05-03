@@ -10,10 +10,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.numa.rainbow.audio.RainbowAudioManager;
 import com.numa.rainbow.cutscenes.Intro;
-import com.numa.rainbow.ui.BackgroundStage;
-import com.numa.rainbow.ui.Farm;
-import com.numa.rainbow.ui.UI;
-import com.numa.rainbow.ui.UIStage;
+import com.numa.rainbow.ui.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class RainbowSeedGame extends ApplicationAdapter {
