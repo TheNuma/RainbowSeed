@@ -9,20 +9,11 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Tooltip;
-import com.badlogic.gdx.scenes.scene2d.ui.TooltipManager;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemType;
@@ -37,7 +28,6 @@ public class UI {
 	public static final Color DARK_BLUE = new Color(0.1f, 0.2f, 0.5f, 1);
 	
 	private static Skin skin;
-	private static SeasonShifter seasonShifter;
 	
 	public static void initialize() {
 		skin = new Skin(Gdx.files.internal("flat-earth/skin/flat-earth-ui.json"));
@@ -63,11 +53,7 @@ public class UI {
 		TooltipManager.getInstance().instant();
 	}
 
-	public static void setSeasonShifter(SeasonShifter seasonShifter) {
-		UI.seasonShifter = seasonShifter;
-	}
-
-	public static DraggableItem makeDraggableItem(ItemType type, Set<ItemType> combos) {
+	public static DraggableItem makeDraggableItem(ItemType type, Set<ItemType> combos, SeasonShifter seasonShifter) {
 		DraggableItem item = new DraggableItem(type.getFileName(), type,combos);
 		SeasonalLabel label = new SeasonalLabel(type.getItemName(), skin.get("title", LabelStyle.class));
 		seasonShifter.registerSeasonalThing(label);

@@ -20,7 +20,6 @@ public class Farm {
 	public Farm(Stage stage) {
 		this.stage=stage;
 		this.seasonShifter = new SeasonShifter();
-		UI.setSeasonShifter(seasonShifter);
 		
 		allItems = new HashMap<>();
 		interactions =new ItemInteractions();
@@ -82,7 +81,7 @@ public class Farm {
 	}
 	
 	private void makeItem(ItemType itemType,float x, float y) {
-		DraggableItem item = UI.makeDraggableItem(itemType,interactions.getCombinationsFor(itemType));
+		DraggableItem item = UI.makeDraggableItem(itemType,interactions.getCombinationsFor(itemType), seasonShifter);
 		allItems.put(itemType, item);
 		item.setPosition(x,y);
 		stage.addActor(item);
