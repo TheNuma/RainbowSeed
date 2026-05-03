@@ -38,7 +38,8 @@ public class Combiner {
     		else if(type3==ItemType.PLUMTREE) {
     			uiStage.unlockWinterCutscene();
     		}
-    		else if((type3==ItemType.DAFFODIL||type3==ItemType.GREENBEANS||type3==ItemType.BLUEBERRY)&&!isAutumnUnlocked) {
+    		else if((type3==ItemType.ROSE||type3==ItemType.DAFFODIL||type3==ItemType.GREENBEANS||type3==ItemType.BLUEBERRY||
+    				type3==ItemType.ORANGE_TREE||type3==ItemType.INDIGO||type3==ItemType.VIOLET)&&!isAutumnUnlocked) {
     			isAutumnUnlocked=true;
     			uiStage.unlockAutumnCutscene();
     		}
