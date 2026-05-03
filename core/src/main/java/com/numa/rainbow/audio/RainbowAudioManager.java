@@ -83,6 +83,10 @@ public class RainbowAudioManager implements Seasonal {
 		playSong(rainbowSong);
 	}
 
+	public static void playComboSound() {
+		successSound.play();
+	}
+
 	public void playSong(Music newSong) {
 		if (currentSong != newSong) {
 			if (outgoingSong != null) {
