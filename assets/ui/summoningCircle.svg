@@ -14,6 +14,7 @@
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -26,9 +27,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
-     inkscape:zoom="0.68303711"
-     inkscape:cx="264.99292"
-     inkscape:cy="363.81625"
+     inkscape:zoom="0.48377359"
+     inkscape:cx="283.19032"
+     inkscape:cy="321.43135"
      inkscape:current-layer="svg1">
     <inkscape:page
        x="0"
@@ -79,11 +80,36 @@
      id="layer1"
      transform="matrix(2.1405399,0,0,2.1405399,-109.23307,-209.96748)">
     <circle
-       style="fill:none;fill-rule:evenodd;stroke:#34085f;stroke-width:3.465;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#34085f;stroke-width:1.61875;stroke-dasharray:none;stroke-opacity:1"
        id="path11"
-       cx="130.15398"
-       cy="127.05508"
-       r="108.07429"
-       transform="matrix(0.46717186,0,0,0.46717186,41.524984,90.032982)" />
+       cx="102.32925"
+       cy="149.38954"
+       r="50.489265" />
+    <circle
+       style="fill:none;fill-rule:evenodd;stroke:#34085f;stroke-width:1.33334;stroke-dasharray:none;stroke-opacity:1"
+       id="circle11"
+       cx="102.32926"
+       cy="149.38954"
+       r="41.583778" />
+    <path
+       style="font-variation-settings:normal;opacity:1;fill:none;fill-opacity:1;stroke:#34085f;stroke-width:1.33334;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.984314;paint-order:markers fill stroke;stop-color:#000000;stop-opacity:1"
+       d="m 67.448159,126.75065 49.740681,61.47706 -3.96191,-78.9686 -43.21931,66.2938 73.85331,-28.24451 z"
+       id="path13" />
+    <text
+       xml:space="preserve"
+       style="font-weight:normal;font-size:7.91077678px;line-height:normal;font-family:'Blackadder ITC';-inkscape-font-specification:'Blackadder ITC';text-align:center;text-decoration-color:#000000;text-anchor:middle;fill:#34075e;fill-opacity:1;stroke-width:1.66594;stroke-linecap:square;-inkscape-stroke:none;paint-order:stroke fill markers;stop-color:#000000;font-style:normal;font-stretch:normal;font-variant:normal"
+       id="text13"><textPath
+         xlink:href="#circle14"
+         startOffset="50%"
+         id="textPath14"><tspan
+           id="tspan13"
+           style="fill:#34075e;fill-opacity:1;stroke-width:1.66593;-inkscape-font-specification:'Blackadder ITC';font-family:'Blackadder ITC';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:7.91077678px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehnderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</tspan></textPath></text>
+    <circle
+       style="display:none;fill:none;fill-rule:evenodd;stroke:#34085f;stroke-width:1.40591;stroke-dasharray:none;stroke-opacity:1"
+       id="circle14"
+       cx="102.32926"
+       cy="149.38954"
+       r="43.847023"
+       inkscape:label="textPath" />
   </g>
 </svg>

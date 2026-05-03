@@ -112,12 +112,12 @@ public class DraggableItem extends Image implements Seasonal {
 	public void addSummoningCircleDropTarget(SummoningCircle circle) { 
 		dragAndDrop.addTarget(new Target(circle) {
 			public boolean drag (Source source, Payload payload, float x, float y, int pointer) {
-				payload.setValidDragActor(new PossibleComboHint(circle));
-				// TODO color the circle or something instead?
+				circle.hintDroppable();
 				return true;
 			}
 
 			public void reset (Source source, Payload payload) {
+				circle.unhintDroppable();
 			}
 
 			public void drop (Source source, Payload payload, float x, float y, int pointer) {
