@@ -34,6 +34,8 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		audio.initializeSounds();
 		audio.initializeMusic();
 		initializeUI();
+		
+		// comment out the 2 lines below if you want to skip the intro
 		stage.getRoot().setTouchable(Touchable.disabled);
 		uiStage.addActor(new Intro(() -> stage.getRoot().setTouchable(Touchable.enabled)));
 	}
