@@ -1,6 +1,7 @@
 package com.numa.rainbow.items;
 import java.util.function.Function;
 
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.numa.rainbow.audio.RainbowAudioManager;
 
 public class Combiner {
@@ -17,7 +18,7 @@ public class Combiner {
     		DraggableItem spawnItem = typeToDraggable.apply(type3);
     		spawnItem.setPosition((item1.getX()+item2.getX())/2f, (item1.getY()+item2.getY())/2f);
     		spawnItem.setVisible(true);
-    		spawnItem.toFront();
+    		spawnItem.addAction(Actions.delay(0.1f, Actions.run(() -> spawnItem.toFront())));
     		item1.removeCombo(type3);
     		item2.removeCombo(type3);
     		

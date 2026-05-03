@@ -61,11 +61,9 @@ public class DraggableItem extends Image implements Seasonal {
 		dragAndDrop.setDragActorPosition(getWidth()/2f, -getHeight()/2f);
 		dragAndDrop.addSource(new Source(this) {
 
-			private Payload payload;
-
 			@Override
 			public Payload dragStart(InputEvent event, float x, float y, int pointer) {
-				payload = new Payload();
+				Payload payload = new Payload();
 				payload.setObject(DraggableItem.this);
 
 				payload.setDragActor(getActor());
@@ -73,11 +71,6 @@ public class DraggableItem extends Image implements Seasonal {
 				DraggableItem.this.setTouchable(Touchable.disabled);
 
 				return payload;
-			}
-
-			@Override
-			public void drag(InputEvent event, float x, float y, int pointer) {
-				super.drag(event, x, y, pointer);
 			}
 
 			@Override
@@ -90,7 +83,6 @@ public class DraggableItem extends Image implements Seasonal {
 		});
 	}
 
-	
 	public void addDropTarget(DraggableItem itemToDropOn) { 
 		Target target = new Target(itemToDropOn) {
 			public boolean drag (Source source, Payload payload, float x, float y, int pointer) {
@@ -103,7 +95,7 @@ public class DraggableItem extends Image implements Seasonal {
 
 			public void drop (Source source, Payload payload, float x, float y, int pointer) {
 				DraggableItem draggedItem= (DraggableItem)payload.getObject();
-				Combiner.combineItems(draggedItem, itemToDropOn);;
+				Combiner.combineItems(draggedItem, itemToDropOn);
 			}
 		};
 		dragAndDrop.addTarget(target);

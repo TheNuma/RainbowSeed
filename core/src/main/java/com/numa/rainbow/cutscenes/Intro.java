@@ -51,7 +51,7 @@ public class Intro extends Group {
 		String text1 = UI.color(UI.DARK_BLUE, "So, it's already time for you to make\nyour first ");
 		text1 += UI.color(Color.RED, "R");
 		text1 += UI.color(Color.ORANGE, "A");
-		text1 += UI.color(Color.GOLDENROD, "I");
+		text1 += UI.color(Color.YELLOW, "I");
 		text1 += UI.color(Color.LIME, "N");
 		text1 += UI.color(Color.ROYAL, "B");
 		text1 += UI.color(Color.BLUE, "O");
@@ -97,7 +97,7 @@ public class Intro extends Group {
 		String text = UI.color(UI.DARK_BLUE, "You'll need to combine gardening items\nto create new ones. Find the 7 colorful plants,\nand merge them to create the ");
 		text += UI.color(Color.RED, "R");
 		text += UI.color(Color.ORANGE, "A");
-		text += UI.color(Color.GOLDENROD, "I");
+		text += UI.color(Color.YELLOW, "I");
 		text += UI.color(Color.LIME, "N");
 		text += UI.color(Color.ROYAL, "B");
 		text += UI.color(Color.BLUE, "O");
