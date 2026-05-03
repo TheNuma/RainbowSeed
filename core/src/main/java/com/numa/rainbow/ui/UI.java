@@ -65,6 +65,10 @@ public class UI {
 		return new Label(text, skin);
 	}
 
+	public static Label makeTitleLabel(String text) {
+		return new Label(text, skin.get("title", LabelStyle.class));
+	}
+
 	public static Label makeLabelWithBackground(String text) {
 		return new Label(color(DARK_BLUE, text), skin.get(LABEL_WITH_BACKGROUND, LabelStyle.class));
 	}

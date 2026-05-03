@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.numa.rainbow.RainbowSeedGame;
 
@@ -36,6 +37,12 @@ public class RainbowSeed extends Group {
 		seed.setColor(1, 1, 1, 0f);
 		seed.addAction(Actions.fadeIn(1f));
 		addActor(seed);
+		
+		Label theEnd = UI.makeTitleLabel("The End!");
+		addActor(theEnd);
+		theEnd.setColor(1,1,1,0);
+		theEnd.setPosition(RainbowSeedGame.WORLD_WIDTH /2f - theEnd.getWidth()/2f, RainbowSeedGame.WORLD_HEIGHT*0.1f);
+		theEnd.addAction(Actions.delay(2f, Actions.fadeIn(1f)));
 		
 		currentDelay = 0;
 	}
