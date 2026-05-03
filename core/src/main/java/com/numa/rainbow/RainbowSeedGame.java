@@ -32,7 +32,6 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		initializeUI();
 		
 		uiStage.introCutscene();
-//		uiStage.beginTheEnd();
 	}
 
 	@Override

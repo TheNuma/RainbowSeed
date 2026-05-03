@@ -50,7 +50,6 @@ public class UI {
 		speechbubbleStyle.background = speechBubbleBackground;
 		skin.add(SPEECH_BUBBLE_LABEL, speechbubbleStyle);
 		
-		
 		TooltipManager.getInstance().instant();
 	}
 
