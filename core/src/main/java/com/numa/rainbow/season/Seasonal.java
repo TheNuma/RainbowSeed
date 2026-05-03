@@ -6,5 +6,6 @@ public interface Seasonal {
 	void summer();
 	void autumn();
 	void winter();
+	void rainbow();
 	
 }

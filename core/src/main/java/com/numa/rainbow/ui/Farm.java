@@ -1,5 +1,7 @@
 package com.numa.rainbow.ui;
 
+import static com.numa.rainbow.items.ItemType.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -15,6 +17,7 @@ import com.numa.rainbow.items.ItemType;
 import static com.numa.rainbow.items.ItemType.*;
 
 import com.numa.rainbow.season.Season;
+import com.numa.rainbow.items.*;
 import com.numa.rainbow.season.SeasonShifter;
 
 public class Farm {
@@ -101,7 +104,7 @@ public class Farm {
 	}
 	
 	private void makeItem(ItemType itemType,float x, float y) {
-		DraggableItem item = UI.makeDraggableItem(itemType,interactions.getCombinationsFor(itemType));
+		DraggableItem item = UI.makeDraggableItem(itemType,interactions.getCombinationsFor(itemType), seasonShifter);
 		allItems.put(itemType, item);
 		item.setPosition(x,y);
 		stage.addActor(item);

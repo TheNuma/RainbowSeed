@@ -1,5 +1,7 @@
 package com.numa.rainbow.items;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
@@ -24,9 +26,11 @@ import com.numa.rainbow.season.Seasonal;
 import com.numa.rainbow.ui.PossibleComboHint;
 import com.numa.rainbow.ui.UI;
 
-public class DraggableItem extends Image implements Seasonal{
+public class DraggableItem extends Image implements Seasonal {
 
 	private final DragAndDrop dragAndDrop;
+	private Map<ItemType, Target> dragAndDropTargets;
+	
 	private String name;
 	private Set<ItemType> remainingCombinations;
 
@@ -45,6 +49,7 @@ public class DraggableItem extends Image implements Seasonal{
 		setSize(size, size);
 		
 		dragAndDrop = new DragAndDrop();
+		dragAndDropTargets = new EnumMap<>(ItemType.class);
 		setupDragAndDrop();
 	}
 	
@@ -57,11 +62,9 @@ public class DraggableItem extends Image implements Seasonal{
 		dragAndDrop.setDragActorPosition(getWidth()/2f, -getHeight()/2f);
 		dragAndDrop.addSource(new Source(this) {
 
-			private Payload payload;
-
 			@Override
 			public Payload dragStart(InputEvent event, float x, float y, int pointer) {
-				payload = new Payload();
+				Payload payload = new Payload();
 				payload.setObject(DraggableItem.this);
 
 				payload.setDragActor(getActor());
@@ -69,12 +72,6 @@ public class DraggableItem extends Image implements Seasonal{
 				DraggableItem.this.setTouchable(Touchable.disabled);
 
 				return payload;
-			}
-
-			@Override
-			public void drag(InputEvent event, float x, float y, int pointer) {
-				payload.setValidDragActor(new PossibleComboHint(DraggableItem.this));
-				super.drag(event, x, y, pointer);
 			}
 
 			@Override
@@ -86,9 +83,11 @@ public class DraggableItem extends Image implements Seasonal{
 
 		});
 	}
-	public void addDropTarget(DraggableItem target) { 
-		dragAndDrop.addTarget(new Target(target) {
+
+	public void addDropTarget(DraggableItem itemToDropOn) { 
+		Target target = new Target(itemToDropOn) {
 			public boolean drag (Source source, Payload payload, float x, float y, int pointer) {
+				payload.setValidDragActor(new PossibleComboHint(itemToDropOn));
 				return true;
 			}
 
@@ -97,10 +96,17 @@ public class DraggableItem extends Image implements Seasonal{
 
 			public void drop (Source source, Payload payload, float x, float y, int pointer) {
 				DraggableItem draggedItem= (DraggableItem)payload.getObject();
-				Combiner.combineItems(draggedItem, target);;
+				Combiner.combineItems(draggedItem, itemToDropOn);
 			}
-		});
-
+		};
+		dragAndDrop.addTarget(target);
+		dragAndDropTargets.put(itemToDropOn.getType(), target);
+	}
+	
+	public void removeDropTarget(ItemType itemType) {
+		Target target = dragAndDropTargets.remove(itemType);
+		System.out.println(type + " removing contact with " + itemType);
+		dragAndDrop.removeTarget(target);
 	}
 
 	@Override
@@ -154,6 +160,11 @@ public class DraggableItem extends Image implements Seasonal{
 		if(type==ItemType.AXE&&this.getX()<0) {
 			this.setPosition(MathUtils.random(this.getStage().getWidth()-this.getWidth()), MathUtils.random(this.getStage().getHeight()-this.getHeight()));
 		}
+	}
+	
+	@Override
+	public void rainbow() {
+		// TODO Auto-generated method stub
 	}
 
 }

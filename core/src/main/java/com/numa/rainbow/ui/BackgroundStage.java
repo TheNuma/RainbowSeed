@@ -53,6 +53,11 @@ public class BackgroundStage extends Stage implements Seasonal {
 		clear();
 		addActor(winter);
 	}
+	
+	@Override
+	public void rainbow() {
+		// TODO Auto-generated method stub
+	}
 
 	private Image makeDecorImage(String name, Color color, float scale) {
 		return makeDecorImage(name, color, scale, false);
@@ -75,7 +80,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 	private Group prepareSpringBackground() {
 		Group spring = new Group();
 		Color backColor = new Color(Color.LIME).mul(new Color(Color.LIGHT_GRAY));
-		spring.addActor(makeColoredBackground(backColor));
+		spring.addActor(makeColoredBackground(backColor,(int)getWidth(), (int)getHeight()));
 
 		Color decorColor = (new Color(Color.LIME)).mul(new Color(0.75f, 0.8f, 0.75f, 1));
 		List<Color> pastels = List.of(Color.VIOLET, new Color(0.8f, 0.627451f, 0.8784314f,1f), Color.SKY, Color.LIME, decorColor, decorColor, decorColor);
@@ -108,7 +113,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 	private Group prepareSummerBackground() {
 		Group summer = new Group();
 		Color backColor = new Color(Color.LIME).mul(new Color(Color.GRAY));
-		summer.addActor(makeColoredBackground(backColor));
+		summer.addActor(makeColoredBackground(backColor,(int)getWidth(), (int)getHeight()));
 		
 		Color decorColor = new Color(Color.LIME).mul(new Color(Color.LIGHT_GRAY)).mul(new Color(0.75f, 0.75f, 0.75f, 1));
 		for (int i = 0; i < 10; i++) {
@@ -134,7 +139,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 	private Group prepareAutumnBackground() {
 		Group autumn = new Group();
 		Color backColor = new Color(Color.ORANGE).mul(new Color(Color.GRAY));
-		autumn.addActor(makeColoredBackground(backColor));
+		autumn.addActor(makeColoredBackground(backColor,(int)getWidth(), (int)getHeight()));
 		
 		Color decorColor = new Color(Color.ORANGE).mul(new Color(Color.LIGHT_GRAY).mul(new Color(Color.LIGHT_GRAY)));
 		for (int i = 0; i < 10; i++) {
@@ -160,7 +165,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 	private Group prepareWinterBackground() {
 		Group winter = new Group();
 		Color backColor = new Color(Color.SKY).mul(new Color(Color.LIGHT_GRAY));
-		winter.addActor(makeColoredBackground(backColor));
+		winter.addActor(makeColoredBackground(backColor,(int)getWidth(), (int)getHeight()));
 		
 		Color decorColor = new Color(Color.SKY).mul(new Color(0.8f, 0.8f, 0.8f, 1f));
 		for (int i = 0; i < 10; i++) {
@@ -186,8 +191,8 @@ public class BackgroundStage extends Stage implements Seasonal {
 		return winter;
 	}
 
-	private Image makeColoredBackground(Color color) {
-		Pixmap coloredMap = new Pixmap((int)getWidth(), (int)getHeight(), Pixmap.Format.RGBA8888);
+	public static Image makeColoredBackground(Color color, int width, int height) {
+		Pixmap coloredMap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
 		coloredMap.setColor(color);
 		coloredMap.fillRectangle(0, 0, coloredMap.getWidth(), coloredMap.getHeight());
 		Texture coloredTexture = new Texture(coloredMap);

@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Align;
 public class PossibleComboHint extends Group {
 
 	public PossibleComboHint(Actor parent) {
-		Texture sparkleTexture = new Texture(Gdx.files.internal("sparkle.png"));
+		Texture sparkleTexture = new Texture(Gdx.files.internal("ui/sparkle.png"));
 
 		Image sparkle = new Image(sparkleTexture);
 		sparkle.setTouchable(Touchable.disabled);
@@ -25,18 +25,15 @@ public class PossibleComboHint extends Group {
 		sparkle.setScale(0);
 		sparkle.setColor(new Color(Color.WHITE).lerp(new Color(Color.ORANGE), MathUtils.random(1f)));
 		float directionDegrees = MathUtils.random(360f);
-		float moveDistanceX = MathUtils.random(20, 70);
-		float moveDistanceY = MathUtils.random(20, 70);
+		float moveDistanceX = MathUtils.random(40, 140);
+		float moveDistanceY = MathUtils.random(40, 140);
 		sparkle.addAction(
-				Actions.delay(
-						0f,
-						Actions.parallel(
-								Actions.moveBy(MathUtils.sinDeg(directionDegrees) * moveDistanceX, MathUtils.cosDeg(directionDegrees) * moveDistanceY, 1.25f, Interpolation.exp10Out),
-								Actions.sequence(
-										Actions.scaleTo(finalScale, finalScale, MathUtils.random(0.3f, 0.7f), Interpolation.elasticOut),
-										Actions.scaleTo(0, 0, MathUtils.random(0.3f, 0.7f), Interpolation.pow2),
-										Actions.removeActor()
-										)
+				Actions.parallel(
+						Actions.moveBy(MathUtils.sinDeg(directionDegrees) * moveDistanceX, MathUtils.cosDeg(directionDegrees) * moveDistanceY, 1.25f, Interpolation.exp10Out),
+						Actions.sequence(
+								Actions.scaleTo(finalScale, finalScale, MathUtils.random(0.3f, 0.7f), Interpolation.elasticOut),
+								Actions.scaleTo(0, 0, MathUtils.random(0.3f, 0.7f), Interpolation.pow2),
+								Actions.removeActor()
 								)
 						)
 				);
@@ -51,15 +48,7 @@ public class PossibleComboHint extends Group {
 								)
 						)
 				);
-		addActor(sparkle);
-	}
-
-
-
-	@Override
-	public boolean remove() {
-		getChildren().forEach(child -> getStage().addActor(child));
-		return super.remove();
+		parent.getStage().addActor(sparkle);
 	}
 
 }
