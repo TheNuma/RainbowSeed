@@ -53,6 +53,11 @@ public class BackgroundStage extends Stage implements Seasonal {
 		clear();
 		addActor(winter);
 	}
+	
+	@Override
+	public void rainbow() {
+		// TODO Auto-generated method stub
+	}
 
 	private Image makeDecorImage(String name, Color color, float scale) {
 		return makeDecorImage(name, color, scale, false);
