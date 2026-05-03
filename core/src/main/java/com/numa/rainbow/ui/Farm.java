@@ -2,21 +2,10 @@ package com.numa.rainbow.ui;
 
 import static com.numa.rainbow.items.ItemType.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.numa.rainbow.RainbowSeedGame;
-import com.numa.rainbow.items.CombinationKey;
-import com.numa.rainbow.items.Combiner;
-import com.numa.rainbow.items.DraggableItem;
-import com.numa.rainbow.items.ItemInteractions;
-import com.numa.rainbow.items.ItemType;
-import static com.numa.rainbow.items.ItemType.*;
-
-import com.numa.rainbow.season.Season;
 import com.numa.rainbow.items.*;
 import com.numa.rainbow.season.SeasonShifter;
 
@@ -98,9 +87,21 @@ public class Farm {
 		
 		setupAllItems();
 	}
-	
+
 	private DraggableItem getItemFromType(ItemType itemType) {
 		return allItems.get(itemType);
+	}
+	
+	public List<DraggableItem> getAllColorfulItems() {
+		return List.of( 
+				allItems.get(ItemType.ROSE),
+				allItems.get(ItemType.ORANGE_TREE),
+				allItems.get(ItemType.DAFFODIL),
+				allItems.get(ItemType.GREENBEANS),
+				allItems.get(ItemType.BLUEBERRY),
+				allItems.get(ItemType.INDIGO),
+				allItems.get(ItemType.VIOLET)
+				);
 	}
 	
 	private void makeItem(ItemType itemType,float x, float y) {

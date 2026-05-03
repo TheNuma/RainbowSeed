@@ -24,6 +24,7 @@ import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.season.Season;
 import com.numa.rainbow.season.Seasonal;
 import com.numa.rainbow.ui.PossibleComboHint;
+import com.numa.rainbow.ui.SummoningCircle;
 import com.numa.rainbow.ui.UI;
 
 public class DraggableItem extends Image implements Seasonal {
@@ -101,6 +102,24 @@ public class DraggableItem extends Image implements Seasonal {
 		};
 		dragAndDrop.addTarget(target);
 		dragAndDropTargets.put(itemToDropOn.getType(), target);
+	}
+
+	public void addSummoningCircleDropTarget(SummoningCircle circle) { 
+		dragAndDrop.addTarget(new Target(circle) {
+			public boolean drag (Source source, Payload payload, float x, float y, int pointer) {
+				payload.setValidDragActor(new PossibleComboHint(circle));
+				// TODO color the circle or something instead?
+				return true;
+			}
+
+			public void reset (Source source, Payload payload) {
+			}
+
+			public void drop (Source source, Payload payload, float x, float y, int pointer) {
+				DraggableItem draggedItem= (DraggableItem)payload.getObject();
+				circle.acceptItem(draggedItem);
+			}
+		});
 	}
 	
 	public void removeDropTarget(ItemType itemType) {

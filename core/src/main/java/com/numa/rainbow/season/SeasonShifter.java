@@ -40,4 +40,8 @@ public class SeasonShifter {
 		};
 	}
 
+	public Season getCurrentSeason() {
+		return currentSeason;
+	}
+
 }

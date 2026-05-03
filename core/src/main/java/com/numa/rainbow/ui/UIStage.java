@@ -1,5 +1,8 @@
 package com.numa.rainbow.ui;
 
+import java.util.List;
+import java.util.function.Supplier;
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -8,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.cutscenes.*;
+import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.season.Season;
 import com.numa.rainbow.season.SeasonShifter;
 
@@ -20,10 +24,14 @@ public class UIStage extends Stage {
 	private Table sidebar;
 
 	private Stage gameStage;
+	private SeasonShifter seasonShifter;
+	private Supplier<List<DraggableItem>> colorfulItems;
 
-	public UIStage(Viewport viewport, SeasonShifter seasonShifter, Stage gameStage) {
+	public UIStage(Viewport viewport, SeasonShifter seasonShifter, Stage gameStage, Supplier<List<DraggableItem>> colorfulItems) {
 		super(viewport);
+		this.seasonShifter = seasonShifter;
 		this.gameStage = gameStage;
+		this.colorfulItems = colorfulItems;
 
 		sidebar = new Table();
 		sidebar.setBackground(UI.getUISidebarTexture());
@@ -92,6 +100,27 @@ public class UIStage extends Stage {
 				autumnButton.setVisible(true);
 			}));
 		})));
+	}
+
+	public void beginTheEnd() {
+		sidebar.setVisible(true);
+		addAction(Actions.delay(1f, Actions.run(() -> {
+			gameStage.getRoot().setTouchable(Touchable.disabled);
+			addActor(new BeginTheEnd(() -> {
+				gameStage.getRoot().setTouchable(Touchable.enabled);
+				showSummoningCircle();
+			}, seasonShifter.getCurrentSeason()));
+		})));
+	}
+	
+	private void showSummoningCircle() {
+		SummoningCircle circle = new SummoningCircle(() -> System.out.println("You win!!"));
+		gameStage.addActor(circle);
+		circle.toBack();
+		seasonShifter.registerSeasonalThing(circle);
+		colorfulItems.get().forEach(item -> item.setPosition(40, 40));
+		colorfulItems.get().forEach(item -> item.setVisible(true));
+		colorfulItems.get().forEach(item -> item.addSummoningCircleDropTarget(circle));
 	}
 
 }
