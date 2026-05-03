@@ -25,9 +25,11 @@ public class SummoningCircle extends Group implements Seasonal {
 	private List<DraggableItem> receivedItems;
 	private Image circle;
 	private Image circleHint;
+	private Runnable moveColorfulPlantsOutOfTheWay;
 
-	public SummoningCircle(Runnable completeTheRitual) {
+	public SummoningCircle(Runnable completeTheRitual, Runnable moveColorfulPlantsOutOfTheWay) {
 		this.completeTheRitual = completeTheRitual;
+		this.moveColorfulPlantsOutOfTheWay = moveColorfulPlantsOutOfTheWay;
 		Texture tex = new Texture(Gdx.files.internal("ui/summoningCircle.png"));
 		tex.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		circle = new Image(tex);
@@ -51,6 +53,7 @@ public class SummoningCircle extends Group implements Seasonal {
 		circle.clearActions();
 		circle.setColor(1, 1, 1, 0f);
 		circle.addAction(Actions.fadeIn(1f));
+		moveColorfulPlantsOutOfTheWay.run();
 	}
 
 	@Override
@@ -95,7 +98,7 @@ public class SummoningCircle extends Group implements Seasonal {
 									0.75f,
 									Interpolation.circleIn)
 							,
-							Actions.delay(0.45f, Actions.fadeOut(0.3f))
+							Actions.delay(0.6f, Actions.fadeOut(0.15f))
 							)
 					));
 		}
