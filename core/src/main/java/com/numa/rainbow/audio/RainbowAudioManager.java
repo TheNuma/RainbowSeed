@@ -87,6 +87,10 @@ public class RainbowAudioManager implements Seasonal {
 		successSound.play();
 	}
 
+	public static void playColorComboSound() {
+		greatSuccessSound.play();
+	}
+
 	public void playSong(Music newSong) {
 		if (currentSong != newSong) {
 			if (outgoingSong != null) {
@@ -111,6 +115,7 @@ public class RainbowAudioManager implements Seasonal {
 	private static Sound autumnSound;
 	private static Sound winterSound;
 	private static Sound successSound;
+	private static Sound greatSuccessSound;
 
 	public void initializeSounds() {
 		springSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "springSound.wav"));
@@ -118,6 +123,7 @@ public class RainbowAudioManager implements Seasonal {
 		autumnSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "autumnSound.wav"));
 		winterSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "winterSound.wav"));
 		successSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "successSound.wav"));
+		greatSuccessSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "greatSuccessSound.wav"));
 	}
 
 }

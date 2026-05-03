@@ -92,7 +92,7 @@ public class SummoningCircle extends Group implements Seasonal {
 		moveItemToPosition.setPosition(RainbowSeedGame.WORLD_WIDTH / 2f + x, RainbowSeedGame.WORLD_HEIGHT / 2f + y, Align.center);
 		moveItemToPosition.setInterpolation(Interpolation.exp5);
 		moveItemToPosition.setDuration(0.5f);
-		addAction(moveItemToPosition);
+		draggedItem.addAction(moveItemToPosition);
 
 		if (receivedItems.size() == 7) {
 			addAction(Actions.delay(0.75f, Actions.run(completeTheRitual)));
