@@ -53,7 +53,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 		clear();
 		addActor(winter);
 	}
-
+	
 	@Override
 	public void rainbow() {
 		// TODO Auto-generated method stub
@@ -63,12 +63,12 @@ public class BackgroundStage extends Stage implements Seasonal {
 		return makeDecorImage(name, color, scale, false);
 	}
 
-	private Image makeDecorImage(String name, Color color, float scale, boolean randomRotation) {
+		private Image makeDecorImage(String name, Color color, float scale, boolean randomRotation) {
 		Image image = new Image(new Texture(Gdx.files.internal("decor/" + name + ".png")));
 		image.setColor(color);
 		image.setScale(scale * MathUtils.random(0.5f, 1f));
 		image.setPosition(MathUtils.random(RainbowSeedGame.WORLD_WIDTH), MathUtils.random(RainbowSeedGame.WORLD_HEIGHT));
-		if (MathUtils.randomBoolean()) {
+		if (MathUtils.randomBoolean())  {
 			image.setScaleX(-1 * image.getScaleX());
 		}
 		if (randomRotation) {
@@ -83,7 +83,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 		spring.addActor(makeColoredBackground(backColor));
 
 		Color decorColor = (new Color(Color.LIME)).mul(new Color(0.75f, 0.8f, 0.75f, 1));
-		List<Color> pastels = List.of(Color.VIOLET, new Color(0.8f, 0.627451f, 0.8784314f, 1f), Color.SKY, Color.LIME, decorColor, decorColor, decorColor);
+		List<Color> pastels = List.of(Color.VIOLET, new Color(0.8f, 0.627451f, 0.8784314f,1f), Color.SKY, Color.LIME, decorColor, decorColor, decorColor);
 		for (int i = 0; i < 10; i++) {
 			spring.addActor(makeDecorImage("curled-leaf", decorColor, 0.1f, true));
 			spring.addActor(makeDecorImage("butterfly", decorColor, 0.15f));
@@ -97,9 +97,9 @@ public class BackgroundStage extends Stage implements Seasonal {
 			spring.addActor(makeDecorImage("new-shoot", decorColor, 0.1f));
 		}
 		for (int i = 0; i < 20; i++) {
-			spring.addActor(makeDecorImage("dot1", pastels.get(MathUtils.random(pastels.size() - 1)), 0.6f));
-			spring.addActor(makeDecorImage("dot2", pastels.get(MathUtils.random(pastels.size() - 1)), 0.6f));
-			spring.addActor(makeDecorImage("dot3", pastels.get(MathUtils.random(pastels.size() - 1)), 0.6f));
+			spring.addActor(makeDecorImage("dot1", pastels.get(MathUtils.random(pastels.size()-1)), 0.6f));
+			spring.addActor(makeDecorImage("dot2", pastels.get(MathUtils.random(pastels.size()-1)), 0.6f));
+			spring.addActor(makeDecorImage("dot3", pastels.get(MathUtils.random(pastels.size()-1)), 0.6f));
 		}
 		for (int i = 0; i < 20; i++) {
 			spring.addActor(makeDecorImage("wave1", decorColor, 0.3f));
@@ -114,7 +114,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 		Group summer = new Group();
 		Color backColor = new Color(Color.LIME).mul(new Color(Color.GRAY));
 		summer.addActor(makeColoredBackground(backColor));
-
+		
 		Color decorColor = new Color(Color.LIME).mul(new Color(Color.LIGHT_GRAY)).mul(new Color(0.75f, 0.75f, 0.75f, 1));
 		for (int i = 0; i < 10; i++) {
 			summer.addActor(makeDecorImage("agave", decorColor, 0.1f));
@@ -140,7 +140,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 		Group autumn = new Group();
 		Color backColor = new Color(Color.ORANGE).mul(new Color(Color.GRAY));
 		autumn.addActor(makeColoredBackground(backColor));
-
+		
 		Color decorColor = new Color(Color.ORANGE).mul(new Color(Color.LIGHT_GRAY).mul(new Color(Color.LIGHT_GRAY)));
 		for (int i = 0; i < 10; i++) {
 			autumn.addActor(makeDecorImage("chestnut-leaf", decorColor, 0.1f, true));
@@ -166,7 +166,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 		Group winter = new Group();
 		Color backColor = new Color(Color.SKY).mul(new Color(Color.LIGHT_GRAY));
 		winter.addActor(makeColoredBackground(backColor));
-
+		
 		Color decorColor = new Color(Color.SKY).mul(new Color(0.8f, 0.8f, 0.8f, 1f));
 		for (int i = 0; i < 10; i++) {
 			winter.addActor(makeDecorImage("cold-heart", decorColor, 0.1f, true));
@@ -192,7 +192,7 @@ public class BackgroundStage extends Stage implements Seasonal {
 	}
 
 	private Image makeColoredBackground(Color color) {
-		Pixmap coloredMap = new Pixmap((int) getWidth(), (int) getHeight(), Pixmap.Format.RGBA8888);
+		Pixmap coloredMap = new Pixmap((int)getWidth(), (int)getHeight(), Pixmap.Format.RGBA8888);
 		coloredMap.setColor(color);
 		coloredMap.fillRectangle(0, 0, coloredMap.getWidth(), coloredMap.getHeight());
 		Texture coloredTexture = new Texture(coloredMap);
