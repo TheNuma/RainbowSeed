@@ -22,6 +22,8 @@ public abstract class Cutscene extends Group {
 	public static final float SPEECH_BUBBLE_Y = RainbowSeedGame.WORLD_WIDTH * 0.35f;
 	public static final float NEXT_BUTTON_X = SPEECH_BUBBLE_X * 1.8f;
 	public static final float NEXT_BUTTON_Y = SPEECH_BUBBLE_Y * 0.95f;
+
+	protected static final String NEXT_BUTTON_TEXT = "Next ->";
 	
 
 	protected Button nextButton;
@@ -55,6 +57,42 @@ public abstract class Cutscene extends Group {
 	}
 
 	protected abstract void startCutscene();
+	
+	protected Runnable makeNextButtonRunnable(Runnable toDo) {
+		return () -> {
+			clearActions();
+			currentBubble.clearListeners();
+			nextButton = UI.makeTextButton(NEXT_BUTTON_TEXT, () -> {
+				currentBubble.addAction(Actions.fadeOut(0.5f));
+				toDo.run();
+				nextButton.remove();
+			});
+			addActor(nextButton);
+			nextButton.setPosition(NEXT_BUTTON_X, NEXT_BUTTON_Y);
+		};
+	}	
+	protected Runnable makeFinalButtonRunnable(String text, Runnable toDo) {
+		return () -> {
+			clearActions();
+			currentBubble.clearListeners();
+			nextButton = UI.makeTextButton(text, () -> {
+				currentBubble.addAction(Actions.fadeOut(0.5f));
+				toDo.run();
+				clearActions();
+				nextButton.remove();
+				witch.addAction(Actions.fadeOut(0.5f));
+				darkScreen.addAction(Actions.fadeOut(0.5f));
+				currentBubble.addAction(
+						Actions.sequence(
+						Actions.fadeOut(0.5f),
+						Actions.run(endCutscene)
+								));
+				nextButton.remove();
+			});
+			addActor(nextButton);
+			nextButton.setPosition(NEXT_BUTTON_X, NEXT_BUTTON_Y);
+		};
+	}
 	
 	protected static String addWordRainbow(String text) {
 		text += UI.color(Color.RED, " R");
