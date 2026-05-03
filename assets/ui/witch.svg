@@ -2,14 +2,14 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="139.74489mm"
-   height="244.30582mm"
-   viewBox="0 0 139.74488 244.30584"
+   width="149.74001mm"
+   height="244.31mm"
+   viewBox="0 0 149.74 244.31002"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    sodipodi:docname="witch.svg"
-   inkscape:export-filename="witch.png"
+   inkscape:export-filename="witchGesturing.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -26,10 +26,19 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
-     inkscape:zoom="0.32927332"
-     inkscape:cx="428.21568"
-     inkscape:cy="842.76491"
-     inkscape:current-layer="layer1" />
+     inkscape:zoom="0.68303711"
+     inkscape:cx="342.58753"
+     inkscape:cy="429.69847"
+     inkscape:current-layer="svg1">
+    <inkscape:page
+       x="0"
+       y="0"
+       width="149.74001"
+       height="244.31003"
+       id="page10"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
   <defs
      id="defs1">
     <inkscape:path-effect
@@ -80,7 +89,7 @@
        id="path2"
        inkscape:label="body" />
     <path
-       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#34085f;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers fill stroke;stop-color:#000000;stop-opacity:1"
+       style="font-variation-settings:normal;display:none;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#34085f;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers fill stroke;stop-color:#000000;stop-opacity:1"
        d="m 70.084247,175.85853 18.259758,-23.02318 17.465855,21.96464"
        id="path3"
        inkscape:label="arms" />
@@ -131,5 +140,11 @@
          id="path6"
          sodipodi:nodetypes="ccc" />
     </g>
+    <path
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#34085f;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers fill stroke;stop-color:#000000;stop-opacity:1"
+       d="m 70.084247,175.85853 18.259758,-23.02318 7.351696,13.34092 8.963219,-7.49823 3.65914,-0.0701"
+       id="path10"
+       inkscape:label="armsUp"
+       sodipodi:nodetypes="ccccc" />
   </g>
 </svg>

@@ -1,10 +1,13 @@
 package com.numa.rainbow.ui;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.numa.rainbow.RainbowSeedGame;
+import com.numa.rainbow.cutscenes.*;
 import com.numa.rainbow.season.Season;
 import com.numa.rainbow.season.SeasonShifter;
 
@@ -15,9 +18,12 @@ public class UIStage extends Stage {
 	private Button autumnButton;
 	private Button winterButton;	
 	private Table sidebar;
-	
-	public UIStage(Viewport viewport, SeasonShifter seasonShifter) {
+
+	private Stage gameStage;
+
+	public UIStage(Viewport viewport, SeasonShifter seasonShifter, Stage gameStage) {
 		super(viewport);
+		this.gameStage = gameStage;
 
 		sidebar = new Table();
 		sidebar.setBackground(UI.getUISidebarTexture());
@@ -35,10 +41,8 @@ public class UIStage extends Stage {
 		winterButton=UI.getSeasonButton(Season.WINTER, () -> seasonShifter.setSeason(Season.WINTER));
 		sidebar.add(winterButton);
 		sidebar.row();
-		
+
 		sidebar.setVisible(false);
-		springButton.setVisible(false);
-		summerButton.setVisible(false);
 		autumnButton.setVisible(false);
 		winterButton.setVisible(false);
 
@@ -46,31 +50,48 @@ public class UIStage extends Stage {
 		sidebarPaddingTable.padRight(RainbowSeedGame.WORLD_WIDTH * 0.0075f);
 		sidebarPaddingTable.padTop(sidebarPaddingTable.getPadRight());
 		sidebarPaddingTable.padBottom(sidebarPaddingTable.getPadRight());
-		
+
 		sidebarPaddingTable.setSize(RainbowSeedGame.UI_WIDTH_FRACTION * RainbowSeedGame.WORLD_WIDTH, RainbowSeedGame.WORLD_HEIGHT);
 		sidebarPaddingTable.setPosition(RainbowSeedGame.WORLD_WIDTH - sidebarPaddingTable.getWidth()*0.75f, 0);
 		sidebarPaddingTable.add(sidebar).grow().padRight(RainbowSeedGame.WORLD_WIDTH * 0.01f);
 		addActor(sidebarPaddingTable);
 	}
 
-	public Button getSpringButton() {
-		return springButton;
+	public void introCutscene() {
+		gameStage.getRoot().setTouchable(Touchable.disabled);
+		addActor(new Intro(() -> {
+			gameStage.getRoot().setTouchable(Touchable.enabled);
+		}));
 	}
 
-	public Button getSummerButton() {
-		return summerButton;
+	public void unlockSummerCutscene() {
+		addAction(Actions.delay(1f, Actions.run(() -> {
+			gameStage.getRoot().setTouchable(Touchable.disabled);
+			addActor(new SummerUnlocked(() -> {
+				gameStage.getRoot().setTouchable(Touchable.enabled);
+				sidebar.setVisible(true);
+			}));	
+		})));
 	}
 
-	public Button getAutumnButton() {
-		return autumnButton;
+	public void unlockWinterCutscene() {
+		addAction(Actions.delay(1f, Actions.run(() -> {
+			gameStage.getRoot().setTouchable(Touchable.disabled);
+			addActor(new WinterUnlocked(() -> {
+				gameStage.getRoot().setTouchable(Touchable.enabled);
+				winterButton.setVisible(true);
+			}));	
+		})));
 	}
 
-	public Button getWinterButton() {
-		return winterButton;
+	public void unlockAutumnCutscene() {
+		addAction(Actions.delay(1f, Actions.run(() -> {
+			gameStage.getRoot().setTouchable(Touchable.disabled);
+			addActor(new AutumnUnlocked(() -> {
+				gameStage.getRoot().setTouchable(Touchable.enabled);
+				autumnButton.setVisible(true);
+			}));
+		})));
 	}
 
-	public Table getSidebar() {
-		return sidebar;
-	}
-	
 }

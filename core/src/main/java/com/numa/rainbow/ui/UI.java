@@ -46,6 +46,7 @@ public class UI {
 		speechBubbleBackground.setMinSize(width, height);
 		LabelStyle speechbubbleStyle = new LabelStyle(skin.get("title", LabelStyle.class));
 		speechbubbleStyle.font.getData().markupEnabled = true;
+		speechbubbleStyle.font.getData().setLineHeight(speechbubbleStyle.font.getData().lineHeight * 1.5f);
 		speechbubbleStyle.background = speechBubbleBackground;
 		skin.add(SPEECH_BUBBLE_LABEL, speechbubbleStyle);
 		
