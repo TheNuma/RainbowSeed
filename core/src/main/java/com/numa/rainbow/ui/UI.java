@@ -5,6 +5,7 @@ import java.util.Set;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -47,6 +48,7 @@ public class UI {
 		skin.add(LABEL_WITH_BACKGROUND, style);
 		
 		Texture speechBubbleTexture = new Texture(Gdx.files.internal("ui/speechbubble.png"));
+		speechBubbleTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		int width = speechBubbleTexture.getWidth();
 		int height = speechBubbleTexture.getHeight();
 		NinePatchDrawable speechBubbleBackground = new NinePatchDrawable(new NinePatch(speechBubbleTexture, (int) (0.45f * width), (int) (0.45f * width), (int) (0.3f * height), (int) (0.5f * height)));
