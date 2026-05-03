@@ -9,7 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TooltipManager;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.numa.rainbow.audio.RainbowAudioManager;
-import com.numa.rainbow.cutscenes.SummerUnlocked;
+import com.numa.rainbow.cutscenes.Intro;
+import com.numa.rainbow.items.Combiner;
 import com.numa.rainbow.ui.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -34,8 +35,7 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		
 		// comment out the 2 lines below if you want to skip the intro
 		stage.getRoot().setTouchable(Touchable.disabled);
-//		uiStage.addActor(new Intro(() -> stage.getRoot().setTouchable(Touchable.enabled)));
-		uiStage.addActor(new SummerUnlocked(() -> stage.getRoot().setTouchable(Touchable.enabled)));
+		uiStage.addActor(new Intro(() -> stage.getRoot().setTouchable(Touchable.enabled)));
 	}
 
 	@Override
@@ -75,6 +75,7 @@ public class RainbowSeedGame extends ApplicationAdapter {
 
 		Farm farm = new Farm(stage);
 		uiStage = new UIStage(new FitViewport(WORLD_WIDTH, WORLD_HEIGHT), farm.getSeasonShifter());
+		Combiner.setUIelements(uiStage);
 
 		farm.getSeasonShifter().registerSeasonalThing(backgroundStage);
 		farm.getSeasonShifter().registerSeasonalThing(audio);

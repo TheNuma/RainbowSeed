@@ -17,7 +17,7 @@ public class CombinationKey {
 	}
 
 	public boolean equals(Object o) {
-		if(o==null&&o.getClass()!=this.getClass()) {
+		if(o==null||o.getClass()!=this.getClass()) {
 			return false;
 		}
 		CombinationKey other = (CombinationKey)o;
