@@ -36,6 +36,7 @@ private final Map<CombinationKey, ItemType> combinations;
 		addCombination(REED,ROCK,GREENBEANS);
 		addCombination(FLAX,BERRYBUSH,BLUEBERRY);
 		addCombination(HOPS,SEAWEED,INDIGO);
+		addCombination(PLUMTREE, CACTUS, VIOLET);
 		
 		//change these maybe?
 		addCombination(FALLSEED,DIRT,TULIP);
