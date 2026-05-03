@@ -31,8 +31,8 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		audio.initializeMusic();
 		initializeUI();
 		
-//		uiStage.introCutscene();
-		uiStage.beginTheEnd();
+		uiStage.introCutscene();
+//		uiStage.beginTheEnd();
 	}
 
 	@Override

@@ -118,9 +118,16 @@ public class UIStage extends Stage {
 		gameStage.addActor(circle);
 		circle.toBack();
 		seasonShifter.registerSeasonalThing(circle);
-		colorfulItems.get().forEach(item -> item.setPosition(240, 240));
-		colorfulItems.get().forEach(item -> item.setVisible(true));
-		colorfulItems.get().forEach(item -> item.addSummoningCircleDropTarget(circle));
+		List<DraggableItem> allFinalGuys = colorfulItems.get();
+		float moveDuration = 0.75f;
+		allFinalGuys.get(0).addAction(Actions.moveTo(350, 100, moveDuration));
+		allFinalGuys.get(1).addAction(Actions.moveTo(100, 500, moveDuration));
+		allFinalGuys.get(2).addAction(Actions.moveTo(250, 900, moveDuration));
+		allFinalGuys.get(3).addAction(Actions.moveTo(1450, 890, moveDuration));
+		allFinalGuys.get(4).addAction(Actions.moveTo(1700, 600, moveDuration));
+		allFinalGuys.get(5).addAction(Actions.moveTo(1640, 410, moveDuration));
+		allFinalGuys.get(6).addAction(Actions.moveTo(1500, 170, moveDuration));
+		allFinalGuys.forEach(item -> item.addSummoningCircleDropTarget(circle));
 	}
 
 }

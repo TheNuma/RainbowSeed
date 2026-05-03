@@ -30,7 +30,7 @@
      inkscape:zoom="0.48377359"
      inkscape:cx="283.19032"
      inkscape:cy="321.43135"
-     inkscape:current-layer="svg1">
+     inkscape:current-layer="layer1">
     <inkscape:page
        x="0"
        y="0"
@@ -97,13 +97,13 @@
        id="path13" />
     <text
        xml:space="preserve"
-       style="font-weight:normal;font-size:7.91077678px;line-height:normal;font-family:'Blackadder ITC';-inkscape-font-specification:'Blackadder ITC';text-align:center;text-decoration-color:#000000;text-anchor:middle;fill:#34075e;fill-opacity:1;stroke-width:1.66594;stroke-linecap:square;-inkscape-stroke:none;paint-order:stroke fill markers;stop-color:#000000;font-style:normal;font-stretch:normal;font-variant:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.59231398px;line-height:normal;font-family:'Blackadder ITC';-inkscape-font-specification:'Blackadder ITC';text-align:center;text-decoration-color:#000000;text-anchor:middle;fill:#34075e;fill-opacity:1;stroke-width:1.66594;stroke-linecap:square;-inkscape-stroke:none;paint-order:stroke fill markers;stop-color:#000000"
        id="text13"><textPath
          xlink:href="#circle14"
          startOffset="50%"
-         id="textPath14"><tspan
-           id="tspan13"
-           style="fill:#34075e;fill-opacity:1;stroke-width:1.66593;-inkscape-font-specification:'Blackadder ITC';font-family:'Blackadder ITC';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:7.91077678px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehnderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</tspan></textPath></text>
+         id="textPath14">LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHNDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR. EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.<tspan
+   id="tspan13"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Blackadder ITC';-inkscape-font-specification:'Blackadder ITC';fill:#34075e;fill-opacity:1;stroke-width:1.66593;font-size:6.59231398px" /></textPath></text>
     <circle
        style="display:none;fill:none;fill-rule:evenodd;stroke:#34085f;stroke-width:1.40591;stroke-dasharray:none;stroke-opacity:1"
        id="circle14"
