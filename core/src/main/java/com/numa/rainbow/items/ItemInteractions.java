@@ -21,7 +21,7 @@ private final Map<CombinationKey, ItemType> combinations;
 		addCombination(TREE,AXE,STICK);
 		addCombination(BUSH,STRAWBERRY,BERRYBUSH);
 		addCombination(WEED,TREE,VINE);
-		addCombination(WEED,CACTUS,BRAMBLES);
+		addCombination(WEED,STICK,BRAMBLES);
 		addCombination(SCARECROW,AXE,PUMPKIN);
 		addCombination(GRASS,SNOW,SNOWDROP);
 		addCombination(WEED,SUN,DANDELION);

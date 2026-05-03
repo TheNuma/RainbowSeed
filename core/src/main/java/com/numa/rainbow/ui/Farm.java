@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.items.CombinationKey;
 import com.numa.rainbow.items.Combiner;
 import com.numa.rainbow.items.DraggableItem;
@@ -36,16 +38,25 @@ public class Farm {
 		makeItem(WEED,233,111);
 		makeUnavailableItem(GRASS);	
 		makeUnavailableItem(SUMMERSEED);
-		allItems.get(SUMMERSEED).setPosition(600, 55);
+		DraggableItem itemTemp=allItems.get(SUMMERSEED);
+		itemTemp.setPosition(MathUtils.random(stage.getWidth()-itemTemp.getWidth()), MathUtils.random(stage.getHeight()-itemTemp.getHeight()));
 		makeUnavailableItem(ROCK);
-		makeUnavailableItem(SUN);	
+		itemTemp=allItems.get(ROCK);
+		itemTemp.setPosition(MathUtils.random(stage.getWidth()-itemTemp.getWidth()), MathUtils.random(stage.getHeight()-itemTemp.getHeight()));		
+		makeUnavailableItem(SUN);
+		itemTemp=allItems.get(SUN);
+		itemTemp.setPosition(MathUtils.random(stage.getWidth()-itemTemp.getWidth()), MathUtils.random(stage.getHeight()-itemTemp.getHeight()));
 		makeUnavailableItem(SEAWATER);
 		makeUnavailableItem(STRAWBERRY);
 		makeUnavailableItem(FALLSEED);
+		itemTemp= allItems.get(FALLSEED);
+		itemTemp.setPosition(MathUtils.random(stage.getWidth()-itemTemp.getWidth()), MathUtils.random(stage.getHeight()-itemTemp.getHeight()));
 		makeUnavailableItem(BAMBOO);
 		makeUnavailableItem(BUSH);
 		makeUnavailableItem(WHEAT);
 		makeUnavailableItem(SCARECROW);
+		itemTemp=allItems.get(SCARECROW);
+		itemTemp.setPosition(MathUtils.random(stage.getWidth()-itemTemp.getWidth()), MathUtils.random(stage.getHeight()-itemTemp.getHeight()));
 		makeUnavailableItem(TREE);
 		makeUnavailableItem(AXE);
 		makeUnavailableItem(STICK);
@@ -56,7 +67,11 @@ public class Farm {
 		makeUnavailableItem(PUMPKIN);
 		makeUnavailableItem(SNOWDROP);
 		makeUnavailableItem(SNOW);
+		itemTemp=allItems.get(SNOW);
+		itemTemp.setPosition(MathUtils.random(stage.getWidth()-itemTemp.getWidth()), MathUtils.random(stage.getHeight()-itemTemp.getHeight()));
 		makeUnavailableItem(WINTERSEED);
+		itemTemp=allItems.get(WINTERSEED);
+		itemTemp.setPosition(MathUtils.random(stage.getWidth()-itemTemp.getWidth()), MathUtils.random(stage.getHeight()-itemTemp.getHeight()));
 		makeUnavailableItem(DANDELION);
 		makeUnavailableItem(REED);
 		makeUnavailableItem(FLAX);
@@ -90,7 +105,7 @@ public class Farm {
 		allItems.put(itemType, item);
 		item.setPosition(x,y);
 		stage.addActor(item);
-		seasonShifter.registerSeasonalThing(item);
+		seasonShifter.registerSeasonalThing(item); 
 	}
 	private void makeUnavailableItem(ItemType itemType) {
 		makeItem(itemType, -100, -100);
