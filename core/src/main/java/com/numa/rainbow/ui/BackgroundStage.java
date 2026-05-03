@@ -40,8 +40,6 @@ public class BackgroundStage extends Stage implements Seasonal {
 
 	public void changeBackground(Group newBackground) {
 		float duration = 0.25f;
-		currentBackground.clearActions();
-		newBackground.clearActions();
 		addActor(newBackground);
 
 		newBackground.setColor(1, 1, 1, 0);
