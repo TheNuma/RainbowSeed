@@ -4,10 +4,12 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.TooltipManager;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.numa.rainbow.audio.RainbowAudioManager;
+import com.numa.rainbow.cutscenes.Intro;
 import com.numa.rainbow.ui.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -29,6 +31,10 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		audio.initializeSounds();
 		audio.initializeMusic();
 		initializeUI();
+		
+		// comment out the 2 lines below if you want to skip the intro
+		stage.getRoot().setTouchable(Touchable.disabled);
+		uiStage.addActor(new Intro(() -> stage.getRoot().setTouchable(Touchable.enabled)));
 	}
 
 	@Override

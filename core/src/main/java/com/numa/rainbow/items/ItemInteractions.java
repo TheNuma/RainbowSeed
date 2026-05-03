@@ -1,11 +1,8 @@
 package com.numa.rainbow.items;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import static com.numa.rainbow.items.ItemType.*;
+
+import java.util.*;
 
 public class ItemInteractions {
 	
@@ -48,6 +45,11 @@ private final Map<CombinationKey, ItemType> combinations;
 	private void addCombination(ItemType type1 , ItemType type2, ItemType type3 ) {
 		CombinationKey key=new CombinationKey(type1, type2);
 		combinations.put(key, type3);
+	}
+	
+	public void markCombinationComplete(ItemType type1 , ItemType type2) {
+		CombinationKey key=new CombinationKey(type1, type2);
+		combinations.remove(key);
 	}
 	
 	public ItemType getCombination(ItemType type1, ItemType type2) {
