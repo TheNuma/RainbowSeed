@@ -1,6 +1,8 @@
 package com.numa.rainbow.items;
 import java.util.function.Function;
 
+import com.numa.rainbow.audio.RainbowAudioManager;
+
 public class Combiner {
 	private static ItemInteractions interactions;
 	private static Function<ItemType,DraggableItem> typeToDraggable;
@@ -27,6 +29,7 @@ public class Combiner {
     			uiDelay = 3f;
     		}
     		checkAndRemoveFullyUsedItems(item2, uiDelay);
+    		RainbowAudioManager.playComboSound();
     	}
     	else {
     		System.out.println("No combinations found between "+item1+ " and "+item2);

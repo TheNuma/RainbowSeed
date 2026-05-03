@@ -165,5 +165,10 @@ public class DraggableItem extends Image implements Seasonal {
 	public void winter() {
 		this.setVisible(type.getValidSeasons().contains(Season.WINTER));
 	}
+	
+	@Override
+	public void rainbow() {
+		// TODO Auto-generated method stub
+	}
 
 }
