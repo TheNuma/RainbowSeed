@@ -1,7 +1,12 @@
 package com.numa.rainbow.items;
+import java.util.*;
 import java.util.function.Function;
 
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.numa.rainbow.audio.RainbowAudioManager;
 
 public class Combiner {
@@ -10,6 +15,8 @@ public class Combiner {
 	public static void combineItems(DraggableItem item1, DraggableItem item2) {
 		
        	if (interactions.hasCombinations(item1.getType(), item2.getType())) {
+			List<DraggableItem> remainingItems = new ArrayList<>();
+			
     		//create new object
     		ItemType type3 = interactions.getCombination(item1.getType(), item2.getType());
     		removeCombination(item1, item2);
@@ -22,14 +29,24 @@ public class Combiner {
     		item1.removeCombo(type3);
     		item2.removeCombo(type3);
     		
+			remainingItems.add(spawnItem);
+			
     		//remove 'parent' objects if necessary
     		float uiDelay = 0.5f;
     		boolean firstRemoved = checkAndRemoveFullyUsedItems(item1, uiDelay);
     		if (firstRemoved) {
     			uiDelay = 3f;
+			} else {
+				remainingItems.add(item1);
+			}
+    		
+    		boolean secondRemoved = checkAndRemoveFullyUsedItems(item2, uiDelay);
+    		if(!secondRemoved) {
+    			remainingItems.add(item2);
     		}
-    		checkAndRemoveFullyUsedItems(item2, uiDelay);
-    		RainbowAudioManager.playComboSound();
+			pushAwayRemainingItems(remainingItems, new Vector2(spawnItem.getX(), spawnItem.getY()));
+
+			RainbowAudioManager.playComboSound();
     	}
     	else {
     		System.out.println("No combinations found between "+item1+ " and "+item2);
@@ -55,4 +72,31 @@ public class Combiner {
     	}
     	return false;
     }
+    
+	private static void pushAwayRemainingItems(List<DraggableItem> remainingItems, Vector2 center) {
+		Random random = new Random();
+
+		float angle = random.nextFloat() * 360f;
+		int items = remainingItems.size();
+
+		for (Iterator<DraggableItem> it = remainingItems.iterator(); it.hasNext();) {
+			DraggableItem draggableItem = it.next();
+			MoveToAction move = new MoveToAction();
+
+			float distance = random.nextFloat() * 50 + 75;
+			move.setDuration(0.5f + random.nextFloat() * 0.2f);
+			move.setStartPosition(center.x, center.y);
+			move.setInterpolation(Interpolation.exp5Out);
+			float destinationX = draggableItem.getX() + MathUtils.sinDeg(angle) * distance;
+			float destinationY = draggableItem.getY() + MathUtils.cosDeg(angle) * distance;
+			destinationX = MathUtils.clamp(destinationX, 0, draggableItem.getStage().getWidth() - draggableItem.getWidth());
+			destinationY = MathUtils.clamp(destinationY, 0, draggableItem.getStage().getHeight() - draggableItem.getHeight());
+			move.setPosition(destinationX, destinationY);
+			draggableItem.addAction(move);
+
+			angle += 360f / items;
+			angle += random.nextFloat() * 20;
+		}
+
+	}
 }
