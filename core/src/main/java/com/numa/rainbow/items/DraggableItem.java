@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -156,6 +157,9 @@ public class DraggableItem extends Image implements Seasonal {
 	@Override
 	public void winter() {
 		this.setVisible(type.getValidSeasons().contains(Season.WINTER));
+		if(type==ItemType.AXE&&this.getX()<0) {
+			this.setPosition(MathUtils.random(this.getStage().getWidth()-this.getWidth()), MathUtils.random(this.getStage().getHeight()-this.getHeight()));
+		}
 	}
 	
 	@Override

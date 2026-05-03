@@ -18,7 +18,7 @@ private final Map<CombinationKey, ItemType> combinations;
 		addCombination(TREE,AXE,STICK);
 		addCombination(BUSH,STRAWBERRY,BERRYBUSH);
 		addCombination(WEED,TREE,VINE);
-		addCombination(WEED,CACTUS,BRAMBLES);
+		addCombination(WEED,STICK,BRAMBLES);
 		addCombination(SCARECROW,AXE,PUMPKIN);
 		addCombination(GRASS,SNOW,SNOWDROP);
 		addCombination(WEED,SUN,DANDELION);
@@ -33,6 +33,7 @@ private final Map<CombinationKey, ItemType> combinations;
 		addCombination(REED,ROCK,GREENBEANS);
 		addCombination(FLAX,BERRYBUSH,BLUEBERRY);
 		addCombination(HOPS,SEAWEED,INDIGO);
+		addCombination(PLUMTREE, CACTUS, VIOLET);
 		
 		//change these maybe?
 		addCombination(FALLSEED,DIRT,TULIP);
