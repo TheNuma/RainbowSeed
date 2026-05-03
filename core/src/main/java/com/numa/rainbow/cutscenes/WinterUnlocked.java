@@ -11,35 +11,28 @@ import com.badlogic.gdx.utils.Align;
 import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.ui.UI;
 
-public class SummerUnlocked extends Cutscene {
+public class WinterUnlocked extends Cutscene {
 
-	public SummerUnlocked(Runnable endCutscene) {
+	public WinterUnlocked(Runnable endCutscene) {
 		super(endCutscene);
 	}
 
 	@Override
 	protected void startCutscene() {
-		String text1 = UI.color(UI.DARK_BLUE, "You're doing well! I'd say it's time\nfor me to teach you something fun...");
+		String text1 = UI.color(UI.DARK_BLUE, "Summer is lovely, but the");
+		text1 = addWordRainbow(text1);
+		text1 += UI.color(UI.DARK_BLUE, "seed \nrequires balance and variety.");
 		Runnable next = makeNextButtonRunnable(this::text2);
 		makeSpeechBubble(text1, next);
 		addAction(Actions.delay(3f, Actions.run(next)));
 	}
 
 	private void text2() {
-		String text1 = UI.color(UI.DARK_BLUE, "You may have guessed that the ingredients\nfor the");
-		text1 = addWordRainbow(text1);
-		text1 += UI.color(UI.DARK_BLUE, "seed cannot be found in\nSpring alone.");
-		Runnable next = makeNextButtonRunnable(this::text3);
-		makeSpeechBubble(text1, next);
-		addAction(Actions.delay(3f, Actions.run(next)));
-	}
-
-	private void text3() {
-		String text = UI.color(UI.DARK_BLUE, "With this spell, you can shift your\nseasonal reality and access new plants.\nEnjoy the heat of summer!");
+		String text = UI.color(UI.DARK_BLUE, "The potent heat of Summer supports the\nvitality of a plant, but so too does the\nrestful cold of Winter.");
 		Texture texGesture = new Texture(Gdx.files.internal("ui/witchGesturing.png"));
 		texGesture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		witch.setDrawable(new TextureRegionDrawable(texGesture));
-		Texture spellTexture = new Texture(Gdx.files.internal("ui/sun.png"));
+		Texture spellTexture = new Texture(Gdx.files.internal("ui/snowflake-2.png"));
 		spellTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		Image spell = new Image(spellTexture);
 		spell.setSize(150, 150);
@@ -55,11 +48,11 @@ public class SummerUnlocked extends Cutscene {
 		spell.setPosition(spell2.getX() + spell2.getWidth()/2f, spell2.getY() + spell2.getHeight()/2f, Align.center);
 
 
-		Runnable start = makeFinalButtonRunnable("Let's go!", () -> {
+		Runnable start = makeFinalButtonRunnable("Let it snow!", () -> {
 			spell.addAction(Actions.fadeOut(0.5f));
 			spell2.addAction(Actions.fadeOut(0.5f));});
 		makeSpeechBubble(text, start);
-		addAction(Actions.delay(5f, Actions.run(start)));
+		addAction(Actions.delay(4f, Actions.run(start)));
 	}
 
 }

@@ -11,35 +11,26 @@ import com.badlogic.gdx.utils.Align;
 import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.ui.UI;
 
-public class SummerUnlocked extends Cutscene {
+public class AutumnUnlocked extends Cutscene {
 
-	public SummerUnlocked(Runnable endCutscene) {
+	public AutumnUnlocked(Runnable endCutscene) {
 		super(endCutscene);
 	}
 
 	@Override
 	protected void startCutscene() {
-		String text1 = UI.color(UI.DARK_BLUE, "You're doing well! I'd say it's time\nfor me to teach you something fun...");
+		String text1 = UI.color(UI.DARK_BLUE, "Ah, I see you've found your first\ncolorful plant. You're nearing the\nend of your journey.");
 		Runnable next = makeNextButtonRunnable(this::text2);
 		makeSpeechBubble(text1, next);
 		addAction(Actions.delay(3f, Actions.run(next)));
 	}
 
 	private void text2() {
-		String text1 = UI.color(UI.DARK_BLUE, "You may have guessed that the ingredients\nfor the");
-		text1 = addWordRainbow(text1);
-		text1 += UI.color(UI.DARK_BLUE, "seed cannot be found in\nSpring alone.");
-		Runnable next = makeNextButtonRunnable(this::text3);
-		makeSpeechBubble(text1, next);
-		addAction(Actions.delay(3f, Actions.run(next)));
-	}
-
-	private void text3() {
-		String text = UI.color(UI.DARK_BLUE, "With this spell, you can shift your\nseasonal reality and access new plants.\nEnjoy the heat of summer!");
+		String text = UI.color(UI.DARK_BLUE, "Autumn, the season of change, is the last\nnew shift spell you'll need to complete\nyour goal.");
 		Texture texGesture = new Texture(Gdx.files.internal("ui/witchGesturing.png"));
 		texGesture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		witch.setDrawable(new TextureRegionDrawable(texGesture));
-		Texture spellTexture = new Texture(Gdx.files.internal("ui/sun.png"));
+		Texture spellTexture = new Texture(Gdx.files.internal("ui/oak-leaf.png"));
 		spellTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		Image spell = new Image(spellTexture);
 		spell.setSize(150, 150);
@@ -48,18 +39,18 @@ public class SummerUnlocked extends Cutscene {
 		addActor(spell);
 
 		Image spell2 = new Image(spellTexture);
-		spell2.setBounds(RainbowSeedGame.WORLD_WIDTH*0.25f, RainbowSeedGame.WORLD_HEIGHT * 0.37f, 100, 100);
+		spell2.setBounds(RainbowSeedGame.WORLD_WIDTH*0.25f, RainbowSeedGame.WORLD_HEIGHT * 0.368f, 100, 100);
 		spell2.setColor(1, 1, 1, 0f);
 		spell2.addAction(Actions.fadeIn(0.5f));
 		addActor(spell2);
 		spell.setPosition(spell2.getX() + spell2.getWidth()/2f, spell2.getY() + spell2.getHeight()/2f, Align.center);
 
 
-		Runnable start = makeFinalButtonRunnable("Let's go!", () -> {
+		Runnable start = makeFinalButtonRunnable("Let's get cozy!", () -> {
 			spell.addAction(Actions.fadeOut(0.5f));
 			spell2.addAction(Actions.fadeOut(0.5f));});
 		makeSpeechBubble(text, start);
-		addAction(Actions.delay(5f, Actions.run(start)));
+		addAction(Actions.delay(4f, Actions.run(start)));
 	}
 
 }
