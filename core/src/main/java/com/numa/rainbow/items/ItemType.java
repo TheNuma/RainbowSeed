@@ -5,7 +5,7 @@ import java.util.Set;
 import com.numa.rainbow.season.Season;
 
 public enum ItemType {
-	SUMMERSEED("sesame","Seeds",Season.summerOnly),
+	SUMMERSEED("sesame","Summer Seeds",Season.summerOnly),
 	DIRT("dirt","Dirt",Season.allSeasons),
 	WEED("evil-bud","Weeds",Season.notWinter),
 	GRASS("grass","Grass",Season.allSeasons),
@@ -15,9 +15,9 @@ public enum ItemType {
 	SNOW("snow","Snow",Season.winterOnly),
 	SEAWATER("wave-crest","Sea Water",Season.allSeasons),
 	STRAWBERRY("strawberry","Strawberry",Season.allSeasons),
-	FALLSEED("seasonal-seed","Seeds",Season.autumnOnly),
-	SPRINGSEED("bulb","Seeds",Season.springOnly),
-	WINTERSEED("ground-sprout","Seeds",Season.winterOnly),
+	FALLSEED("seasonal-seed","Autumn Seeds",Season.autumnOnly),
+	SPRINGSEED("bulb","Spring Seeds",Season.springOnly),
+	WINTERSEED("ground-sprout","Winter Seeds",Season.winterOnly),
 	BAMBOO("bamboo","Bamboo",Season.allSeasons),
 	BUSH("bush","Bush",Season.allSeasons),
 	WHEAT("wheat","Wheat",Season.allSeasons),
