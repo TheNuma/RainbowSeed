@@ -1,5 +1,47 @@
 package com.numa.rainbow.ui;
 
+import static com.numa.rainbow.items.ItemType.AXE;
+import static com.numa.rainbow.items.ItemType.BAMBOO;
+import static com.numa.rainbow.items.ItemType.BERRYBUSH;
+import static com.numa.rainbow.items.ItemType.BLUEBERRY;
+import static com.numa.rainbow.items.ItemType.BRAMBLES;
+import static com.numa.rainbow.items.ItemType.BUSH;
+import static com.numa.rainbow.items.ItemType.CACTUS;
+import static com.numa.rainbow.items.ItemType.DAFFODIL;
+import static com.numa.rainbow.items.ItemType.DANDELION;
+import static com.numa.rainbow.items.ItemType.DIRT;
+import static com.numa.rainbow.items.ItemType.FALLSEED;
+import static com.numa.rainbow.items.ItemType.FLAX;
+import static com.numa.rainbow.items.ItemType.GRASS;
+import static com.numa.rainbow.items.ItemType.GREENBEANS;
+import static com.numa.rainbow.items.ItemType.HOPS;
+import static com.numa.rainbow.items.ItemType.INDIGO;
+import static com.numa.rainbow.items.ItemType.ORANGE_TREE;
+import static com.numa.rainbow.items.ItemType.PLUMTREE;
+import static com.numa.rainbow.items.ItemType.PUMPKIN;
+import static com.numa.rainbow.items.ItemType.RAINBOWSEED;
+import static com.numa.rainbow.items.ItemType.REED;
+import static com.numa.rainbow.items.ItemType.ROCK;
+import static com.numa.rainbow.items.ItemType.ROSE;
+import static com.numa.rainbow.items.ItemType.SCARECROW;
+import static com.numa.rainbow.items.ItemType.SEAWATER;
+import static com.numa.rainbow.items.ItemType.SEAWEED;
+import static com.numa.rainbow.items.ItemType.SNOW;
+import static com.numa.rainbow.items.ItemType.SNOWDROP;
+import static com.numa.rainbow.items.ItemType.SPRINGSEED;
+import static com.numa.rainbow.items.ItemType.STICK;
+import static com.numa.rainbow.items.ItemType.STRAWBERRY;
+import static com.numa.rainbow.items.ItemType.SUMMERSEED;
+import static com.numa.rainbow.items.ItemType.SUN;
+import static com.numa.rainbow.items.ItemType.TREE;
+import static com.numa.rainbow.items.ItemType.TULIP;
+import static com.numa.rainbow.items.ItemType.VINE;
+import static com.numa.rainbow.items.ItemType.VIOLET;
+import static com.numa.rainbow.items.ItemType.WATER;
+import static com.numa.rainbow.items.ItemType.WEED;
+import static com.numa.rainbow.items.ItemType.WHEAT;
+import static com.numa.rainbow.items.ItemType.WINTERSEED;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -10,9 +52,6 @@ import com.numa.rainbow.items.Combiner;
 import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemInteractions;
 import com.numa.rainbow.items.ItemType;
-import static com.numa.rainbow.items.ItemType.*;
-
-import com.numa.rainbow.season.Season;
 import com.numa.rainbow.season.SeasonShifter;
 
 public class Farm {
@@ -25,6 +64,7 @@ public class Farm {
 	public Farm(Stage stage) {
 		this.stage=stage;
 		this.seasonShifter = new SeasonShifter();
+		UI.setSeasonShifter(seasonShifter);
 		
 		allItems = new HashMap<>();
 		interactions =new ItemInteractions();

@@ -26,11 +26,17 @@ import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemType;
 import com.numa.rainbow.season.Season;
+import com.numa.rainbow.season.SeasonShifter;
 
 public class UI {
 	
+	private static final String SPEECH_BUBBLE_LABEL = "speechbubble";
 	private static final String LABEL_WITH_BACKGROUND = "labelWithBackground";
+	
+	public static final Color DARK_BLUE = new Color(0.1f, 0.2f, 0.5f, 1);
+	
 	private static Skin skin;
+	private static SeasonShifter seasonShifter;
 	
 	public static void initialize() {
 		skin = new Skin(Gdx.files.internal("flat-earth/skin/flat-earth-ui.json"));
@@ -39,12 +45,28 @@ public class UI {
 		style.background = getBasicBackgroundTexture(Color.GOLDENROD);
 		skin.add(LABEL_WITH_BACKGROUND, style);
 		
+		Texture speechBubbleTexture = new Texture(Gdx.files.internal("ui/speechbubble.png"));
+		int width = speechBubbleTexture.getWidth();
+		int height = speechBubbleTexture.getHeight();
+		NinePatchDrawable speechBubbleBackground = new NinePatchDrawable(new NinePatch(speechBubbleTexture, (int) (0.45f * width), (int) (0.45f * width), (int) (0.3f * height), (int) (0.5f * height)));
+		speechBubbleBackground.setPadding((int) (0.1f * height), (int) (0.1f * width), (int) (0.425f * height), (int) (0.1f * width));
+		speechBubbleBackground.setMinSize(width, height);
+		LabelStyle speechbubbleStyle = new LabelStyle(skin.get("default", LabelStyle.class));
+		speechbubbleStyle.background = speechBubbleBackground;
+		skin.add(SPEECH_BUBBLE_LABEL, speechbubbleStyle);
+		
+		
 		TooltipManager.getInstance().instant();
+	}
+
+	public static void setSeasonShifter(SeasonShifter seasonShifter) {
+		UI.seasonShifter = seasonShifter;
 	}
 
 	public static DraggableItem makeDraggableItem(ItemType type, Set<ItemType> combos) {
 		DraggableItem item = new DraggableItem(type.getFileName(), type,combos);
-		Label label = new Label(type.getItemName(), skin.get("title", LabelStyle.class));
+		SeasonalLabel label = new SeasonalLabel(type.getItemName(), skin.get("title", LabelStyle.class));
+		seasonShifter.registerSeasonalThing(label);
 		item.addListener(new Tooltip<Label>(label));
 		return item;
 	}
@@ -52,6 +74,7 @@ public class UI {
 	public static Label makeLabel(String text) {
 		return new Label(text, skin);
 	}
+	
 	public static Label makeLabelWithBackground(String text) {
 		return new Label(text, skin.get(LABEL_WITH_BACKGROUND, LabelStyle.class));
 	}
@@ -104,7 +127,7 @@ public class UI {
 			break;
 		};
 
-		TextureRegionDrawable icon = new TextureRegionDrawable(new Texture(Gdx.files.internal(iconFileName + ".png")));
+		TextureRegionDrawable icon = new TextureRegionDrawable(new Texture(Gdx.files.internal("ui/" + iconFileName + ".png")));
 		float size = 0.6f * RainbowSeedGame.UI_WIDTH_FRACTION * RainbowSeedGame.WORLD_HEIGHT;
 		icon.setMinSize(size, size);
 		style.imageUp = icon;

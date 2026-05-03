@@ -13,6 +13,7 @@ public class Combiner {
     		DraggableItem spawnItem = typeToDraggable.apply(type3);
     		spawnItem.setPosition((item1.getX()+item2.getX())/2f, (item1.getY()+item2.getY())/2f);
     		spawnItem.setVisible(true);
+    		spawnItem.toFront();
     		item1.removeCombo(type3);
     		item2.removeCombo(type3);
     		

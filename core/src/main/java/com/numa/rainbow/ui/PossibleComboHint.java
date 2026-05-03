@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Align;
 public class PossibleComboHint extends Group {
 
 	public PossibleComboHint(Actor parent) {
-		Texture sparkleTexture = new Texture(Gdx.files.internal("sparkle.png"));
+		Texture sparkleTexture = new Texture(Gdx.files.internal("ui/sparkle.png"));
 
 		Image sparkle = new Image(sparkleTexture);
 		sparkle.setTouchable(Touchable.disabled);
