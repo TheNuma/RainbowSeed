@@ -86,7 +86,7 @@ public class UI {
 	}
 	
 	public static TextButton makeTextButton(String text, Runnable onClick) {
-		TextButton button = new TextButton(color(DARK_BLUE, text), skin);
+		TextButton button = new TextButton(color(Color.WHITE, text), skin);
 		button.addListener(new ClickListener() {
 			public void clicked (InputEvent event, float x, float y) {
 				onClick.run();

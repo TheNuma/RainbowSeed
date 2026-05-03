@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.TooltipManager;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -32,7 +33,8 @@ public class RainbowSeedGame extends ApplicationAdapter {
 		audio = new RainbowAudioManager();
 		audio.initializeMusic();
 		initializeUI();
-		uiStage.addActor(new Intro());
+		stage.getRoot().setTouchable(Touchable.disabled);
+		uiStage.addActor(new Intro(() -> stage.getRoot().setTouchable(Touchable.enabled)));
 	}
 
 	@Override

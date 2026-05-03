@@ -12,12 +12,12 @@ public class SeasonalLabel extends Label implements Seasonal {
 
 	@Override
 	public void spring() {
-		setColor(new Color(Color.FOREST).mul(new Color(Color.GRAY)));
+		setColor(new Color(Color.FOREST).mul(new Color(new Color(0.65f, 0.65f, 0.65f, 1))));
 	}
 
 	@Override
 	public void summer() {
-		setColor(new Color(Color.SALMON).mul(new Color(Color.LIGHT_GRAY)));
+		setColor(new Color(Color.LIME));
 	}
 
 	@Override

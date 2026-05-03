@@ -3,9 +3,11 @@ package com.numa.rainbow.cutscenes;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.ui.UI;
 
@@ -13,13 +15,19 @@ public class Intro extends Group {
 
 	private static final float SPEECH_BUBBLE_X = RainbowSeedGame.WORLD_WIDTH * 0.3f;
 	private static final float SPEECH_BUBBLE_Y = RainbowSeedGame.WORLD_WIDTH * 0.3f;
-	private Button nextButton;
 
-	public Intro() {
+	private Button nextButton;
+	private Actor currentBubble;
+	private Runnable endCutscene;
+
+	public Intro(Runnable endCutscene) {
+		this.endCutscene = () -> {
+			endCutscene.run();
+			remove();
+		};
 		Actor clickBarrier = new Actor();
 		clickBarrier.setSize(RainbowSeedGame.WORLD_WIDTH, RainbowSeedGame.WORLD_HEIGHT);
 		addActor(clickBarrier);
-		clickBarrier.debug();
 		
 		String text1 = UI.color(UI.DARK_BLUE, "So, it's already time for you to make\nyour first ");
 		text1 += UI.color(Color.RED, "R");
@@ -30,36 +38,40 @@ public class Intro extends Group {
 		text1 += UI.color(Color.BLUE, "O");
 		text1 += UI.color(Color.PURPLE, "W");
 		text1 += UI.color(UI.DARK_BLUE, " seed? ");
-		Label bubble1 = UI.makeSpeechBubbleLabel(text1);
-		bubble1.setPosition(SPEECH_BUBBLE_X, SPEECH_BUBBLE_Y);
-		addActor(bubble1);
-		addAction(Actions.delay(3f, Actions.run(() -> {
+		Runnable next = () -> {
+			clearActions();
+			currentBubble.clearListeners();
 			nextButton = UI.makeTextButton("Next ->", () -> {
-				bubble1.addAction(Actions.fadeOut(0.5f));
+				currentBubble.addAction(Actions.fadeOut(0.5f));
 				text2();
 				nextButton.remove();
 			});
 			addActor(nextButton);
 			nextButton.setPosition(SPEECH_BUBBLE_X * 2, SPEECH_BUBBLE_Y * 0.5f);
-		})));
+		};
+		Label bubble1 = makeSpeechBubble(text1, next);
+		currentBubble = bubble1;
+		addActor(currentBubble);
+		addAction(Actions.delay(3f, Actions.run(next)));
 	}
 
 	private void text2() {
 		String text2 = UI.color(UI.DARK_BLUE, "My, how time flies.");
-		Label bubble2 = UI.makeSpeechBubbleLabel(text2);
-		bubble2.setPosition(SPEECH_BUBBLE_X, SPEECH_BUBBLE_Y);
-		bubble2.setColor(1, 1, 1, 0);
-		addActor(bubble2);
-		bubble2.addAction(Actions.delay(0.5f, Actions.fadeIn(0.5f)));
-		addAction(Actions.delay(3f, Actions.run(() -> {
+		Runnable next = () -> {
+			clearActions();
+			currentBubble.clearListeners();
 			nextButton = UI.makeTextButton("Next ->", () -> {
-				bubble2.addAction(Actions.fadeOut(0.5f));
+				currentBubble.addAction(Actions.fadeOut(0.5f));
 				text3();
 				nextButton.remove();
 			});
 			addActor(nextButton);
 			nextButton.setPosition(SPEECH_BUBBLE_X * 2, SPEECH_BUBBLE_Y * 0.5f);
-		})));
+		};
+		Label bubble2 = makeSpeechBubble(text2, next);
+		currentBubble = bubble2;
+		addActor(bubble2);
+		addAction(Actions.delay(3f, Actions.run(next)));
 	}
 	
 	private void text3() {
@@ -72,22 +84,38 @@ public class Intro extends Group {
 		text += UI.color(Color.BLUE, "O");
 		text += UI.color(Color.PURPLE, "W");
 		text += UI.color(UI.DARK_BLUE, " seed!");
-		Label bubble2 = UI.makeSpeechBubbleLabel(text);
-		bubble2.setPosition(SPEECH_BUBBLE_X, SPEECH_BUBBLE_Y);
-		bubble2.setColor(1, 1, 1, 0);
-		addActor(bubble2);
-		bubble2.addAction(Actions.delay(0.5f, Actions.fadeIn(0.5f)));
-		addAction(Actions.delay(8f, Actions.run(() -> {
-			nextButton = UI.makeTextButton("Next ->", () -> {
-				bubble2.addAction(
+		Runnable start = () -> {
+			currentBubble.clearListeners();
+			clearActions();
+			nextButton = UI.makeTextButton("Start!", () -> {
+				clearActions();
+				nextButton.remove();
+				currentBubble.addAction(
 						Actions.sequence(
 						Actions.fadeOut(0.5f),
-						Actions.removeActor()
+						Actions.run(endCutscene)
 								));
 			});
 			addActor(nextButton);
 			nextButton.setPosition(SPEECH_BUBBLE_X * 2, SPEECH_BUBBLE_Y * 0.5f);
-		})));
+		};
+		Label bubble3 = makeSpeechBubble(text, start);
+		currentBubble = bubble3;
+		addActor(bubble3);
+		addAction(Actions.delay(6f, Actions.run(start)));
+	}
+	
+	private static Label makeSpeechBubble(String text, Runnable onClick) {
+		Label bubble = UI.makeSpeechBubbleLabel(text);
+		bubble.setPosition(SPEECH_BUBBLE_X, SPEECH_BUBBLE_Y);
+		bubble.setColor(1, 1, 1, 0);
+		bubble.addAction(Actions.delay(0.5f, Actions.fadeIn(0.5f)));
+		bubble.addListener(new ClickListener() {
+			public void clicked (InputEvent event, float x, float y) {
+				onClick.run();
+			}
+		});
+		return bubble;
 	}
 
 }

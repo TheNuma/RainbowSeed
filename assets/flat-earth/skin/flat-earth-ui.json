@@ -405,7 +405,7 @@ com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	default: {
-		font: button
+		font: title
 		fontColor: white
 		downFontColor: white
 		overFontColor: gray
