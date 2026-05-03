@@ -12,6 +12,7 @@ public class RainbowAudioManager implements Seasonal {
 	private Music summerSong;
 	private Music autumnSong;
 	private Music winterSong;
+	private Music rainbowSong;
 
 	private Music currentSong;
 	private Music outgoingSong;
@@ -23,11 +24,13 @@ public class RainbowAudioManager implements Seasonal {
 		summerSong = loadInSong("02 Summer");
 		autumnSong = loadInSong("03 Autumn");
 		winterSong = loadInSong("04 Winter");
+		rainbowSong = loadInSong("05 Rainbow");
 
 		springSong.play();
 		summerSong.play();
 		autumnSong.play();
 		winterSong.play();
+		rainbowSong.play();
 
 		playSong(springSong);
 	}
@@ -73,6 +76,11 @@ public class RainbowAudioManager implements Seasonal {
 	public void winter() {
 		playSong(winterSong);
 		winterSound.play();
+	}
+
+	@Override
+	public void rainbow() {
+		playSong(rainbowSong);
 	}
 
 	public void playSong(Music newSong) {

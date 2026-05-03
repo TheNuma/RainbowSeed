@@ -23,18 +23,18 @@ import com.numa.rainbow.season.Seasonal;
 import com.numa.rainbow.ui.PossibleComboHint;
 import com.numa.rainbow.ui.UI;
 
-public class DraggableItem extends Image implements Seasonal{
+public class DraggableItem extends Image implements Seasonal {
 
 	private final DragAndDrop dragAndDrop;
-	private String name;
-	private Set<ItemType> remainingCombinations;
+	private final String name;
+	private final Set<ItemType> remainingCombinations;
 
-	private ItemType type;
+	private final ItemType type;
 
 	public DraggableItem(String fileName, ItemType type, Set<ItemType> combos) {
-		this.type=type;
-		this.remainingCombinations=combos;
-		this.name = type.getItemName();
+		this.type = type;
+		remainingCombinations = combos;
+		name = type.getItemName();
 
 		Texture tex = new Texture(Gdx.files.internal("items/" + fileName + ".png"));
 		tex.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -42,18 +42,18 @@ public class DraggableItem extends Image implements Seasonal{
 		setScaling(Scaling.fit);
 		float size = 0.07f * RainbowSeedGame.WORLD_HEIGHT;
 		setSize(size, size);
-		
+
 		dragAndDrop = new DragAndDrop();
 		setupDragAndDrop();
 	}
-	
+
 	public void removeCombo(ItemType type) {
 		remainingCombinations.remove(type);
 	}
 
-	private void setupDragAndDrop() {	
+	private void setupDragAndDrop() {
 		dragAndDrop.setTapSquareSize(0);
-		dragAndDrop.setDragActorPosition(getWidth()/2f, -getHeight()/2f);
+		dragAndDrop.setDragActorPosition(getWidth() / 2f, -getHeight() / 2f);
 		dragAndDrop.addSource(new Source(this) {
 
 			private Payload payload;
@@ -64,7 +64,7 @@ public class DraggableItem extends Image implements Seasonal{
 				payload.setObject(DraggableItem.this);
 
 				payload.setDragActor(getActor());
-				
+
 				DraggableItem.this.setTouchable(Touchable.disabled);
 
 				return payload;
@@ -85,18 +85,21 @@ public class DraggableItem extends Image implements Seasonal{
 
 		});
 	}
-	public void addDropTarget(DraggableItem target) { 
+
+	public void addDropTarget(DraggableItem target) {
 		dragAndDrop.addTarget(new Target(target) {
-			public boolean drag (Source source, Payload payload, float x, float y, int pointer) {
+			@Override
+			public boolean drag(Source source, Payload payload, float x, float y, int pointer) {
 				return true;
 			}
 
-			public void reset (Source source, Payload payload) {
-			}
+			@Override
+			public void reset(Source source, Payload payload) {}
 
-			public void drop (Source source, Payload payload, float x, float y, int pointer) {
-				DraggableItem draggedItem= (DraggableItem)payload.getObject();
-				Combiner.combineItems(draggedItem, target);;
+			@Override
+			public void drop(Source source, Payload payload, float x, float y, int pointer) {
+				DraggableItem draggedItem = (DraggableItem) payload.getObject();
+				Combiner.combineItems(draggedItem, target);
 			}
 		});
 
@@ -110,46 +113,53 @@ public class DraggableItem extends Image implements Seasonal{
 	public ItemType getType() {
 		return type;
 	}
-	
+
 	public boolean hasRemainingCombinations() {
 		return !remainingCombinations.isEmpty();
 	}
-	
+
 	public void removeItem(float delay) {
-		Label allCombosFoundLabel = UI.makeLabelWithBackground("All combinations with "+ toString().toUpperCase() + " found!");
+		Label allCombosFoundLabel = UI.makeLabelWithBackground("All combinations with " + toString().toUpperCase() + " found!");
 		allCombosFoundLabel.setX(RainbowSeedGame.WORLD_WIDTH * 0.01f);
 		allCombosFoundLabel.setVisible(false);
-		allCombosFoundLabel.addAction(Actions.sequence(
-				Actions.delay(delay),
-				Actions.visible(true),
-				Actions.parallel(
-						Actions.moveBy(0, RainbowSeedGame.WORLD_HEIGHT * 0.15f, 5f, Interpolation.circleOut),
-						Actions.delay(3f, Actions.fadeOut(0.3f))
+		allCombosFoundLabel.addAction(
+				Actions.sequence(
+						Actions.delay(delay),
+						Actions.visible(true),
+						Actions.parallel(
+								Actions.moveBy(0, RainbowSeedGame.WORLD_HEIGHT * 0.15f, 5f, Interpolation.circleOut),
+								Actions.delay(3f, Actions.fadeOut(0.3f))
 						),
-				Actions.removeActor()
-				));
+						Actions.removeActor()
+				)
+		);
 		getStage().addActor(allCombosFoundLabel);
 		remove();
 	}
 
 	@Override
 	public void spring() {
-		this.setVisible(type.getValidSeasons().contains(Season.SPRING));
+		setVisible(type.getValidSeasons().contains(Season.SPRING));
 	}
 
 	@Override
 	public void summer() {
-		this.setVisible(type.getValidSeasons().contains(Season.SUMMER));
+		setVisible(type.getValidSeasons().contains(Season.SUMMER));
 	}
 
 	@Override
 	public void autumn() {
-		this.setVisible(type.getValidSeasons().contains(Season.AUTUMN));
+		setVisible(type.getValidSeasons().contains(Season.AUTUMN));
 	}
 
 	@Override
 	public void winter() {
-		this.setVisible(type.getValidSeasons().contains(Season.WINTER));
+		setVisible(type.getValidSeasons().contains(Season.WINTER));
+	}
+
+	@Override
+	public void rainbow() {
+		// TODO Auto-generated method stub
 	}
 
 }
