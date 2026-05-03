@@ -8,16 +8,11 @@ import java.util.Set;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.numa.rainbow.RainbowSeedGame;
 import com.numa.rainbow.items.CombinationKey;
 import com.numa.rainbow.items.Combiner;
 import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.items.ItemInteractions;
 import com.numa.rainbow.items.ItemType;
-import static com.numa.rainbow.items.ItemType.*;
-
-import com.numa.rainbow.season.Season;
-import com.numa.rainbow.items.*;
 import com.numa.rainbow.season.SeasonShifter;
 
 public class Farm {
@@ -35,10 +30,10 @@ public class Farm {
 		interactions =new ItemInteractions();
 		Combiner.setItemInteractions(interactions,this::getItemFromType);
 		
-		makeItem(SPRINGSEED,740,320);
-		makeItem(WATER, 500, 500);
-		makeItem(DIRT,999,505);		
-		makeItem(WEED,233,111);
+		makeItem(SPRINGSEED,1040,320);
+		makeItem(WATER, 800, 500);
+		makeItem(DIRT,1299,505);		
+		makeItem(WEED,1111,666);
 		makeUnavailableItem(GRASS);	
 		makeUnavailableItem(SUMMERSEED);
 		DraggableItem itemTemp=allItems.get(SUMMERSEED);
