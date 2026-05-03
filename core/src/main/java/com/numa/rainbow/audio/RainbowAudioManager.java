@@ -60,7 +60,7 @@ public class RainbowAudioManager implements Seasonal {
 	@Override
 	public void summer() {
 		playSong(summerSong);
-		summerSong.play();
+		summerSound.play();
 	}
 
 	@Override
@@ -94,16 +94,18 @@ public class RainbowAudioManager implements Seasonal {
 		return song;
 	}
 
-	public static Sound springSound;
-	public static Sound summerSound;
-	public static Sound autumnSound;
-	public static Sound winterSound;
+	private static Sound springSound;
+	private static Sound summerSound;
+	private static Sound autumnSound;
+	private static Sound winterSound;
+	private static Sound successSound;
 
 	public void initializeSounds() {
 		springSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "springSound.wav"));
 		summerSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "summerSound.wav"));
 		autumnSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "autumnSound.wav"));
 		winterSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "winterSound.wav"));
+		successSound = Gdx.audio.newSound(Gdx.files.internal("sound/" + "successSound.wav"));
 	}
 
 }
