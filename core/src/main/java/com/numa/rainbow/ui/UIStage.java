@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.numa.rainbow.RainbowSeedGame;
+import com.numa.rainbow.audio.RainbowAudioManager;
 import com.numa.rainbow.cutscenes.*;
 import com.numa.rainbow.items.DraggableItem;
 import com.numa.rainbow.season.Season;
@@ -26,12 +27,14 @@ public class UIStage extends Stage {
 	private Stage gameStage;
 	private SeasonShifter seasonShifter;
 	private Supplier<List<DraggableItem>> colorfulItems;
+	private RainbowAudioManager audio;
 
-	public UIStage(Viewport viewport, SeasonShifter seasonShifter, Stage gameStage, Supplier<List<DraggableItem>> colorfulItems) {
+	public UIStage(Viewport viewport, SeasonShifter seasonShifter, Stage gameStage, Supplier<List<DraggableItem>> colorfulItems, RainbowAudioManager audio) {
 		super(viewport);
 		this.seasonShifter = seasonShifter;
 		this.gameStage = gameStage;
 		this.colorfulItems = colorfulItems;
+		this.audio = audio;
 
 		sidebar = new Table();
 		sidebar.setBackground(UI.getUISidebarTexture());
@@ -112,9 +115,12 @@ public class UIStage extends Stage {
 			}, seasonShifter.getCurrentSeason()));
 		})));
 	}
-	
+
 	private void showSummoningCircle() {
-		SummoningCircle circle = new SummoningCircle(() -> addActor(new RainbowSeed()));
+		SummoningCircle circle = new SummoningCircle(() -> {
+			addActor(new RainbowSeed());
+			audio.rainbow();
+		});
 		gameStage.addActor(circle);
 		circle.toBack();
 		seasonShifter.registerSeasonalThing(circle);

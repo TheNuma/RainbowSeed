@@ -24,10 +24,10 @@ public class Farm {
 		interactions =new ItemInteractions();
 		Combiner.setItemInteractions(interactions,this::getItemFromType);
 		
-		makeItem(SPRINGSEED,740,320);
-		makeItem(WATER, 500, 500);
-		makeItem(DIRT,999,505);		
-		makeItem(WEED,233,111);
+		makeItem(SPRINGSEED,1040,320);
+		makeItem(WATER, 800, 500);
+		makeItem(DIRT,1299,505);		
+		makeItem(WEED,1111,666);
 		makeUnavailableItem(GRASS);	
 		makeUnavailableItem(SUMMERSEED);
 		DraggableItem itemTemp=allItems.get(SUMMERSEED);

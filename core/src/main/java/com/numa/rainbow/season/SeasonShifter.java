@@ -6,23 +6,25 @@ import java.util.Collection;
 public class SeasonShifter {
 
 	private Season currentSeason;
-	private Collection<Seasonal> seasonChangeObservers;
+	private final Collection<Seasonal> seasonChangeObservers;
 
 	public SeasonShifter() {
-		this.currentSeason = Season.SPRING;
-		this.seasonChangeObservers = new ArrayList<>();
+		currentSeason = Season.SPRING;
+		seasonChangeObservers = new ArrayList<>();
 	}
-	
+
 	public void registerSeasonalThing(Seasonal seasonal) {
 		seasonChangeObservers.add(seasonal);
 		notifySeasonalObserver(seasonal);
 	}
 
 	public void setSeason(Season newSeason) {
-		currentSeason = newSeason;
-		seasonChangeObservers.forEach(this::notifySeasonalObserver);
+		if (newSeason != currentSeason) {
+			currentSeason = newSeason;
+			seasonChangeObservers.forEach(this::notifySeasonalObserver);
+		}
 	}
-	
+
 	private void notifySeasonalObserver(Seasonal observer) {
 		switch (currentSeason) {
 		case AUTUMN:
@@ -37,7 +39,7 @@ public class SeasonShifter {
 		case WINTER:
 			observer.winter();
 			break;
-		};
+		}
 	}
 
 	public Season getCurrentSeason() {
