@@ -23,7 +23,7 @@ import com.numa.rainbow.season.Seasonal;
 import com.numa.rainbow.ui.PossibleComboHint;
 import com.numa.rainbow.ui.UI;
 
-public class DraggableItem extends Image implements Seasonal{
+public class DraggableItem extends Image implements Seasonal {
 
 	private final DragAndDrop dragAndDrop;
 	private String name;
@@ -72,7 +72,6 @@ public class DraggableItem extends Image implements Seasonal{
 
 			@Override
 			public void drag(InputEvent event, float x, float y, int pointer) {
-				payload.setValidDragActor(new PossibleComboHint(DraggableItem.this));
 				super.drag(event, x, y, pointer);
 			}
 
@@ -88,6 +87,7 @@ public class DraggableItem extends Image implements Seasonal{
 	public void addDropTarget(DraggableItem target) { 
 		dragAndDrop.addTarget(new Target(target) {
 			public boolean drag (Source source, Payload payload, float x, float y, int pointer) {
+				payload.setValidDragActor(new PossibleComboHint(target));
 				return true;
 			}
 
