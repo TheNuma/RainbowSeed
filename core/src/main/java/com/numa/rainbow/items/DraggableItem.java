@@ -31,7 +31,7 @@ public class DraggableItem extends Image implements Seasonal {
 
 	private final DragAndDrop dragAndDrop;
 	private Map<ItemType, Target> dragAndDropTargets;
-	
+
 	private String name;
 	private Set<ItemType> remainingCombinations;
 
@@ -48,12 +48,12 @@ public class DraggableItem extends Image implements Seasonal {
 		setScaling(Scaling.fit);
 		float size = 0.07f * RainbowSeedGame.WORLD_HEIGHT;
 		setSize(size, size);
-		
+
 		dragAndDrop = new DragAndDrop();
 		dragAndDropTargets = new EnumMap<>(ItemType.class);
 		setupDragAndDrop();
 	}
-	
+
 	public void removeCombo(ItemType type) {
 		remainingCombinations.remove(type);
 	}
@@ -69,7 +69,7 @@ public class DraggableItem extends Image implements Seasonal {
 				payload.setObject(DraggableItem.this);
 
 				payload.setDragActor(getActor());
-				
+
 				DraggableItem.this.setTouchable(Touchable.disabled);
 
 				return payload;
@@ -78,7 +78,12 @@ public class DraggableItem extends Image implements Seasonal {
 			@Override
 			public void dragStop(InputEvent event, float x, float y, int pointer, Payload payload, Target target) {
 				super.dragStop(event, x, y, pointer, payload, target);
-				DraggableItem.this.setTouchable(Touchable.enabled);
+				if (isVisible()) {
+					DraggableItem.this.setTouchable(Touchable.enabled);
+				} else {
+					// Was dropped in the summoning circle, don't go touchable again
+					DraggableItem.this.setVisible(true);
+				}
 				DraggableItem.this.toFront();
 			}
 
@@ -121,7 +126,7 @@ public class DraggableItem extends Image implements Seasonal {
 			}
 		});
 	}
-	
+
 	public void removeDropTarget(ItemType itemType) {
 		Target target = dragAndDropTargets.remove(itemType);
 		System.out.println(type + " removing contact with " + itemType);
@@ -136,11 +141,11 @@ public class DraggableItem extends Image implements Seasonal {
 	public ItemType getType() {
 		return type;
 	}
-	
+
 	public boolean hasRemainingCombinations() {
 		return !remainingCombinations.isEmpty();
 	}
-	
+
 	public void removeItem(float delay) {
 		Label allCombosFoundLabel = UI.makeLabelWithBackground("All combinations with "+ toString().toUpperCase() + " found!");
 		allCombosFoundLabel.setX(RainbowSeedGame.WORLD_WIDTH * 0.01f);
@@ -180,7 +185,7 @@ public class DraggableItem extends Image implements Seasonal {
 			this.setPosition(MathUtils.random(this.getStage().getWidth()-this.getWidth()), MathUtils.random(this.getStage().getHeight()-this.getHeight()));
 		}
 	}
-	
+
 	@Override
 	public void rainbow() {
 		// TODO Auto-generated method stub

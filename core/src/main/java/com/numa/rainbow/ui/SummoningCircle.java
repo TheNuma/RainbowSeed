@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -65,7 +64,7 @@ public class SummoningCircle extends Image implements Seasonal {
 	}
 
 	public void acceptItem(DraggableItem draggedItem) {
-		draggedItem.setTouchable(Touchable.disabled);
+		draggedItem.setVisible(false);
 
 		receivedItems.add(draggedItem);
 		int jauntyOffset = 12;

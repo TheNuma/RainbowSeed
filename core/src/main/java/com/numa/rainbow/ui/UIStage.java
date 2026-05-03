@@ -114,11 +114,11 @@ public class UIStage extends Stage {
 	}
 	
 	private void showSummoningCircle() {
-		SummoningCircle circle = new SummoningCircle(() -> System.out.println("You win!!"));
+		SummoningCircle circle = new SummoningCircle(() -> addActor(new RainbowSeed()));
 		gameStage.addActor(circle);
 		circle.toBack();
 		seasonShifter.registerSeasonalThing(circle);
-		colorfulItems.get().forEach(item -> item.setPosition(40, 40));
+		colorfulItems.get().forEach(item -> item.setPosition(240, 240));
 		colorfulItems.get().forEach(item -> item.setVisible(true));
 		colorfulItems.get().forEach(item -> item.addSummoningCircleDropTarget(circle));
 	}
