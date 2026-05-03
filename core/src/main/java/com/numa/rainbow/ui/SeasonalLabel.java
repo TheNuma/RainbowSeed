@@ -30,4 +30,9 @@ public class SeasonalLabel extends Label implements Seasonal {
 		setColor(UI.DARK_BLUE);
 	}
 
+	@Override
+	public void rainbow() {
+		setColor(Color.WHITE);
+	}
+
 }
